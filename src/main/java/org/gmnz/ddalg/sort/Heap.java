@@ -22,15 +22,15 @@ public class Heap {
 	/**
 	 * Trasforma l'albero <code>v</code> in un M-heap
 	 * 
-	 * @param v
+	 * @param arr
 	 * @return
 	 */
-	public int[] maxHeapify(int[] v) {
-		int l = v.length;
-		for (int i = v.length / 2 - 1; i >= 0; i--) {
-			maxHeapify(v, l, i);
+	public int[] maxHeapify(int[] arr) {
+		int l = arr.length;
+		for (int i = l / 2 - 1; i >= 0; i--) {
+			maxHeapify(arr, l, i);
 		}
-		return v;
+		return arr;
 	}
 
 
@@ -41,46 +41,39 @@ public class Heap {
 	 * Il sottoalbero è identificato a partire dall'indice specificato, e si
 	 * specifica pure la grandezza dell'heap
 	 * 
-	 * @param v       array che contiene l'albero
-	 * @param w       grandezza dell'heap
+	 * @param arr     array che contiene l'albero
+	 * @param width   grandezza dell'heap
 	 * @param rootIdx radice dell'albero da trasformare in heap
 	 * @return array di <code>int</code> la cui porzione compresa in [0, w-1] ha la
 	 *         struttura di un heap
 	 */
-	public int[] maxHeapify(int[] v, int w, int rootIdx) {
+	public int[] maxHeapify(int[] arr, int width, int rootIdx) {
 		int max = rootIdx;
 		int sx = 2 * rootIdx + 1;
 		int dx = 2 * rootIdx + 2;
 
-		if (sx < w && v[sx] > v[max]) {
+		if (sx < width && arr[sx] > arr[max]) {
 			max = sx;
 		}
-		if (dx < w && v[dx] > v[max]) {
+		if (dx < width && arr[dx] > arr[max]) {
 			max = dx;
 		}
 		if (max != rootIdx) {
-			int tmp = v[rootIdx];
-			v[rootIdx] = v[max];
-			v[max] = tmp;
-
-			v = maxHeapify(v, w, max);
+			IntArrayUtils.swap(arr, rootIdx, max);
+			arr = maxHeapify(arr, width, max);
 		}
-		return v;
+		return arr;
 	}
 
 
 
-	public int[] heapSort(int[] v) {
-		v = maxHeapify(v);
-		
-		for (int i = v.length-1; i >= 0; i--) {
-			int tmp = v[0];
-			v[0] = v[i];
-			v[i] = tmp;
-
-			v = maxHeapify(v, i, 0);
+	public int[] heapSort(int[] arr) {
+		arr = maxHeapify(arr);
+		for (int i = arr.length - 1; i >= 0; i--) {
+			IntArrayUtils.swap(arr, 0, i);
+			arr = maxHeapify(arr, i, 0);
 		}
-		return v;
+		return arr;
 	}
 
 }

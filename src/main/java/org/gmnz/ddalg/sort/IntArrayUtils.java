@@ -35,4 +35,25 @@ public class IntArrayUtils {
 		System.out.println();
 	}
 
+
+
+	public static void swap(int[] arr, int x, int y) {
+		int tmp = arr[x];
+		arr[x] = arr[y];
+		arr[y] = tmp;
+	}
+
+
+
+	public static void printCBT(int[] arr) {
+		int exp = 0;
+		for (int i = 0; i < arr.length; i++) {
+			if (i > 0 && (i+1) % Math.pow(2, exp) == 0) {
+				System.out.print("   ");
+				++exp;
+			}
+			System.out.printf("%d ", arr[i]);
+		}
+		System.out.println();
+	}
 }
