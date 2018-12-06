@@ -49,39 +49,31 @@ public class Heap {
 	 */
 	public int[] maxHeapify(int[] arr, int width, int rootIdx) {
 		// HP: l'indice rootIdx passato si riferisce al nodo con l'elemento massimo
-		int max = rootIdx;
+		int maxIdx = rootIdx;
 
 		// calcola gli indici dei due discendenti dell'elemento specificato
 		int sx = 2 * rootIdx + 1;
 		int dx = 2 * rootIdx + 2;
 
-		if (sx < width && arr[sx] > arr[max]) {
-			max = sx;
+		// controlla se a questo indice corrisponde davvero un elemento di un heap
+		// (i.e. i suoi discendenti, se esistono, sono di valore inferiore)
+		if (sx < width && arr[sx] > arr[maxIdx]) {
+			maxIdx = sx;
 		}
-		if (dx < width && arr[dx] > arr[max]) {
-			max = dx;
+		if (dx < width && arr[dx] > arr[maxIdx]) {
+			maxIdx = dx;
 		}
-		if (max != rootIdx) {
-			IntArrayUtils.swap(arr, rootIdx, max);
-			arr = maxHeapify(arr, width, max);
+
+		// se questo non è un nodo di un heap, scambia il nodo corrente con quello
+		// dell'indice trovato, poi (ri)verifica la proprietà di heap su questo nodo
+		// (che ora contiene un massimo)
+		if (maxIdx != rootIdx) {
+			IntArrayUtils.swap(arr, rootIdx, maxIdx);
+			arr = maxHeapify(arr, width, maxIdx);
 		}
 		// --
 
 		return arr;
-	}
-
-
-
-	/**
-	 * Controlla se l'indice passato è indicativo di un nodo foglia.
-	 * 
-	 * @param arr l'array su cui eseguire il controllo
-	 * @param idx indice del nodo
-	 * @return banale
-	 */
-	private boolean isLeaf(int[] arr, int idx) {
-		int l = arr.length;
-		return 2*idx+1 > l && 2*idx+2 > l;
 	}
 
 
