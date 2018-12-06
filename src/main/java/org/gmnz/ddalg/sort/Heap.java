@@ -55,7 +55,6 @@ public class Heap {
 		int sx = 2 * rootIdx + 1;
 		int dx = 2 * rootIdx + 2;
 
-		// -- questa logica si potrebbe migliorare
 		if (sx < width && arr[sx] > arr[max]) {
 			max = sx;
 		}
@@ -67,17 +66,31 @@ public class Heap {
 			arr = maxHeapify(arr, width, max);
 		}
 		// --
-		
+
 		return arr;
+	}
+
+
+
+	/**
+	 * Controlla se l'indice passato è indicativo di un nodo foglia.
+	 * 
+	 * @param arr l'array su cui eseguire il controllo
+	 * @param idx indice del nodo
+	 * @return banale
+	 */
+	private boolean isLeaf(int[] arr, int idx) {
+		int l = arr.length;
+		return 2*idx+1 > l && 2*idx+2 > l;
 	}
 
 
 
 	public int[] heapSort(int[] arr) {
 		arr = maxHeapify(arr);
-		for (int i = arr.length - 1; i >= 0; i--) {
-			IntArrayUtils.swap(arr, 0, i);
-			arr = maxHeapify(arr, i, 0);
+		for (int sortWindowWidth = arr.length - 1; sortWindowWidth >= 0; sortWindowWidth--) {
+			IntArrayUtils.swap(arr, 0, sortWindowWidth);
+			arr = maxHeapify(arr, sortWindowWidth, 0);
 		}
 		return arr;
 	}
