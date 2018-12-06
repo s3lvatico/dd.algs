@@ -20,7 +20,7 @@ package org.gmnz.ddalg.sort;
 public class Heap {
 
 	/**
-	 * Trasforma l'albero <code>v</code> in un M-heap
+	 * Trasforma l'albero <code>arr</code> in un M-heap
 	 * 
 	 * @param arr
 	 * @return
