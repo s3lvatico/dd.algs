@@ -48,10 +48,14 @@ public class Heap {
 	 *         struttura di un heap
 	 */
 	public int[] maxHeapify(int[] arr, int width, int rootIdx) {
+		// HP: l'indice rootIdx passato si riferisce al nodo con l'elemento massimo
 		int max = rootIdx;
+
+		// calcola gli indici dei due discendenti dell'elemento specificato
 		int sx = 2 * rootIdx + 1;
 		int dx = 2 * rootIdx + 2;
 
+		// -- questa logica si potrebbe migliorare
 		if (sx < width && arr[sx] > arr[max]) {
 			max = sx;
 		}
@@ -62,6 +66,8 @@ public class Heap {
 			IntArrayUtils.swap(arr, rootIdx, max);
 			arr = maxHeapify(arr, width, max);
 		}
+		// --
+		
 		return arr;
 	}
 
