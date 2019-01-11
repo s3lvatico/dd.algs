@@ -10,12 +10,26 @@ public abstract class AbstractSortEngine {
 
 
 
+	/**
+	 * confronta due valori comparabili
+	 * 
+	 * @param v primo
+	 * @param w secondo
+	 * @return true se il primo valore � strettamente minore del secondo
+	 */
 	protected boolean less(Comparable v, Comparable w) {
 		return v.compareTo(w) < 0;
 	}
 
 
 
+	/**
+	 * nell'array a, scambia gli elementi di posto i e j
+	 * 
+	 * @param a
+	 * @param i
+	 * @param j
+	 */
 	protected void swap(Comparable[] a, int i, int j) {
 		Comparable t = a[i];
 		a[i] = a[j];
@@ -39,10 +53,4 @@ public abstract class AbstractSortEngine {
 		return true;
 	}
 
-//	public static void main(String[] args) { // Read strings from standard input, sort them, and print.
-//		String[] a = StdIn.readAllStrings();
-//		sort(a);
-//		assert isSorted(a);
-//		show(a);
-//	}
 }
