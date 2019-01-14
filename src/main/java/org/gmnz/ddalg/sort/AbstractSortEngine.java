@@ -15,7 +15,7 @@ public abstract class AbstractSortEngine {
 	 * 
 	 * @param v primo
 	 * @param w secondo
-	 * @return true se il primo valore � strettamente minore del secondo
+	 * @return true se il primo valore è strettamente minore del secondo
 	 */
 	protected boolean less(Comparable v, Comparable w) {
 		return v.compareTo(w) < 0;
