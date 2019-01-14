@@ -6,7 +6,7 @@ abstract class AbstractMergeSort extends AbstractSortEngine {
 
 
 
-	protected Comparable[]  merge(Comparable[] a, int lo, int mid, int hi) {
+	protected Comparable[] merge(Comparable[] a, int lo, int mid, int hi) {
 		// mi segno i punti in cui partono i due subarray
 		int i = lo;
 		int j = mid + 1;
