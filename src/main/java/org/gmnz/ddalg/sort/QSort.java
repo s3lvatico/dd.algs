@@ -1,8 +1,6 @@
 package org.gmnz.ddalg.sort;
 
 
-import java.util.Arrays;
-
 import edu.princeton.cs.algs4.In;
 
 
