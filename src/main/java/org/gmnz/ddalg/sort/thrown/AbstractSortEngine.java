@@ -1,4 +1,4 @@
-package org.gmnz.ddalg.sort;
+package org.gmnz.ddalg.sort.thrown;
 
 
 import edu.princeton.cs.algs4.StdOut;

@@ -1,4 +1,4 @@
-package org.gmnz.ddalg.sort;
+package org.gmnz.ddalg.sort.thrown;
 
 abstract class AbstractMergeSort extends AbstractSortEngine {
 
