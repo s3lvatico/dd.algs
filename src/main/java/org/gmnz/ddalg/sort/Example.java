@@ -7,7 +7,8 @@ import edu.princeton.cs.algs4.StdOut;
 
 public class Example {
 
-	public static void sort(Comparable[] a) { /* See Algorithms 2.1, 2.2, 2.3, 2.4, 2.5, or 2.7. */ }
+	public static void sort(Comparable[] a) {
+		/* See Algorithms 2.1, 2.2, 2.3, 2.4, 2.5, or 2.7. */ }
 
 
 

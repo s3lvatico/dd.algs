@@ -9,7 +9,7 @@ abstract class AbstractMergeSort extends AbstractSort {
 	protected AbstractMergeSort(Comparable[] arr) {
 		super(arr);
 		if (arr != null)
-			aux = new Comparable[arr.length]; 
+			aux = new Comparable[arr.length];
 	}
 
 
