@@ -2,8 +2,6 @@ package org.gmnz.ddalg.sort;
 
 
 import edu.princeton.cs.algs4.StdOut;
-
-
 abstract class AbstractSort {
 
 	protected Comparable[] a;

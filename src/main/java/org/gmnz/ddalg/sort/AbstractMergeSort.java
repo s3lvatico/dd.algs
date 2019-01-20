@@ -2,14 +2,14 @@ package org.gmnz.ddalg.sort;
 
 
 abstract class AbstractMergeSort extends AbstractSort {
+
 	private Comparable[] aux;
 
 
 
 	protected AbstractMergeSort(Comparable[] arr) {
 		super(arr);
-		if (arr != null)
-			aux = new Comparable[arr.length];
+		aux = new Comparable[arr.length];
 	}
 
 
@@ -38,13 +38,14 @@ abstract class AbstractMergeSort extends AbstractSort {
 					a[k] = aux[i++];
 				}
 				else // confronto i due valori nei due subarray
+						 // prendo il valore più piccolo puntato dagli indici
 					if (less(aux[i], aux[j])) {
 						a[k] = aux[i++];
 					}
 					else {
 						a[k] = aux[j++];
 					}
-		} // ciclo for
+		} // fine ciclo for
 		return a;
 	}
 
