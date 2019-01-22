@@ -14,7 +14,16 @@ abstract class AbstractMergeSort extends AbstractSort {
 
 
 
-	protected Comparable[] merge(Comparable[] a, int lo, int mid, int hi) {
+	/**
+	 * Unisce i due subarray contenuti nell'array principale nell'intervallo
+	 * [lo..mid] e [mid+1..hi]
+	 * 
+	 * @param a
+	 * @param lo
+	 * @param mid
+	 * @param hi
+	 */
+	protected void merge(int lo, int mid, int hi) {
 		// mi segno i punti in cui partono i due subarray
 		int i = lo;
 		int j = mid + 1;
@@ -26,6 +35,8 @@ abstract class AbstractMergeSort extends AbstractSort {
 		}
 
 		// fusione
+		
+		// scansione di tutto l'intervallo di interesse
 		for (int k = lo; k <= hi; k++) {
 			// ho finito a sinistra?
 			if (i > mid) {
@@ -45,8 +56,7 @@ abstract class AbstractMergeSort extends AbstractSort {
 					else {
 						a[k] = aux[j++];
 					}
-		} // fine ciclo for
-		return a;
+		} 
 	}
 
 }

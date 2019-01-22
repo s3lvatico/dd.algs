@@ -14,21 +14,20 @@ public class MergeSortTopDown extends AbstractMergeSort {
 
 	@Override
 	public void sort() {
-		sort(a, 0, a.length - 1);
+		sort(0, a.length - 1);
 	}
 
 
 
-	private Comparable[] sort(Comparable[] a, int lo, int hi) {
+	private void sort(int lo, int hi) {
 		if (hi <= lo) {
-			return a;
+			return;
 		}
 
 		int mid = lo + (hi - lo) / 2;
-		a = sort(a, lo, mid);
-		a = sort(a, mid + 1, hi);
-		a = merge(a, lo, mid, hi);
-		return a;
+		sort(lo, mid);
+		sort(mid + 1, hi);
+		merge(lo, mid, hi);
 	}
 
 
