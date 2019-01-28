@@ -10,9 +10,9 @@ import edu.princeton.cs.algs4.StdOut;
  * @author gemini
  *
  */
-abstract class AbstractSort {
+abstract class AbstractSortEngine<KEY extends Comparable<KEY>> {
 
-	protected Comparable[] a;
+	protected KEY[] a;
 
 
 
@@ -22,9 +22,9 @@ abstract class AbstractSort {
 	 * 
 	 * @param arr
 	 */
-	protected AbstractSort(Comparable[] arr) {
+	protected AbstractSortEngine(KEY[] arr) {
 		if (arr == null) {
-			this.a = new Comparable[] {};
+			this.a = (KEY[]) new Comparable[] {};
 		}
 		else {
 			this.a = arr;
@@ -44,7 +44,7 @@ abstract class AbstractSort {
 	 * @param j
 	 */
 	protected void swap(int i, int j) {
-		Comparable temp = a[i];
+		KEY temp = a[i];
 		a[i] = a[j];
 		a[j] = temp;
 	}
@@ -58,7 +58,7 @@ abstract class AbstractSort {
 	 * @param y
 	 * @return <code>true</code> se x < y
 	 */
-	protected boolean less(Comparable x, Comparable y) {
+	protected boolean less(KEY x, KEY y) {
 		return x.compareTo(y) < 0;
 	}
 

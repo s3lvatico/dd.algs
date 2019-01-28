@@ -26,7 +26,7 @@ public class MergeSortBottomUp extends AbstractMergeSort {
 
 	public static void main(String[] args) { // Read strings from standard input, sort them, and print.
 		String[] a = new In(args[0]).readAllStrings();
-		AbstractSort sortEngine = new MergeSortBottomUp(a);
+		AbstractSortEngine sortEngine = new MergeSortBottomUp(a);
 		sortEngine.sort();
 		assert sortEngine.isSorted();
 		sortEngine.show(a);

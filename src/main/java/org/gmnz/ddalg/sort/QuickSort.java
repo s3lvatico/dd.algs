@@ -5,7 +5,7 @@ import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdRandom;
 
 
-public class QuickSort extends AbstractSort {
+public class QuickSort extends AbstractSortEngine {
 
 	QuickSort(Comparable[] arr) {
 		super(arr);

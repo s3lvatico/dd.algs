@@ -1,7 +1,7 @@
 package org.gmnz.ddalg.sort;
 
 
-abstract class AbstractMergeSort extends AbstractSort {
+abstract class AbstractMergeSort extends AbstractSortEngine {
 
 	private Comparable[] aux;
 

@@ -4,6 +4,7 @@ package org.gmnz.ddalg.sort.thrown;
 import edu.princeton.cs.algs4.StdOut;
 
 
+@Deprecated
 public abstract class AbstractSortEngine {
 
 	public abstract Comparable[] sort(Comparable[] a);
