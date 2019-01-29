@@ -14,7 +14,7 @@ public class MergeSortTopDown extends AbstractMergeSort {
 
 	@Override
 	public void sort() {
-		sort(0, a.length - 1);
+		sort(0, arrayLength - 1);
 	}
 
 

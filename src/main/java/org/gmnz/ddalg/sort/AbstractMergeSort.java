@@ -1,15 +1,15 @@
 package org.gmnz.ddalg.sort;
 
 
-abstract class AbstractMergeSort extends AbstractSortEngine {
+abstract class AbstractMergeSort<KEY extends Comparable<KEY>> extends AbstractSortEngine {
 
-	private Comparable[] aux;
+	private KEY[] aux;
 
 
 
 	protected AbstractMergeSort(Comparable[] arr) {
 		super(arr);
-		aux = new Comparable[arr.length];
+		aux = (KEY[]) new Comparable[arrayLength];
 	}
 
 
@@ -31,11 +31,11 @@ abstract class AbstractMergeSort extends AbstractSortEngine {
 		// preparo l'array ausiliario come copia dell'originale nell'intervallo chiuso
 		// [lo..hi]
 		for (int k = lo; k <= hi; k++) {
-			aux[k] = a[k];
+			aux[k] = (KEY) a[k];
 		}
 
 		// fusione
-		
+
 		// scansione di tutto l'intervallo di interesse
 		for (int k = lo; k <= hi; k++) {
 			// ho finito a sinistra?
@@ -56,7 +56,7 @@ abstract class AbstractMergeSort extends AbstractSortEngine {
 					else {
 						a[k] = aux[j++];
 					}
-		} 
+		}
 	}
 
 }

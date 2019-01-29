@@ -14,7 +14,7 @@ public class MergeSortBottomUp extends AbstractMergeSort {
 
 	@Override
 	protected void sort() {
-		int len = a.length;
+		int len = arrayLength;
 		for (int ss = 1; ss < len; ss += ss) {
 			for (int lo = 0; lo < len - ss; lo += ss + ss) {
 				merge(lo, lo + ss - 1, Math.min(lo + ss + ss - 1, len - 1));

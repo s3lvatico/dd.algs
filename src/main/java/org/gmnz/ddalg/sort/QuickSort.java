@@ -16,7 +16,7 @@ public class QuickSort extends AbstractSortEngine {
 
 	@Override
 	protected void sort() {
-		sort(0, a.length - 1);
+		sort(0, arrayLength - 1);
 	}
 
 

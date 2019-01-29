@@ -21,6 +21,7 @@ public class TestSelectionSort {
 	public void testWithTinyFile() {
 		String[] a = new In("tiny.txt").readAllStrings();
 		AbstractSortEngine<String> sort = new SelectionSort<>(a);
+		sort.show();
 		sort.sort();
 		sort.show();
 		Assert.assertTrue(sort.isSorted());
