@@ -22,8 +22,9 @@ public class QuickSort extends AbstractSortEngine {
 
 
 	void sort(int lo, int hi) {
-		if (lo >= hi)
+		if (lo >= hi) {
 			return;
+		}
 		int j = partition(lo, hi);
 		sort(lo, j);
 		sort(j + 1, hi);
@@ -40,21 +41,20 @@ public class QuickSort extends AbstractSortEngine {
 			while (i < hi) {
 				if (less(p, a[i])) {
 					break;
-				}
-				else {
+				} else {
 					i++;
 				}
 			}
 			while (j > lo) {
 				if (less(a[j], p)) {
 					break;
-				}
-				else {
+				} else {
 					j--;
 				}
 			}
-			if (i >= j)
+			if (i >= j) {
 				break;
+			}
 			swap(i, j);
 		}
 		swap(lo, j);
@@ -74,8 +74,7 @@ public class QuickSort extends AbstractSortEngine {
 
 		QuickSort sort = new QuickSort(a);
 		sort.sort();
-		String[] result = (String[]) sort.getResult();
-		sort.show(result);
+		sort.show();
 	}
 
 }

@@ -36,7 +36,7 @@ public class MergeSortTopDown extends AbstractMergeSort {
 		String[] a = new In(args[0]).readAllStrings();
 		MergeSortTopDown sortEngine = new MergeSortTopDown(a);
 		sortEngine.sort();
-		sortEngine.show(a);
+		sortEngine.show();
 	}
 
 }

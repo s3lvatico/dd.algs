@@ -29,6 +29,6 @@ public class MergeSortBottomUp extends AbstractMergeSort {
 		AbstractSortEngine sortEngine = new MergeSortBottomUp(a);
 		sortEngine.sort();
 		assert sortEngine.isSorted();
-		sortEngine.show(a);
+		sortEngine.show();
 	}
 }

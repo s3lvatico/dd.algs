@@ -6,29 +6,30 @@ import edu.princeton.cs.algs4.StdOut;
 
 /**
  * base dei motori di sort
- * 
+ *
  * @author gemini
  *
  */
 abstract class AbstractSortEngine<KEY extends Comparable<KEY>> {
 
 	protected KEY[] a;
+	protected int arrayLength;
 
 
 
 	/**
 	 * inizializza il motore con l'array specificato. Gestisce i parametri nulli
 	 * creando un array fittizio di dimensione 1
-	 * 
+	 *
 	 * @param arr
 	 */
 	protected AbstractSortEngine(KEY[] arr) {
 		if (arr == null) {
 			this.a = (KEY[]) new Comparable[] {};
-		}
-		else {
+		} else {
 			this.a = arr;
 		}
+		arrayLength = a.length;
 	}
 
 
@@ -39,7 +40,7 @@ abstract class AbstractSortEngine<KEY extends Comparable<KEY>> {
 
 	/**
 	 * scambia nell'array interno gli elementi in posizione i e j
-	 * 
+	 *
 	 * @param i
 	 * @param j
 	 */
@@ -53,7 +54,7 @@ abstract class AbstractSortEngine<KEY extends Comparable<KEY>> {
 
 	/**
 	 * controlla che un elemento sia strettamente minore di un altro
-	 * 
+	 *
 	 * @param x
 	 * @param y
 	 * @return <code>true</code> se x < y
@@ -67,15 +68,14 @@ abstract class AbstractSortEngine<KEY extends Comparable<KEY>> {
 	/**
 	 * verifica che l'array interno sia completamente ordinato, i.e. se ogni
 	 * elemento è maggiore o uguale al precedente
-	 * 
+	 *
 	 * @return
 	 */
 	protected boolean isSorted() {
-		if (a.length == 0) {
+		if (arrayLength < 2) {
 			return true;
-		}
-		else {
-			for (int i = 0; i < a.length - 1; i++) {
+		} else {
+			for (int i = 0; i < arrayLength - 1; i++) {
 				if (less(a[i + 1], a[i])) {
 					return false;
 				}
@@ -86,14 +86,14 @@ abstract class AbstractSortEngine<KEY extends Comparable<KEY>> {
 
 
 
-	protected void show(Comparable[] a) {
-		if (a.length == 0) {
-			StdOut.println("<empty array>");
-		}
-		else {
-			for (int i = 0; i < a.length; i++)
+	protected void show() {
+		if (a.length > 0) {
+			for (int i = 0; i < arrayLength; i++) {
 				StdOut.print(a[i] + " ");
+			}
 			StdOut.println();
+		} else {
+			StdOut.println("<empty array>");
 		}
 	}
 }

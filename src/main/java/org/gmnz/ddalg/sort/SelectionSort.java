@@ -1,7 +1,6 @@
 package org.gmnz.ddalg.sort;
 
-
-public class SelectionSort<KEY extends Comparable> extends AbstractSortEngine {
+public class SelectionSort<KEY extends Comparable<KEY>> extends AbstractSortEngine<KEY> {
 
 	protected SelectionSort(KEY[] arr) {
 		super(arr);
@@ -11,21 +10,18 @@ public class SelectionSort<KEY extends Comparable> extends AbstractSortEngine {
 
 	@Override
 	protected void sort() {
-		int N = a.length;
-		if (N == 0) {
+		if (arrayLength < 2) {
 			return;
 		}
-		for (int i = 0; i < N; i++) {
+		for (int i = 0; i < arrayLength; i++) {
 			int min = i;
-			for (int j = i + 1; j < N; j++) {
-				if (less(a[j], a[i])) {
+			for (int j = i + 1; j < arrayLength; j++) {
+				if (less(a[j], a[min])) {
 					min = j;
 				}
 			}
 			swap(i, min);
 		}
 	}
-
-
 
 }
