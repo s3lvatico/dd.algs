@@ -15,8 +15,8 @@ public class InsertionSort<KEY extends Comparable<KEY>> extends AbstractSortEngi
 		}
 		for (int i = 1; i < arrayLength; i++) {
 			for (int j = i; j > 0; j--) {
-				if (less(a[j], a[i - 1])) {
-					swap(i, j);
+				if (less(a[j], a[j - 1])) {
+					swap(j, j-1);
 				}
 			}
 		}
