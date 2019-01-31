@@ -1,7 +1,6 @@
 package org.gmnz.ddalg.sort;
 
 
-import edu.princeton.cs.algs4.In;
 import edu.princeton.cs.algs4.StdRandom;
 
 
@@ -93,25 +92,11 @@ public class QuickSort<KEY extends Comparable<KEY>> extends AbstractSortEngine<K
 				swap(i, j);
 			}
 		}
-		//
+		// resta solo da posizionare correttamente il pivot, che sarà nella posizione
+		// indicata dall'indice j. L'indice j infatti indica, a fine iterazioni, il più piccolo
 		swap(lo, j);
 		return j;
 	}
 
-
-
-	Comparable[] getResult() {
-		return a;
-	}
-
-
-
-	public static void main(String[] args) { // Read strings from standard input, sort them, and print.
-		String[] a = new In("qsortexample.txt").readAllStrings();
-
-		QuickSort sort = new QuickSort(a);
-		sort.sort();
-		sort.show();
-	}
 
 }
