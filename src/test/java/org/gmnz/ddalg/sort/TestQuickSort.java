@@ -30,8 +30,18 @@ public class TestQuickSort {
 
 
 	@Test
-	public void sample1() {
+	public void testGeneric() {
 		AbstractSortEngine<String> qSort = new QuickSort<String>(new String[] { "F", "A", "C", "D", "K", "R" });
+		qSort.show();
+		qSort.sort();
+		Assert.assertTrue(qSort.isSorted());
+	}
+
+
+
+	@Test
+	public void testOneElement() {
+		AbstractSortEngine<String> qSort = new QuickSort<String>(new String[] { "QQ" });
 		qSort.show();
 		qSort.sort();
 		Assert.assertTrue(qSort.isSorted());

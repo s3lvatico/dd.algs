@@ -55,35 +55,25 @@ public class QuickSort<KEY extends Comparable<KEY>> extends AbstractSortEngine<K
 
 		// finché gli indici di scansione non coincidono
 		while (i < j) {
-			// finché l'indice sx si mantiene all'interno dell'array
+			// finché l'indice sx si mantiene all'interno dell'array e finché l'elemento
+			// indicato da i è minore del pivot continuo la scansione verso dx
 			while (i < hi && less(a[i], p)) {
-				// se l'elemento indicato da i è minore del pivot continuo la scansione
-				// if (less(a[i], p)) {
 				i++;
-				// }
 				// altrimenti mi fermo perché l'elemento non è in posizione giusta rispetto al
-				// pivot, e dovrà quindi essere spostato
-//				else {
-//					break;
-//				}
+				// pivot nel semi-sub-array di sx, quindi andrà spostato
 			}
-			// finché l'indice destro si mantiene all'interno dell'array
+			// finché l'indice destro si mantiene all'interno dell'array e finché l'elemento
+			// indicato da j è NON MINORE del pivot continuo la scansione verso sx
 			while (j > lo && !less(a[j], p)) {
-				// se l'elemento indicato da j è maggiore o uguale al pivot continuo la
-				// scansione
 				// ATTENZIONE: perché ho detto esplicitamente "maggiore o uguale"? Perché non ho
 				// detto "minore"? La scelta è fondamentale per la riuscita dell'algoritmo, in
 				// quanto fornisce una condizione per la quale uno degli indici può continuare a
 				// muoversi, definitivamente incrociando l'altro indice. Con questa soluzione si
 				// fa in modo che l'indice alto di scansione possa in ultimo incrociare quello
 				// basso.
-//				if (!less(a[j], p)) {
 				j--;
-//				}
-//				else {
-//					// altrimenti mi fermo perché l'elemento non è in posizione corretta
-//					break;
-//				}
+				// altrimenti mi fermo perché l'elemento non è in posizione corretta rispetto al
+				// pivot nel semi-sub-array di dx, quindi andrà spostato
 			}
 			// a fine scansione ho trovato due valori definitivi per i e j che, se sono
 			// distinti e non "incrociati", indicano due elementi distinti che sono in
@@ -93,10 +83,10 @@ public class QuickSort<KEY extends Comparable<KEY>> extends AbstractSortEngine<K
 			}
 		}
 		// resta solo da posizionare correttamente il pivot, che sarà nella posizione
-		// indicata dall'indice j. L'indice j infatti indica, a fine iterazioni, il più piccolo
+		// indicata dall'indice j. L'indice j infatti indica, a fine iterazioni, il più
+		// grande tra gli elementi minori o uguali al pivot
 		swap(lo, j);
 		return j;
 	}
-
 
 }

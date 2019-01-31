@@ -10,7 +10,7 @@ import edu.princeton.cs.algs4.StdOut;
  * @author gemini
  *
  */
-abstract class AbstractSortEngine<KEY extends Comparable<KEY>> {
+public abstract class AbstractSortEngine<KEY extends Comparable<KEY>> {
 
 	protected KEY[] a;
 	protected int arrayLength;
