@@ -57,19 +57,19 @@ public class QuickSort<KEY extends Comparable<KEY>> extends AbstractSortEngine<K
 		// finché gli indici di scansione non coincidono
 		while (i < j) {
 			// finché l'indice sx si mantiene all'interno dell'array
-			while (i < hi) {
+			while (i < hi && less(a[i], p)) {
 				// se l'elemento indicato da i è minore del pivot continuo la scansione
-				if (less(a[i], p)) {
-					i++;
-				}
+				// if (less(a[i], p)) {
+				i++;
+				// }
 				// altrimenti mi fermo perché l'elemento non è in posizione giusta rispetto al
 				// pivot, e dovrà quindi essere spostato
-				else {
-					break;
-				}
+//				else {
+//					break;
+//				}
 			}
 			// finché l'indice destro si mantiene all'interno dell'array
-			while (j > lo) {
+			while (j > lo && !less(a[j], p)) {
 				// se l'elemento indicato da j è maggiore o uguale al pivot continuo la
 				// scansione
 				// ATTENZIONE: perché ho detto esplicitamente "maggiore o uguale"? Perché non ho
@@ -78,13 +78,13 @@ public class QuickSort<KEY extends Comparable<KEY>> extends AbstractSortEngine<K
 				// muoversi, definitivamente incrociando l'altro indice. Con questa soluzione si
 				// fa in modo che l'indice alto di scansione possa in ultimo incrociare quello
 				// basso.
-				if (!less(a[j], p)) {
-					j--;
-				}
-				else {
-					// altrimenti mi fermo perché l'elemento non è in posizione corretta
-					break;
-				}
+//				if (!less(a[j], p)) {
+				j--;
+//				}
+//				else {
+//					// altrimenti mi fermo perché l'elemento non è in posizione corretta
+//					break;
+//				}
 			}
 			// a fine scansione ho trovato due valori definitivi per i e j che, se sono
 			// distinti e non "incrociati", indicano due elementi distinti che sono in
