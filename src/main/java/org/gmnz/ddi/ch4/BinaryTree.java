@@ -48,6 +48,13 @@ public interface BinaryTree<T> {
 		}
 
 
+
+		@Override
+		public String toString() {
+			return "N[v=" + value + "]";
+		}
+
+
 	}
 
 	enum Traversal {

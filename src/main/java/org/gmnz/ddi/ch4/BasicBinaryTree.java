@@ -8,10 +8,10 @@ import java.util.Set;
 import edu.princeton.cs.algs4.StdOut;
 
 
-public abstract class AbstractBinaryTree<T> implements BinaryTree<T> {
+public  class BasicBinaryTree<T> implements BinaryTree<T> {
 
 
-	Node<T> root;
+	protected Node<T> root;
 	protected int nodeCount;
 
 
@@ -91,14 +91,36 @@ public abstract class AbstractBinaryTree<T> implements BinaryTree<T> {
 
 	@Override
 	public void build(T[] keys) {
+		nodeCount = 0;
 		if (keys == null || keys.length == 0) {
 			root = null;
-			nodeCount = 0;
 			return;
 		}
 
-		// TODO finisci
+		root = partition(keys, 0, keys.length - 1);
+	}
 
+
+
+	protected Node<T> partition(T[] v, int lo, int hi) {
+		if (lo > hi) {
+			return null;
+		}
+		if (lo == hi) {
+			Node<T> node = new Node<T>();
+			node.value = v[lo];
+			node.left = null;
+			node.right = null;
+			nodeCount++;
+			return node;
+		}
+		int mid = lo + (hi - lo) / 2;
+		Node<T> node = new Node<T>();
+		node.value = v[mid];
+		node.left = partition(v, lo, mid - 1);
+		node.right = partition(v, mid + 1, hi);
+		nodeCount++;
+		return node;
 	}
 
 
