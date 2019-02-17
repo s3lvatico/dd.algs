@@ -8,7 +8,7 @@ import java.util.Set;
 import edu.princeton.cs.algs4.StdOut;
 
 
-public  class BasicBinaryTree<T> implements BinaryTree<T> {
+public class BasicBinaryTree<T> implements BinaryTree<T> {
 
 
 	protected Node<T> root;
