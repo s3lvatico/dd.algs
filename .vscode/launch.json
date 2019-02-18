@@ -1,0 +1,13 @@
+{
+   "configurations": [
+
+      {
+         "type": "java",
+         "name": "CodeLens (Launch) - QSort2",
+         "request": "launch",
+         "mainClass": "org.gmnz.ddalg.sort.QSort2",
+         "projectName": "dd.algs", 
+         "args": "qsortexample.txt"
+      }
+   ]
+}

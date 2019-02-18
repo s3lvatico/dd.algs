@@ -1,26 +1,27 @@
 package org.gmnz.ddalg.sort;
 
-import edu.princeton.cs.algs4.StdIn;
+public class SelectionSort<KEY extends Comparable<KEY>> extends AbstractSortEngine<KEY> {
 
-public class SelectionSort {
+	protected SelectionSort(KEY[] arr) {
+		super(arr);
+	}
 
-	private static void sort(Comparable[] v) {
-		for (int i = 0; i < v.length; i++) {
+
+
+	@Override
+	protected void sort() {
+		if (arrayLength < 2) {
+			return;
+		}
+		for (int i = 0; i < arrayLength; i++) {
 			int min = i;
-			for (int j = i; j < v.length; j++) {
-				if (BasicSortEngine.less(v[j], v[min])) {
+			for (int j = i + 1; j < arrayLength; j++) {
+				if (less(a[j], a[min])) {
 					min = j;
 				}
 			}
-			BasicSortEngine.swap(v, i, min);
+			swap(i, min);
 		}
 	}
-	
-	
-	
-	public static void main(String[] args) {
-		String[] v = StdIn.readAllStrings();
-		sort(v);
-		BasicSortEngine.show(v);
-	}
+
 }
