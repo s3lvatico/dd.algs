@@ -7,36 +7,27 @@ import java.util.HashSet;
 import java.util.Set;
 
 
-public class GraphNode {
+class GraphNode<KEY extends Comparable<KEY>, VALUE> extends Node<KEY, VALUE> {
 
-	private Integer value;
-	private Set<GraphNode> adjacentNodes;
-
+	protected Set<GraphNode<KEY, VALUE>> adjacentNodes;
 
 
-	public GraphNode(Integer value) {
-		if (value == null) {
-			throw new IllegalArgumentException();
-		}
-		this.value = value;
-		this.adjacentNodes = new HashSet<GraphNode>();
+
+	GraphNode(KEY key, VALUE value) {
+		super(key, value);
+		adjacentNodes = new HashSet<>();
 	}
 
 
 
-	public void newEdgeTo(GraphNode node) {
+	void addEdgeTo(GraphNode<KEY, VALUE> node) {
 		adjacentNodes.add(node);
 	}
 
 
 
-	public Integer getValue() {
-		return value;
-	}
-
-
-
-	public Collection<GraphNode> adjacentsNodes() {
+	Collection<GraphNode<KEY, VALUE>> adjacentNodes() {
 		return Collections.unmodifiableSet(adjacentNodes);
 	}
+
 }
