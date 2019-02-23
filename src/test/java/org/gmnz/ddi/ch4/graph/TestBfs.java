@@ -42,7 +42,11 @@ public class TestBfs {
 
 		Bfs bfs = new Bfs(g);
 		bfs.bfs(0);
-		System.out.println();
+
+		bfs.bfs(11);
+		bfs.bfs(12);
+		bfs.bfs(4);
+
 	}
 
 }

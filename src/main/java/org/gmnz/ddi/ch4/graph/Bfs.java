@@ -4,7 +4,11 @@ package org.gmnz.ddi.ch4.graph;
 import java.util.LinkedList;
 import java.util.Queue;
 
-
+/**
+ * Nota la differenza: DFS è ricorsivo, mentre BFS è iterativo
+ * @author gemini
+ *
+ */
 public class Bfs {
 
 	private Graph g;
@@ -46,5 +50,6 @@ public class Bfs {
 				}
 			}
 		}
+		System.out.println();
 	}
 }
