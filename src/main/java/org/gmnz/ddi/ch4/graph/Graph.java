@@ -1,7 +1,9 @@
 package org.gmnz.ddi.ch4.graph;
 
+
 import java.util.Collection;
 import java.util.HashSet;
+
 
 class Graph {
 
@@ -11,14 +13,17 @@ class Graph {
 	private Collection<Integer>[] adj;
 
 
+
 	public Graph(int n) {
 		nVertices = n;
 		adj = new HashSet[n];
 
-		for (int i=0; i<n; i++) {
+		for (int i = 0; i < n; i++) {
 			adj[i] = new HashSet<Integer>();
 		}
 	}
+
+
 
 	/*
 	 * inizializziamolo con un array
@@ -29,8 +34,22 @@ class Graph {
 		nEdges++;
 	}
 
-	public int edges() { return nEdges; }
-	public int vertices() { return nVertices; }
 
+
+	public int edges() {
+		return nEdges;
+	}
+
+
+
+	public int vertices() {
+		return nVertices;
+	}
+
+
+
+	public Iterable<Integer> adjacencies(int vertex) {
+		return adj[vertex];
+	}
 
 }
