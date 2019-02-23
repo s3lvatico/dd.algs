@@ -1,4 +1,4 @@
-package org.gmnz.ddi.ch4;
+package org.gmnz.ddi.ch4.graph_old;
 
 
 import java.util.List;
