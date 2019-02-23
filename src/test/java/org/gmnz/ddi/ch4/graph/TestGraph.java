@@ -1,4 +1,4 @@
-package org.gmnz.ddi.ch4b;
+package org.gmnz.ddi.ch4.graph;
 
 import org.gmnz.ddi.ch4.graph.Graph;
 
