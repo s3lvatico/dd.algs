@@ -10,18 +10,18 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Decoratore per un {@link Pair}, per renderlo thread safe
- * 
+ *
  * @author gemini
  *
  */
 abstract class PairManager {
 
 	/**
-	 * 
+	 *
 	 */
-	protected Pair p;
+	protected Pair pair;
 
-	private AtomicInteger checkCounter;
+	AtomicInteger checkCounter;
 
 	private List<Pair> storage;
 
@@ -29,7 +29,7 @@ abstract class PairManager {
 
 	PairManager() {
 		checkCounter = new AtomicInteger(0);
-		p = new Pair();
+		pair = new Pair();
 		storage = Collections.synchronizedList(new ArrayList<Pair>());
 	}
 
@@ -38,11 +38,11 @@ abstract class PairManager {
 	/**
 	 * Fornisce lo stato corrente del {@link Pair} gestito espresso come copia
 	 * (clone) della classe decorata
-	 * 
+	 *
 	 * @return
 	 */
 	synchronized Pair getPair() {
-		return new Pair(p.getX(), p.getY());
+		return new Pair(pair.getX(), pair.getY());
 	}
 
 
@@ -52,7 +52,7 @@ abstract class PairManager {
 	 * <p>
 	 * L'oggetto {@link Pair} da memorizzare viene fornito come parametro perché si
 	 * vuole evitare di usare l'istanza della classe decorata.
-	 * 
+	 *
 	 * @param p
 	 */
 	protected void store(Pair p) {
@@ -60,9 +60,7 @@ abstract class PairManager {
 		// facciamo finta che questa operazione richieda "parecchio" tempo
 		try {
 			TimeUnit.MILLISECONDS.sleep(50);
-		}
-		catch (InterruptedException e) {
-			/* eccezione ignorata */ }
+		} catch (InterruptedException e) { /* eccezione ignorata */ }
 	}
 
 
@@ -73,17 +71,15 @@ abstract class PairManager {
 
 
 
-	int incrementAndGetCheckCounter() {
-		return checkCounter.incrementAndGet();
-	}
-
-
-
-	void checkPairState() {
-		p.checkState();
-	}
-
-
+//	int incrementAndGetCheckCounter() {
+//		return checkCounter.incrementAndGet();
+//	}
+//
+//
+//
+//	void checkPairState() {
+//		pair.checkState();
+//	}
 
 	/**
 	 * Modifica lo stato del {@link Pair} gestito.

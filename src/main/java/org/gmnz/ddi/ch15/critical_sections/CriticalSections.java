@@ -11,28 +11,34 @@ public class CriticalSections {
 	public static void main(String[] args) {
 		ExecutorService pool = Executors.newCachedThreadPool();
 
-		PairManager pm1 = new PairManagerSynchronized();
-		PairManager pm2 = new PairManagerLocked();
+		PairManager pmSynchronized = new PairManagerSynchronized();
+		PairManager pmWithLock = new PairManagerLocked();
+		PairManager pmWithInternalLock = new PairManagerWithLock();
 
-		PairOperator operator1 = new PairOperator(pm1);
-		PairOperator operator2 = new PairOperator(pm2);
+		PairOperator operatorSynchronized = new PairOperator(pmSynchronized);
+		PairOperator operatorWithLock = new PairOperator(pmWithLock);
+		PairOperator operatorWithInternalLock = new PairOperator(pmWithInternalLock);
 
-		PairChecker checker1 = new PairChecker(pm1);
-		PairChecker checker2 = new PairChecker(pm2);
+		PairChecker checkerForSynchronized = new PairChecker(pmSynchronized);
+		PairChecker checkerForLock = new PairChecker(pmWithLock);
+		PairChecker checkerForInternalLock = new PairChecker(pmWithInternalLock);
 
-		pool.execute(operator1);
-		pool.execute(operator2);
-		pool.execute(checker1);
-		pool.execute(checker2);
+		pool.execute(checkerForSynchronized);
+		pool.execute(checkerForLock);
+		pool.execute(checkerForInternalLock);
+
+		pool.execute(operatorSynchronized);
+		pool.execute(operatorWithLock);
+		pool.execute(operatorWithInternalLock);
 
 		try {
 			TimeUnit.SECONDS.sleep(5);
-		}
-		catch (InterruptedException e) {
+		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		System.out.println("operator1: " + operator1);
-		System.out.println("operator2: " + operator2);
+		System.out.println("operatorSynchronized     : " + operatorSynchronized);
+		System.out.println("operatorWithLock         : " + operatorWithLock);
+		System.out.println("operatorWithInternalLock : " + operatorWithInternalLock);
 		System.exit(0);
 	}
 }
