@@ -1,5 +1,9 @@
 package org.gmnz.ddi.ch15.external_sync;
 
+
+import java.util.concurrent.TimeUnit;
+
+
 /**
  * Un blocco <code>synchronized</code> deve necessariamente avere un oggetto
  * rispetto al quale sincronizzare; e tipicamente l'oggetto più "sensibile" che
@@ -24,8 +28,19 @@ package org.gmnz.ddi.ch15.external_sync;
 public class SynchronizeOnObject {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		final DualSync ds = new DualSync();
 
+		// usa un thread esterno per invocare uno dei metodi
+		new Thread() {
+
+			@Override
+			public void run() {
+				ds.f();
+			}
+		}.start();
+
+		// invoca l'altro metodo dal thread corrente
+		ds.g();
 	}
 
 }
@@ -40,10 +55,16 @@ class DualSync {
 
 
 
+	/**
+	 * come dire che sincronizza su "THIS"
+	 */
 	public synchronized void f() {
 		for (int i = 0; i < 5; i++) {
-			System.out.print("f() ");
+			System.out.format("%30s f()%n", Thread.currentThread());
 			Thread.yield();
+			try {
+				TimeUnit.MILLISECONDS.sleep(50);
+			} catch (InterruptedException e) {}
 		}
 	}
 
@@ -52,9 +73,13 @@ class DualSync {
 	public void g() {
 		synchronized (syncObject) {
 			for (int i = 0; i < 5; i++) {
-				System.out.print("g() ");
+				System.out.format("%30s g()%n", Thread.currentThread());
 				Thread.yield();
 			}
+			try {
+				TimeUnit.MILLISECONDS.sleep(50);
+			} catch (InterruptedException e) {}
 		}
 	}
+
 }
