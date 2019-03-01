@@ -14,7 +14,9 @@ import java.util.concurrent.TimeUnit;
  * <p>
  * Perché il campo è dichiarato static? Forse per rafforzare ancora di più il
  * fatto che usando un campo ThreadLocal anche nelle condizioni di "massimo
- * pericolo" si ottiene comunque la thread-safety?
+ * pericolo" si ottiene comunque la thread-safety? Un esempio simile l'ho
+ * realizzato nella classe TallyManOrchestrator, che forse è un po' meno
+ * contorta di questo esempio.
  *
  * @author gemini
  *
