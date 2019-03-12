@@ -19,7 +19,7 @@ class Graph {
 
 
 
-	void add(int x) {
+	void addNode(int x) {
 		if (!adj.containsKey(x)) {
 			adj.put(x, new HashSet<Integer>());
 		}
@@ -31,12 +31,17 @@ class Graph {
 		if (nodes == null || nodes.length == 0) {
 			return;
 		}
-		int n = nodes[0];
-		add(n);
+		addNode(nodes[0]);
 		for (int i = 1; i < nodes.length; i++) {
-			add(nodes[i]);
-			connect(n, nodes[i]);
+			addNode(nodes[i]);
+			connect(nodes[0], nodes[i]);
 		}
+	}
+
+
+
+	boolean hasNode(int x) {
+		return adj.containsKey(x);
 	}
 
 
@@ -48,8 +53,26 @@ class Graph {
 
 
 
+	void removeNode(int node) {
+		if (!hasNode(node)) {
+			return;
+		}
+		for (int x : adjacencies(node)) {
+			adjacencies(x).remove(node);
+		}
+		adj.remove(node);
+	}
+
+
+
 	Set<Integer> adjacencies(int x) {
 		return adj.get(x);
+	}
+
+
+
+	int countVertices() {
+		return adj.size();
 	}
 
 
@@ -62,5 +85,7 @@ class Graph {
 		g.addSubgraph(new int[] { 7, 8 });
 		g.addSubgraph(new int[] { 9, 10, 11, 12 });
 		g.addSubgraph(new int[] { 11, 12 });
+
+		g.removeNode(4);
 	}
 }
