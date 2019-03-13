@@ -26,7 +26,7 @@ class Graph {
 		addNode(nodes[0]);
 		for (int i = 1; i < nodes.length; i++) {
 			addNode(nodes[i]);
-			connect(nodes[0], nodes[i]);
+			addEdge(nodes[0], nodes[i]);
 		}
 	}
 
@@ -34,7 +34,7 @@ class Graph {
 		return adj.containsKey(x);
 	}
 
-	void connect(int x, int y) {
+	void addEdge(int x, int y) {
 		adj.get(x).add(y);
 		adj.get(y).add(x);
 	}
