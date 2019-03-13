@@ -8,48 +8,35 @@ class Dfs {
 
 	private Graph g;
 
-
-	abstract class Visitor {
-		abstract void visit();
-	}
-
 	Dfs(Graph g) {
 		visited = new boolean[g.countVertices()];
 		Arrays.fill(visited, false);
 		this.g = g;
 	}
 
-
-
 	/**
-	 * @param s
-	 *             nodo di partenza (start!)
+	 * @param s nodo di partenza (start!)
 	 */
 	void search(int s) {
 		if (!g.hasNode(s)) {
 			return;
 		}
-
 	}
 
-
-
-	void dfs(int n) {
+	private void dfs(int n) {
 		if (visited[n]) {
 			return;
 		}
-		new Visitor() {
-
-			@Override
-			void visit() {
-
-			}
-
-		}.visit();
+		System.out.println(n);
 		visited[n] = true;
-		for(int x : g.adjacencies(n)) {
+		for (int x : g.adjacencies(n)) {
 			dfs(x);
 		}
 	}
 
+	public static void main(String[] args) {
+		System.out.println(SampleGraph.GRAPH);
+		Dfs dfs = new Dfs(SampleGraph.GRAPH);
+		dfs.dfs(6);
+	}
 }
