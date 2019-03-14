@@ -1,10 +1,12 @@
 package org.gmnz.ddalg.graph2;
 
+
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Deque;
 import java.util.HashSet;
+
 
 /**
  * depth first search
@@ -36,24 +38,31 @@ class Dfs {
 	private boolean[] visited;
 	private int[] edgeTo;
 
+
+
 	Dfs(Graph g) {
 		this.g = g;
 	}
+
+
 
 	void search(int s) {
 		visited = new boolean[g.countVertices()];
 		Arrays.fill(visited, false);
 		edgeTo = new int[g.countVertices()];
-		if (!g.hasNode(s)) {
+		if (!g.hasVertex(s)) {
 			return;
 		}
 		dfs(s);
 	}
 
+
+
 	/**
 	 * depth first search vero e proprio
-	 * 
-	 * @param v vertice di partenza
+	 *
+	 * @param v
+	 *             vertice di partenza
 	 */
 	private void dfs(int v) {
 		/* marca il vertice corrente come visitato */
@@ -70,11 +79,13 @@ class Dfs {
 		}
 	}
 
+
+
 	/**
 	 * Verifica se i vertici specificati sono connessi.
 	 * <p>
 	 * Indica, cioè, se esiste un percorso tra i vertici specificati.
-	 * 
+	 *
 	 * @param v
 	 * @param w
 	 * @return <code>true</code> se i vertici sono connessi, <code>false</code>
@@ -87,9 +98,11 @@ class Dfs {
 		return visited[v] && visited[w];
 	}
 
+
+
 	/**
 	 * Ottiene il percorso che unisce i vertici specificati, se esiste.
-	 * 
+	 *
 	 * @param source
 	 * @param dest
 	 * @return una {@link Collection} con il percorso che unisce i due vertici, o

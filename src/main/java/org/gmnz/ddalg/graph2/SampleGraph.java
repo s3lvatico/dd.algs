@@ -1,5 +1,6 @@
 package org.gmnz.ddalg.graph2;
 
+
 final class SampleGraph {
 
 	static final Graph GRAPH;

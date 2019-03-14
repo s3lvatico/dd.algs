@@ -1,68 +1,141 @@
 package org.gmnz.ddalg.graph2;
 
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+
+/**
+ * La mia implementazione di grafo
+ *
+ * @author gemini
+ *
+ */
 class Graph {
 
+	/**
+	 * mappa delle adiacenze
+	 */
 	private Map<Integer, Set<Integer>> adj;
 
+
+
+	/**
+	 * costruisce un nuovo grafo
+	 */
 	Graph() {
 		adj = new HashMap<>();
 	}
 
-	void addNode(int x) {
+
+
+	/**
+	 * aggiunge un nuovo vertice
+	 *
+	 * @param x
+	 */
+	void addVertex(int x) {
 		if (!adj.containsKey(x)) {
 			adj.put(x, new HashSet<Integer>());
 		}
 	}
 
-	void addSubgraph(int[] nodes) {
-		if (nodes == null || nodes.length == 0) {
+
+
+	/**
+	 * aggiung un nuovo sottografo.
+	 * <p>
+	 * Il sottografo inizia al primo elemento dell'array; i successivi elementi si
+	 * intendono collegati con altrettanti archi al primo elemento
+	 *
+	 * @param vertexes
+	 */
+	void addSubgraph(int[] vertexes) {
+		if (vertexes == null || vertexes.length == 0) {
 			return;
 		}
-		addNode(nodes[0]);
-		for (int i = 1; i < nodes.length; i++) {
-			addNode(nodes[i]);
-			addEdge(nodes[0], nodes[i]);
+		addVertex(vertexes[0]);
+		for (int i = 1; i < vertexes.length; i++) {
+			addVertex(vertexes[i]);
+			addEdge(vertexes[0], vertexes[i]);
 		}
 	}
 
-	boolean hasNode(int x) {
+
+
+	/**
+	 * controlla se il vertice specificato esiste nel grafo
+	 *
+	 * @param x
+	 * @return
+	 */
+	boolean hasVertex(int x) {
 		return adj.containsKey(x);
 	}
 
+
+
+	/**
+	 * collega i vertici specificati
+	 *
+	 * @param x
+	 * @param y
+	 */
 	void addEdge(int x, int y) {
 		adj.get(x).add(y);
 		adj.get(y).add(x);
 	}
 
-	void removeNode(int node) {
-		if (!hasNode(node)) {
+
+
+	/**
+	 * rimuove il vertice specificato dal grafo
+	 *
+	 * @param v
+	 */
+	void removeVertex(int v) {
+		if (!hasVertex(v)) {
 			return;
 		}
-		for (int x : adjacencies(node)) {
-			adjacencies(x).remove(node);
+		for (int x : adjacencies(v)) {
+			adjacencies(x).remove(v);
 		}
-		adj.remove(node);
+		adj.remove(v);
 	}
 
+
+
+	/**
+	 * fornisce l'insieme dei vertici adiacenti al vertice specificato
+	 *
+	 * @param x
+	 * @return
+	 */
 	Set<Integer> adjacencies(int x) {
 		return adj.get(x);
 	}
 
+
+
+	/**
+	 * fornisce il numero di vertici di questo grafo
+	 *
+	 * @return
+	 */
 	int countVertices() {
 		return adj.size();
 	}
 
+
+
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
-		builder.append("Graph : " + countVertices() + " vertices\n");
-		for (int node : adj.keySet()) {
-			builder.append(String.format("%4d", node)).append(" : ").append(adj.get(node)).append("\n");
+		builder.append("Graph : " + countVertices() + " vertexes\n");
+		for (int v : adj.keySet()) {
+			builder.append(String.format("%4d", v)).append(" : ").append(adj.get(v)).append("\n");
 		}
 		return builder.toString();
 	}
