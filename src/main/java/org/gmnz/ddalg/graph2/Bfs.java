@@ -13,6 +13,7 @@ class Bfs {
 
 	private final Graph g;
 
+
 	private Queue<Integer> q;
 	private boolean[] visited;
 	private int[] edgeTo;
@@ -68,8 +69,12 @@ class Bfs {
 			return null;
 		}
 		Deque<Integer> stack = new ArrayDeque<>();
-		// TODO FINIRE
-		return null;
+		int x;
+		for (x = v; distanceTo[x] != 0; x=edgeTo[x]) {
+			stack.addFirst(x);
+		}
+		stack.addFirst(x);
+		return stack;
 	}
 
 }

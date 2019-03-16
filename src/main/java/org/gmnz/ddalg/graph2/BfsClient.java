@@ -1,11 +1,17 @@
 package org.gmnz.ddalg.graph2;
 
+import java.util.Collection;
 
 class BfsClient {
 
 	public static void main(String[] args) {
 		System.out.println(SampleGraph.GRAPH);
 		Bfs bfs = new Bfs(SampleGraph.GRAPH);
-		bfs.search(2);
+		System.out.println( bfs.pathExists(0, 4) );
+		System.out.println( bfs.pathExists(7, 9) );
+
+		Collection<Integer> path04=bfs.getPath(10, 12);
+		System.out.println(path04);
+
 	}
 }
