@@ -9,6 +9,21 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 
+/**
+ * breadth first search dato un grafo esistente.
+ *
+ * Non è una vera e propria ricerca di un vertice, ma un modo per stabilire
+ * l'esistenza e la determinazione di percorsi specifici tra due vertici. In
+ * particolare, se due vertici sono connessi, con la bfs si ottiene il percorso
+ * più breve tra i due.
+ * <p>
+ * Sarebbe quindi più appropriato parlare di breadth first ANALYSIS. Una volta
+ * analizzato il grafo si può interrogare la classe per conoscere i dettagli sui
+ * percorsi tra i vertici.
+ *
+ * @author gemini
+ *
+ */
 class Bfs {
 
 	private final Graph g;
@@ -70,7 +85,7 @@ class Bfs {
 		}
 		Deque<Integer> stack = new ArrayDeque<>();
 		int x;
-		for (x = v; distanceTo[x] != 0; x=edgeTo[x]) {
+		for (x = v; distanceTo[x] != 0; x = edgeTo[x]) {
 			stack.addFirst(x);
 		}
 		stack.addFirst(x);
