@@ -23,6 +23,8 @@ import java.util.HashSet;
  */
 class Dfs {
 
+	// TODO da rivedere in funzione del concetto di ANALISI di un grafo
+
 	/**
 	 * il grafo da analizzare
 	 */

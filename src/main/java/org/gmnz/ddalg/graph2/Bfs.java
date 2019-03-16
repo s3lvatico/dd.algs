@@ -36,13 +36,14 @@ class Bfs {
 
 
 
-	Bfs(Graph g) {
+	Bfs(Graph g, int sourceVertex) {
 		this.g = g;
+		bfs(sourceVertex);
 	}
 
 
 
-	void search(int v) {
+	private void bfs(int v) {
 		q = new LinkedList<>();
 		visited = new boolean[g.countVertices()];
 		Arrays.fill(visited, false);
@@ -72,20 +73,19 @@ class Bfs {
 
 
 	boolean pathExists(int v, int w) {
-		search(v);
 		return visited[v] && visited[w];
 	}
 
 
 
 	Collection<Integer> getPath(int v, int w) {
-//		search(v);
+		bfs(v);
 		if (!pathExists(v, w)) {
 			return null;
 		}
 		Deque<Integer> stack = new ArrayDeque<>();
 		int x;
-		for (x = v; distanceTo[x] != 0; x = edgeTo[x]) {
+		for (x = w; distanceTo[x] != 0; x = edgeTo[x]) {
 			stack.addFirst(x);
 		}
 		stack.addFirst(x);
