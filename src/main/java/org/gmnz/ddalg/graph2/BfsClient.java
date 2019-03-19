@@ -6,7 +6,7 @@ class BfsClient {
 
 	public static void main(String[] args) {
 		System.out.println(SampleGraph.GRAPH);
-		Bfs bfs = new Bfs(SampleGraph.GRAPH, 0);
+		BreadthFirst bfs = new BreadthFirst(SampleGraph.GRAPH, 0);
 		System.out.println( bfs.pathExists(0, 4) );
 		System.out.println( bfs.pathExists(7, 9) );
 
