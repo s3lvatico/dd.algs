@@ -87,7 +87,7 @@ public class ConnectedComponents {
 
 
 	void printComponents() {
-		System.out.format("graph made of %d connected components%n", componentId + 1);
+		System.out.format("graph made of %d connected components%n", componentId);
 		for (int i = 0; i < components.length; i++) {
 			if (!components[i].isEmpty()) {
 				System.out.printf("id: %d | %s%n", i, components[i]);
