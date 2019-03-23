@@ -1,8 +1,10 @@
 package org.gmnz.ddalg.graph3;
 
+
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+
 
 /**
  * trovare i componenti connessi di un grafo è una specializzazione dell'analisi
@@ -36,6 +38,9 @@ public class ConnectedComponents {
 	 */
 	private int componentId = 0;
 
+
+
+
 	/**
 	 * @param g
 	 */
@@ -66,6 +71,9 @@ public class ConnectedComponents {
 		}
 	}
 
+
+
+
 	private void dfs(Graph g, int vertex) {
 		id[vertex] = componentId;
 		components[componentId].add(vertex);
@@ -77,6 +85,9 @@ public class ConnectedComponents {
 		}
 	}
 
+
+
+
 	void printComponents() {
 		System.out.format("graph made of %d connected components%n", componentId + 1);
 		for (int i = 0; i < components.length; i++) {
@@ -86,6 +97,9 @@ public class ConnectedComponents {
 		}
 		System.out.println();
 	}
+
+
+
 
 	public static void main(String[] args) {
 		ConnectedComponents cc = new ConnectedComponents(ClientDfs.GRAPH);

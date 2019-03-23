@@ -1,5 +1,6 @@
 package org.gmnz.ddi.ch15.critical_sections;
 
+
 class Pair {
 
 	private int x;
@@ -7,10 +8,12 @@ class Pair {
 
 
 
+
 	Pair(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}
+
 
 
 

@@ -12,10 +12,12 @@ public class MergeSortTopDown<KEY extends Comparable<KEY>> extends AbstractMerge
 
 
 
+
 	@Override
 	public void sort() {
 		sort(0, arrayLength - 1);
 	}
+
 
 
 
@@ -42,6 +44,7 @@ public class MergeSortTopDown<KEY extends Comparable<KEY>> extends AbstractMerge
 		sort(mid + 1, hi);
 		merge(lo, mid, hi);
 	}
+
 
 
 

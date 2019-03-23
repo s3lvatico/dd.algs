@@ -10,6 +10,7 @@ public class QSortG {
 
 
 
+
 	private void quicksort(int[] v, int lo, int hi) {
 		// ricorda sempre che è nei metodi ricorsivi che devi mettere la condizione di
 		// terminazione!
@@ -23,11 +24,13 @@ public class QSortG {
 
 
 
+
 	private void swap(int[] v, int x, int y) {
 		int tmp = v[x];
 		v[x] = v[y];
 		v[y] = tmp;
 	}
+
 
 
 
@@ -52,12 +55,14 @@ public class QSortG {
 
 
 
+
 	private static void print(int[] v) {
 		for (int x : v) {
 			System.out.print(x + " ");
 		}
 	}
 	/* 9 5 7 6 8 3 4 1 2 */
+
 
 
 

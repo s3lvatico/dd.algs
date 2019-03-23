@@ -12,6 +12,7 @@ public class MergeSortBottomUp extends AbstractMergeSort {
 
 
 
+
 	@Override
 	protected void sort() {
 		int len = arrayLength;
@@ -21,6 +22,7 @@ public class MergeSortBottomUp extends AbstractMergeSort {
 			}
 		}
 	}
+
 
 
 

@@ -13,6 +13,7 @@ public class IntegerKeyedGraph {
 
 
 
+
 		@Override
 		public int hashCode() {
 			final int prime = 31;
@@ -20,6 +21,7 @@ public class IntegerKeyedGraph {
 			result = prime * result + ((key == null) ? 0 : key.hashCode());
 			return result;
 		}
+
 
 
 

@@ -14,9 +14,11 @@ class Accessor implements Runnable {
 
 
 
+
 	Accessor(int id) {
 		this.id = id;
 	}
+
 
 
 
@@ -32,6 +34,7 @@ class Accessor implements Runnable {
 			Thread.yield();
 		}
 	}
+
 
 
 

@@ -1,8 +1,10 @@
 package org.gmnz.ddi.ch15.philosophers;
 
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
+
 
 /**
  * Questo va in deadlock

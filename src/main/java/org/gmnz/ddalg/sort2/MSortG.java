@@ -6,11 +6,13 @@ public class MSortG {
 
 
 
+
 	int[] sort(int[] v) {
 		aux = new int[v.length];
 		mergeSort(v, 0, v.length - 1);
 		return v;
 	}
+
 
 
 
@@ -35,6 +37,7 @@ public class MSortG {
 
 
 
+
 	private void initAux(int[] v, int lo, int hi) {
 		for (int i = lo; i <= hi; i++) {
 			aux[i] = v[i];
@@ -43,10 +46,11 @@ public class MSortG {
 
 
 
+
 	private void merge(int[] v, int lo, int mid, int hi) {
 		initAux(v, lo, hi);
 		int r = lo;
-		int s = mid+1;
+		int s = mid + 1;
 		for (int i = lo; i <= hi; i++) {
 			if (r > mid) {
 				v[i] = aux[s++];
@@ -67,12 +71,14 @@ public class MSortG {
 
 
 
+
 	private static void print(int[] v) {
 		for (int x : v) {
 			System.out.print(x + " ");
 		}
 	}
 	/* 9 5 7 6 8 3 4 1 2 */
+
 
 
 

@@ -14,10 +14,12 @@ class Chopstick {
 
 
 
+
 	Chopstick() {
 		id = ++progId;
 		lock = new ReentrantLock();
 	}
+
 
 
 
@@ -27,15 +29,18 @@ class Chopstick {
 
 
 
+
 	boolean tryTake() {
 		return lock.tryLock();
 	}
 
 
 
+
 	void drop() {
 		lock.unlock();
 	}
+
 
 
 

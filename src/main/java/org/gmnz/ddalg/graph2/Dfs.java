@@ -42,9 +42,11 @@ class Dfs {
 
 
 
+
 	Dfs(Graph g) {
 		this.g = g;
 	}
+
 
 
 
@@ -57,6 +59,7 @@ class Dfs {
 		}
 		dfs(s);
 	}
+
 
 
 
@@ -83,6 +86,7 @@ class Dfs {
 
 
 
+
 	/**
 	 * Verifica se i vertici specificati sono connessi.
 	 * <p>
@@ -99,6 +103,7 @@ class Dfs {
 		// stati visitati durante l'attraversamento
 		return visited[v] && visited[w];
 	}
+
 
 
 

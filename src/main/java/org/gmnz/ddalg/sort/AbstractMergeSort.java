@@ -1,8 +1,10 @@
 package org.gmnz.ddalg.sort;
 
+
 abstract class AbstractMergeSort<KEY extends Comparable<KEY>> extends AbstractSortEngine<KEY> {
 
 	private KEY[] aux;
+
 
 
 
@@ -10,6 +12,7 @@ abstract class AbstractMergeSort<KEY extends Comparable<KEY>> extends AbstractSo
 		super(arr);
 		aux = (KEY[]) new Comparable[arrayLength];
 	}
+
 
 
 
@@ -49,15 +52,18 @@ abstract class AbstractMergeSort<KEY extends Comparable<KEY>> extends AbstractSo
 			if (i > mid) {
 				// allora prendo da destra
 				a[k] = aux[j++]; // e l'indice del subarray destro scorre
-			} else // ho finito a destra?
+			}
+			else // ho finito a destra?
 				if (j > hi) {
 					// alllora prendo da sinistra
 					a[k] = aux[i++]; // e l'indice del subarray sinistro scorre
-				} else // confronto i due valori nei due subarray
+				}
+				else // confronto i due valori nei due subarray
 						 // prendo il valore più piccolo puntato dagli indici
 					if (less(aux[i], aux[j])) {
 						a[k] = aux[i++];
-					} else {
+					}
+					else {
 						a[k] = aux[j++];
 					}
 		}

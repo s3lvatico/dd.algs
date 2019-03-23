@@ -13,6 +13,7 @@ class GraphNode<KEY extends Comparable<KEY>, VALUE> extends Node<KEY, VALUE> {
 
 
 
+
 	GraphNode(KEY key, VALUE value) {
 		super(key, value);
 		adjacentNodes = new HashSet<>();
@@ -20,9 +21,11 @@ class GraphNode<KEY extends Comparable<KEY>, VALUE> extends Node<KEY, VALUE> {
 
 
 
+
 	void addEdgeTo(GraphNode<KEY, VALUE> node) {
 		adjacentNodes.add(node);
 	}
+
 
 
 

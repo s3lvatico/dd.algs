@@ -49,9 +49,11 @@ public class SynchronizeOnObject {
 
 
 
+
 class DualSync {
 
 	private Object syncObject = new Object();
+
 
 
 
@@ -64,9 +66,12 @@ class DualSync {
 			Thread.yield();
 			try {
 				TimeUnit.MILLISECONDS.sleep(50);
-			} catch (InterruptedException e) {}
+			}
+			catch (InterruptedException e) {
+			}
 		}
 	}
+
 
 
 
@@ -78,7 +83,9 @@ class DualSync {
 			}
 			try {
 				TimeUnit.MILLISECONDS.sleep(50);
-			} catch (InterruptedException e) {}
+			}
+			catch (InterruptedException e) {
+			}
 		}
 	}
 

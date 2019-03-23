@@ -8,9 +8,11 @@ public class MaxPQ<KEY extends Comparable<KEY>> {
 
 
 
+
 	private boolean less(int i, int j) {
 		return pq[i].compareTo(pq[j]) < 0;
 	}
+
 
 
 
@@ -22,9 +24,11 @@ public class MaxPQ<KEY extends Comparable<KEY>> {
 
 
 
+
 	public MaxPQ(int maxN) {
 		pq = (KEY[]) new Comparable[maxN + 1];
 	}
+
 
 
 
@@ -34,9 +38,11 @@ public class MaxPQ<KEY extends Comparable<KEY>> {
 
 
 
+
 	public int size() {
 		return n;
 	}
+
 
 
 
@@ -72,6 +78,7 @@ public class MaxPQ<KEY extends Comparable<KEY>> {
 			k = k / 2;
 		}
 	}
+
 
 
 
@@ -116,6 +123,7 @@ public class MaxPQ<KEY extends Comparable<KEY>> {
 
 
 
+
 	/**
 	 * Inserisce un elemento nuovo nella PQ.
 	 * <p>
@@ -128,6 +136,7 @@ public class MaxPQ<KEY extends Comparable<KEY>> {
 		pq[++n] = v;
 		swim(n);
 	}
+
 
 
 

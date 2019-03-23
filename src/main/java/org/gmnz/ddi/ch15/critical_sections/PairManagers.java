@@ -25,6 +25,7 @@ class PairManagerSynchronized extends PairManager {
 
 
 
+
 /**
  * Questa versione usa una sezione protetta
  *
@@ -49,6 +50,7 @@ class PairManagerLocked extends PairManager {
 
 
 
+
 /**
  * Versione che sincronizza usando un {@link Lock} interno alla classe.
  *
@@ -61,6 +63,7 @@ class PairManagerWithLock extends PairManager {
 
 
 
+
 	@Override
 	protected void increment() {
 		Pair temp;
@@ -69,7 +72,8 @@ class PairManagerWithLock extends PairManager {
 			pair.incrementX();
 			pair.incrementY();
 			temp = getPair();
-		} finally {
+		}
+		finally {
 			lock.unlock();
 		}
 		store(temp);

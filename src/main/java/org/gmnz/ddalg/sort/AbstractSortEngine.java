@@ -17,6 +17,7 @@ public abstract class AbstractSortEngine<KEY extends Comparable<KEY>> {
 
 
 
+
 	/**
 	 * inizializza il motore con l'array specificato. Gestisce i parametri nulli
 	 * creando un array fittizio di dimensione 1
@@ -26,7 +27,8 @@ public abstract class AbstractSortEngine<KEY extends Comparable<KEY>> {
 	protected AbstractSortEngine(KEY[] arr) {
 		if (arr == null) {
 			this.a = (KEY[]) new Comparable[] {};
-		} else {
+		}
+		else {
 			this.a = arr;
 		}
 		arrayLength = a.length;
@@ -34,7 +36,9 @@ public abstract class AbstractSortEngine<KEY extends Comparable<KEY>> {
 
 
 
+
 	protected abstract void sort();
+
 
 
 
@@ -52,6 +56,7 @@ public abstract class AbstractSortEngine<KEY extends Comparable<KEY>> {
 
 
 
+
 	/**
 	 * controlla che un elemento sia strettamente minore di un altro
 	 *
@@ -65,6 +70,7 @@ public abstract class AbstractSortEngine<KEY extends Comparable<KEY>> {
 
 
 
+
 	/**
 	 * verifica che l'array interno sia completamente ordinato, i.e. se ogni
 	 * elemento è maggiore o uguale al precedente
@@ -74,7 +80,8 @@ public abstract class AbstractSortEngine<KEY extends Comparable<KEY>> {
 	protected boolean isSorted() {
 		if (arrayLength < 2) {
 			return true;
-		} else {
+		}
+		else {
 			for (int i = 0; i < arrayLength - 1; i++) {
 				if (less(a[i + 1], a[i])) {
 					return false;
@@ -86,13 +93,15 @@ public abstract class AbstractSortEngine<KEY extends Comparable<KEY>> {
 
 
 
+
 	protected void show() {
 		if (a.length > 0) {
 			for (int i = 0; i < arrayLength; i++) {
 				StdOut.print(a[i] + " ");
 			}
 			StdOut.println();
-		} else {
+		}
+		else {
 			StdOut.println("<empty array>");
 		}
 	}

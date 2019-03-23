@@ -33,7 +33,8 @@ public class CriticalSections {
 
 		try {
 			TimeUnit.SECONDS.sleep(5);
-		} catch (InterruptedException e) {
+		}
+		catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		System.out.println("operatorSynchronized     : " + operatorSynchronized);

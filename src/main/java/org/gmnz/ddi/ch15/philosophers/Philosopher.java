@@ -12,6 +12,7 @@ class Philosopher implements Runnable {
 
 
 
+
 	Philosopher(Chopstick left, Chopstick right) {
 		this.id = ++prog_id;
 		this.left = left;
@@ -20,9 +21,11 @@ class Philosopher implements Runnable {
 
 
 
+
 	private void eat() {
 		System.out.format("P%d-L%s.R%s nomnom%n", id, left, right);
 	}
+
 
 
 
@@ -40,10 +43,12 @@ class Philosopher implements Runnable {
 
 
 
+
 	void putDown() {
 		right.drop();
 		left.drop();
 	}
+
 
 
 

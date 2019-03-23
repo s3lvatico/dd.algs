@@ -16,11 +16,13 @@ public class BasicBinaryTree<T> implements BinaryTree<T> {
 
 
 
+
 	@Override
 	public void display(Traversal traversal) {
 		display(root, traversal);
 		StdOut.println();
 	}
+
 
 
 
@@ -48,12 +50,14 @@ public class BasicBinaryTree<T> implements BinaryTree<T> {
 
 
 
+
 	@Override
 	public Collection<Node<T>> nodes() {
 		Set<Node<T>> nodeSet = new HashSet<BinaryTree.Node<T>>(nodeCount);
 		nodes(root, nodeSet);
 		return nodeSet;
 	}
+
 
 
 
@@ -68,10 +72,12 @@ public class BasicBinaryTree<T> implements BinaryTree<T> {
 
 
 
+
 	@Override
 	public Node<T> find(T t) {
 		return findNode(root, t);
 	}
+
 
 
 
@@ -89,6 +95,7 @@ public class BasicBinaryTree<T> implements BinaryTree<T> {
 
 
 
+
 	@Override
 	public void build(T[] keys) {
 		nodeCount = 0;
@@ -99,6 +106,7 @@ public class BasicBinaryTree<T> implements BinaryTree<T> {
 
 		root = partition(keys, 0, keys.length - 1);
 	}
+
 
 
 
@@ -122,6 +130,7 @@ public class BasicBinaryTree<T> implements BinaryTree<T> {
 		nodeCount++;
 		return node;
 	}
+
 
 
 

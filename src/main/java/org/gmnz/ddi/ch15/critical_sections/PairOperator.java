@@ -6,9 +6,11 @@ class PairOperator implements Runnable {
 
 
 
+
 	public PairOperator(PairManager pm) {
 		this.pm = pm;
 	}
+
 
 
 
@@ -18,6 +20,7 @@ class PairOperator implements Runnable {
 			pm.increment();
 		}
 	}
+
 
 
 

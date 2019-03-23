@@ -7,9 +7,11 @@ class ShareableImpl implements Shareable {
 
 
 
+
 	ShareableImpl() {
 		value = new ThreadLocalValue();
 	}
+
 
 
 
@@ -17,6 +19,7 @@ class ShareableImpl implements Shareable {
 	public void increment() {
 		value.set(value.get() + 1);
 	}
+
 
 
 

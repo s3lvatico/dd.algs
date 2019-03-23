@@ -11,6 +11,7 @@ class TallyMan implements Runnable {
 
 
 
+
 	TallyMan(int id, Shareable s) {
 		this.id = id;
 		this.shareable = s;
@@ -18,10 +19,12 @@ class TallyMan implements Runnable {
 
 
 
+
 	@Override
 	public String toString() {
 		return String.format("#%d-%d", id, shareable.getValue());
 	}
+
 
 
 

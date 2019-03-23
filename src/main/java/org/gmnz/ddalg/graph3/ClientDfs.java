@@ -1,5 +1,6 @@
 package org.gmnz.ddalg.graph3;
 
+
 public class ClientDfs {
 
 	static final Graph GRAPH;
@@ -13,6 +14,9 @@ public class ClientDfs {
 		GRAPH.addSubgraph(new int[] { 9, 10, 11, 12 });
 		GRAPH.addSubgraph(new int[] { 11, 12 });
 	}
+
+
+
 
 	public static void main(String[] args) {
 		DfsAnalysis dfs = new DfsAnalysis(GRAPH, 4);

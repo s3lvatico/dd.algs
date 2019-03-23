@@ -13,10 +13,12 @@ public class QuickSort<KEY extends Comparable<KEY>> extends AbstractSortEngine<K
 
 
 
+
 	@Override
 	protected void sort() {
 		sort(0, arrayLength - 1);
 	}
+
 
 
 
@@ -41,6 +43,7 @@ public class QuickSort<KEY extends Comparable<KEY>> extends AbstractSortEngine<K
 		sort(lo, j);
 		sort(j + 1, hi);
 	}
+
 
 
 

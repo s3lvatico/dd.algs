@@ -22,12 +22,14 @@ class Graph {
 
 
 
+
 	/**
 	 * costruisce un nuovo grafo
 	 */
 	Graph() {
 		adj = new HashMap<>();
 	}
+
 
 
 
@@ -41,6 +43,7 @@ class Graph {
 			adj.put(x, new HashSet<Integer>());
 		}
 	}
+
 
 
 
@@ -65,6 +68,7 @@ class Graph {
 
 
 
+
 	/**
 	 * controlla se il vertice specificato esiste nel grafo
 	 *
@@ -74,6 +78,7 @@ class Graph {
 	boolean hasVertex(int x) {
 		return adj.containsKey(x);
 	}
+
 
 
 
@@ -87,6 +92,7 @@ class Graph {
 		adj.get(x).add(y);
 		adj.get(y).add(x);
 	}
+
 
 
 
@@ -107,6 +113,7 @@ class Graph {
 
 
 
+
 	/**
 	 * fornisce l'insieme dei vertici adiacenti al vertice specificato
 	 *
@@ -119,6 +126,7 @@ class Graph {
 
 
 
+
 	/**
 	 * fornisce il numero di vertici di questo grafo
 	 *
@@ -127,6 +135,7 @@ class Graph {
 	int countVertices() {
 		return adj.size();
 	}
+
 
 
 

@@ -14,6 +14,7 @@ class Graph {
 
 
 
+
 	public Graph(int n) {
 		nVertices = n;
 		adj = new HashSet[n];
@@ -22,6 +23,7 @@ class Graph {
 			adj[i] = new HashSet<Integer>();
 		}
 	}
+
 
 
 
@@ -36,15 +38,18 @@ class Graph {
 
 
 
+
 	public int edges() {
 		return nEdges;
 	}
 
 
 
+
 	public int vertices() {
 		return nVertices;
 	}
+
 
 
 

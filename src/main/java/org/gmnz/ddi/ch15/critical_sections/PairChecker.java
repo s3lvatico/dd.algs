@@ -18,9 +18,11 @@ class PairChecker implements Runnable {
 
 
 
+
 	public PairChecker(PairManager pm) {
 		this.pm = pm;
 	}
+
 
 
 
@@ -35,6 +37,7 @@ class PairChecker implements Runnable {
 //			}
 		}
 	}
+
 
 
 

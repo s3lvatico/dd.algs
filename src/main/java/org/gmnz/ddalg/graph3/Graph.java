@@ -8,7 +8,11 @@ import java.util.Set;
 
 
 /**
- * La mia implementazione di grafo
+ * La mia implementazione di grafo.
+ * <p>
+ * Questa classe modella un grafo non diretto e privo di anomalie. Se due
+ * vertici sono connessi, allora esiste uno ed un solo arco tra loro; inoltre,
+ * gli estremi di ogni arco sono sempre due vertici distinti.
  *
  * @author gemini
  *
@@ -22,6 +26,7 @@ class Graph {
 
 
 
+
 	/**
 	 * costruisce un nuovo grafo
 	 */
@@ -31,16 +36,18 @@ class Graph {
 
 
 
+
 	/**
 	 * aggiunge un nuovo vertice
 	 *
 	 * @param x
 	 */
 	void addVertex(int x) {
-		if (!adj.containsKey(x)) {
+		if (!hasVertex(x)) {
 			adj.put(x, new HashSet<Integer>());
 		}
 	}
+
 
 
 
@@ -65,6 +72,7 @@ class Graph {
 
 
 
+
 	/**
 	 * controlla se il vertice specificato esiste nel grafo
 	 *
@@ -74,6 +82,7 @@ class Graph {
 	boolean hasVertex(int x) {
 		return adj.containsKey(x);
 	}
+
 
 
 
@@ -87,6 +96,32 @@ class Graph {
 		adj.get(x).add(y);
 		adj.get(y).add(x);
 	}
+
+
+
+
+	/**
+	 * fornisce l'insieme dei vertici adiacenti al vertice specificato
+	 *
+	 * @param x
+	 * @return
+	 */
+	Set<Integer> adjacencies(int x) {
+		return adj.get(x);
+	}
+
+
+
+
+	/**
+	 * fornisce il numero di vertici di questo grafo
+	 *
+	 * @return
+	 */
+	int countVertices() {
+		return adj.size();
+	}
+
 
 
 
@@ -105,28 +140,6 @@ class Graph {
 		adj.remove(v);
 	}
 
-
-
-	/**
-	 * fornisce l'insieme dei vertici adiacenti al vertice specificato
-	 *
-	 * @param x
-	 * @return
-	 */
-	Set<Integer> adjacencies(int x) {
-		return adj.get(x);
-	}
-
-
-
-	/**
-	 * fornisce il numero di vertici di questo grafo
-	 *
-	 * @return
-	 */
-	int countVertices() {
-		return adj.size();
-	}
 
 
 

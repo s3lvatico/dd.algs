@@ -33,10 +33,12 @@ class BreadthFirst {
 
 
 
+
 	BreadthFirst(Graph g, int sourceVertex) {
 		this.g = g;
 		bfs(sourceVertex);
 	}
+
 
 
 
@@ -69,9 +71,11 @@ class BreadthFirst {
 
 
 
+
 	boolean pathExists(int v, int w) {
 		return visited[v] && visited[w];
 	}
+
 
 
 

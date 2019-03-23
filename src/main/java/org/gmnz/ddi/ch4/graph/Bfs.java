@@ -23,12 +23,14 @@ public class Bfs {
 
 
 
+
 	public Bfs(Graph g) {
 		this.g = g;
 
 		// inizializza l'array dei nodi visitati
 		visited = new boolean[g.vertices()];
 	}
+
 
 
 
@@ -39,6 +41,7 @@ public class Bfs {
 		}
 		bfsTraversal(v);
 	}
+
 
 
 

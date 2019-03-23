@@ -13,6 +13,7 @@ public interface BinaryTree<T> {
 
 
 
+
 		@Override
 		public int hashCode() {
 			final int prime = 31;
@@ -20,6 +21,7 @@ public interface BinaryTree<T> {
 			result = prime * result + ((value == null) ? 0 : value.hashCode());
 			return result;
 		}
+
 
 
 
@@ -49,6 +51,7 @@ public interface BinaryTree<T> {
 
 
 
+
 		@Override
 		public String toString() {
 			return "N[v=" + value + "]";
@@ -63,7 +66,9 @@ public interface BinaryTree<T> {
 
 
 
+
 	void display(Traversal traversal);
+
 
 
 
@@ -71,11 +76,14 @@ public interface BinaryTree<T> {
 
 
 
+
 	Node<T> find(T t);
 
 
 
+
 	void build(T[] keys);
+
 
 
 

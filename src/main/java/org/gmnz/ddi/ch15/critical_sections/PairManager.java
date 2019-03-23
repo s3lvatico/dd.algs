@@ -27,11 +27,13 @@ abstract class PairManager {
 
 
 
+
 	PairManager() {
 		checkCounter = new AtomicInteger(0);
 		pair = new Pair();
 		storage = Collections.synchronizedList(new ArrayList<Pair>());
 	}
+
 
 
 
@@ -44,6 +46,7 @@ abstract class PairManager {
 	synchronized Pair getPair() {
 		return new Pair(pair.getX(), pair.getY());
 	}
+
 
 
 
@@ -60,14 +63,18 @@ abstract class PairManager {
 		// facciamo finta che questa operazione richieda "parecchio" tempo
 		try {
 			TimeUnit.MILLISECONDS.sleep(50);
-		} catch (InterruptedException e) { /* eccezione ignorata */ }
+		}
+		catch (InterruptedException e) {
+			/* eccezione ignorata */ }
 	}
+
 
 
 
 	int getCheckCounter() {
 		return checkCounter.get();
 	}
+
 
 
 

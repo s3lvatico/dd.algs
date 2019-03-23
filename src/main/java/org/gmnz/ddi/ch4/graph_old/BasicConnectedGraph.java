@@ -24,6 +24,7 @@ public class BasicConnectedGraph<KEY extends Comparable<KEY>, VALUE> implements 
 
 
 
+
 		VisitableGraphNode(KEY key, VALUE value) {
 			super(key, value);
 			visited = false;
@@ -37,9 +38,11 @@ public class BasicConnectedGraph<KEY extends Comparable<KEY>, VALUE> implements 
 
 
 
+
 	public BasicConnectedGraph() {
 		nodes = new ArrayList<>();
 	}
+
 
 
 
@@ -48,10 +51,12 @@ public class BasicConnectedGraph<KEY extends Comparable<KEY>, VALUE> implements 
 		GraphNode node = new GraphNode(key, value);
 		if (nodes.contains(node)) {
 			System.err.println("node already present");
-		} else {
+		}
+		else {
 			nodes.add(node);
 		}
 	}
+
 
 
 
@@ -71,6 +76,7 @@ public class BasicConnectedGraph<KEY extends Comparable<KEY>, VALUE> implements 
 
 
 
+
 	@Override
 	public boolean contains(KEY k) {
 		visited = new HashMap<>();
@@ -79,6 +85,7 @@ public class BasicConnectedGraph<KEY extends Comparable<KEY>, VALUE> implements 
 		}
 		return false;
 	}
+
 
 
 

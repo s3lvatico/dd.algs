@@ -15,9 +15,11 @@ public class NodeRepository<T> {
 
 
 
+
 	NodeRepository() {
 		repository = new HashMap<Integer, Set<T>>();
 	}
+
 
 
 
@@ -27,6 +29,9 @@ public class NodeRepository<T> {
 		}
 		repository.get(level).add(node.value);
 	}
+
+
+
 
 	public void display() {
 		for (Integer level : repository.keySet()) {

@@ -18,6 +18,7 @@ class DfsAnalysis implements GraphAnalysis {
 
 
 
+
 	DfsAnalysis(Graph g, int sourceVertex) {
 		this.g = g;
 		this.sourceVertex = sourceVertex;
@@ -25,6 +26,7 @@ class DfsAnalysis implements GraphAnalysis {
 		edgeTo = new int[g.countVertices()];
 		dfs(sourceVertex);
 	}
+
 
 
 
@@ -41,10 +43,12 @@ class DfsAnalysis implements GraphAnalysis {
 
 
 
+
 	@Override
 	public boolean hasPathTo(int v) {
 		return visited[v];
 	}
+
 
 
 

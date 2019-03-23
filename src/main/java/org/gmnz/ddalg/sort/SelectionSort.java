@@ -1,10 +1,12 @@
 package org.gmnz.ddalg.sort;
 
+
 public class SelectionSort<KEY extends Comparable<KEY>> extends AbstractSortEngine<KEY> {
 
 	protected SelectionSort(KEY[] arr) {
 		super(arr);
 	}
+
 
 
 

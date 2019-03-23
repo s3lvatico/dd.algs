@@ -18,6 +18,7 @@ public interface Shareable {
 
 
 
+
 	/**
 	 * fornisce il valore corrente del contatore interno
 	 *

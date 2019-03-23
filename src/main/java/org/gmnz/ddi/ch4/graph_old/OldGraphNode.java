@@ -15,6 +15,7 @@ public class OldGraphNode {
 
 
 
+
 	public OldGraphNode(Integer value) {
 		if (value == null) {
 			throw new IllegalArgumentException();
@@ -25,15 +26,18 @@ public class OldGraphNode {
 
 
 
+
 	public void newEdgeTo(OldGraphNode node) {
 		adjacentNodes.add(node);
 	}
 
 
 
+
 	public Integer getValue() {
 		return value;
 	}
+
 
 
 

@@ -1,9 +1,11 @@
 package org.gmnz.ddi.ch4.graph_old;
 
+
 class Node<KEY extends Comparable<KEY>, VALUE> {
 
 	protected KEY key;
 	protected VALUE value;
+
 
 
 
@@ -14,6 +16,7 @@ class Node<KEY extends Comparable<KEY>, VALUE> {
 
 
 
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -21,6 +24,7 @@ class Node<KEY extends Comparable<KEY>, VALUE> {
 		result = prime * result + ((key == null) ? 0 : key.hashCode());
 		return result;
 	}
+
 
 
 
@@ -40,12 +44,14 @@ class Node<KEY extends Comparable<KEY>, VALUE> {
 			if (other.key != null) {
 				return false;
 			}
-		} else
+		}
+		else
 			if (!key.equals(other.key)) {
 				return false;
 			}
 		return true;
 	}
+
 
 
 

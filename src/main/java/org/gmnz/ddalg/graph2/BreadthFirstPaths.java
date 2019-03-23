@@ -39,6 +39,7 @@ public class BreadthFirstPaths {
 
 
 
+
 	/**
 	 * Computes the shortest path between the source vertex {@code s}
 	 * and every other vertex in the SGraph {@code G}.
@@ -59,6 +60,7 @@ public class BreadthFirstPaths {
 
 		assert check(G, s);
 	}
+
 
 
 
@@ -88,6 +90,7 @@ public class BreadthFirstPaths {
 
 
 
+
 	// breadth-first search from a single source
 	private void bfs(Graph G, int s) {
 		Queue<Integer> q = new Queue<Integer>();
@@ -110,6 +113,7 @@ public class BreadthFirstPaths {
 			}
 		}
 	}
+
 
 
 
@@ -136,6 +140,7 @@ public class BreadthFirstPaths {
 
 
 
+
 	/**
 	 * Is there a path between the source vertex {@code s} (or sources) and vertex
 	 * {@code v}?
@@ -150,6 +155,7 @@ public class BreadthFirstPaths {
 		validateVertex(v);
 		return marked[v];
 	}
+
 
 
 
@@ -168,6 +174,7 @@ public class BreadthFirstPaths {
 		validateVertex(v);
 		return distTo[v];
 	}
+
 
 
 
@@ -194,6 +201,7 @@ public class BreadthFirstPaths {
 		path.push(x);
 		return path;
 	}
+
 
 
 
@@ -245,6 +253,7 @@ public class BreadthFirstPaths {
 
 
 
+
 	// throw an IllegalArgumentException unless {@code 0 <= v < V}
 	private void validateVertex(int v) {
 		int V = marked.length;
@@ -252,6 +261,7 @@ public class BreadthFirstPaths {
 			throw new IllegalArgumentException("vertex " + v + " is not between 0 and " + (V - 1));
 		}
 	}
+
 
 
 
@@ -267,6 +277,7 @@ public class BreadthFirstPaths {
 			}
 		}
 	}
+
 
 
 

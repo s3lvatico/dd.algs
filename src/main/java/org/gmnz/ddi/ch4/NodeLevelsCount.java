@@ -7,10 +7,12 @@ public class NodeLevelsCount extends BasicBinaryTree<Integer> {
 
 
 
+
 	void populateRepository() {
 		repository = new NodeRepository<Integer>();
 		populateRepository(0, root);
 	}
+
 
 
 
@@ -25,9 +27,11 @@ public class NodeLevelsCount extends BasicBinaryTree<Integer> {
 
 
 
+
 	void showNodeLevels() {
 		repository.display();
 	}
+
 
 
 

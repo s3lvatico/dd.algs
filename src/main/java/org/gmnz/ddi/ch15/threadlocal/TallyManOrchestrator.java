@@ -12,6 +12,7 @@ public class TallyManOrchestrator {
 
 
 
+
 	private static void sleep(long ms) {
 		try {
 			TimeUnit.MILLISECONDS.sleep(ms);
@@ -22,11 +23,12 @@ public class TallyManOrchestrator {
 
 
 
+
 	public static void main(String[] args) {
 		ExecutorService pool = Executors.newCachedThreadPool();
 		Shareable sharedObject = new ShareableImpl();
-		for (int i =0; i< N_TASKS; i++) {
-			pool.execute(new TallyMan(i+1, sharedObject));
+		for (int i = 0; i < N_TASKS; i++) {
+			pool.execute(new TallyMan(i + 1, sharedObject));
 		}
 		sleep(1000);
 		pool.shutdownNow();
