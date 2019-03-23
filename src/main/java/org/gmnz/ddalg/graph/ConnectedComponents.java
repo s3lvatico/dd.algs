@@ -1,7 +1,6 @@
-package org.gmnz.ddalg.graph3;
+package org.gmnz.ddalg.graph;
 
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 
@@ -29,12 +28,12 @@ public class ConnectedComponents {
 	private Collection<Integer>[] components;
 
 	/**
-	 * 
+	 *
 	 */
 	private boolean[] visited;
 
 	/**
-	 * 
+	 *
 	 */
 	private int componentId = 0;
 
@@ -44,14 +43,13 @@ public class ConnectedComponents {
 	/**
 	 * @param g
 	 */
-	@SuppressWarnings("unchecked")
 	public ConnectedComponents(Graph g) {
 		id = new int[g.countVertices()];
 		components = new Collection[g.countVertices()];
 		visited = new boolean[g.countVertices()];
 		/*
 		 * attenzione all'uso del metodo Arrays.fill(...).
-		 * 
+		 *
 		 * Questo enunciato genera un brutto errore logico. Non pensare che ogni
 		 * posizione dell'array venga riempita con un nuovo insieme (vuoto). In realtà
 		 * il metodo fill valorizza il contenuto dell'array con LO STESSO IDENTICO
@@ -102,7 +100,7 @@ public class ConnectedComponents {
 
 
 	public static void main(String[] args) {
-		ConnectedComponents cc = new ConnectedComponents(ClientDfs.GRAPH);
+		ConnectedComponents cc = new ConnectedComponents(Graph.GRAPH);
 		cc.printComponents();
 	}
 }

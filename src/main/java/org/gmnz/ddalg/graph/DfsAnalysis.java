@@ -1,4 +1,4 @@
-package org.gmnz.ddalg.graph3;
+package org.gmnz.ddalg.graph;
 
 
 import java.util.ArrayDeque;
@@ -6,10 +6,18 @@ import java.util.Collection;
 import java.util.Deque;
 
 
-class DfsAnalysis implements GraphAnalysis {
+public class DfsAnalysis {
 
 
+	/**
+	 * indicizzato per vertice; durante l'analisi, indica quali vertici sono stati
+	 * visitati
+	 */
 	private boolean[] visited;
+	/**
+	 * indicizzato per vertice; durante l'analisi, indica che un percorso dal
+	 * vertice sorgente al vertice v passa per il vertice edgeTo[v]
+	 */
 	private int[] edgeTo;
 
 	private final Graph g;
@@ -38,13 +46,20 @@ class DfsAnalysis implements GraphAnalysis {
 				dfs(w);
 			}
 		}
-
 	}
 
 
 
 
-	@Override
+	/**
+	 * controllo dell'esistenza di un percorso dal vertice sorgente al vertice
+	 * specificato
+	 *
+	 * @param v
+	 *             il vertice di arrivo
+	 * @return <code>true</code> se esiste un percorso dal vertice sorgente al
+	 *         vertice specificato, <code>false</code> altrimenti
+	 */
 	public boolean hasPathTo(int v) {
 		return visited[v];
 	}
@@ -52,7 +67,6 @@ class DfsAnalysis implements GraphAnalysis {
 
 
 
-	@Override
 	public Collection<Integer> pathTo(int v) {
 		/*
 		 * da documentazione dicono che convenga usare l'interfaccia DEQUE al posto
