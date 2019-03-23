@@ -8,6 +8,7 @@ public class BfsClient {
 		System.out.println(bfs.pathTo(12));
 		bfs = new BfsAnalysis(Graph.GRAPH, 4);
 		System.out.println(bfs.pathTo(0));
+		System.out.println("distance from source: " + bfs.distanceFromSource(0));
 	}
 
 }

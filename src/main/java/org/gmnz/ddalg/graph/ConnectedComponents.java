@@ -73,6 +73,11 @@ public class ConnectedComponents {
 
 
 	private void dfs(Graph g, int vertex) {
+		/*
+		 * una intera sessione di chiamate ricorsive attraversa il grafo finché esistono
+		 * vertici raggiungibili attraverso le adiacenze, a partire dal primo vertice
+		 * dal quale si inizia l'analisi
+		 */
 		id[vertex] = componentId;
 		components[componentId].add(vertex);
 		visited[vertex] = true;
