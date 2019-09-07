@@ -1,6 +1,6 @@
-package org.gmnz.ddi.ch4.graph;
+package org.gmnz.ddi.ctci.ch4;
 
-import org.gmnz.ddi.ch4.graph.Graph;
+import org.gmnz.ddi.ctci.ch4.graph.Graph;
 
 public class TestGraph {
 

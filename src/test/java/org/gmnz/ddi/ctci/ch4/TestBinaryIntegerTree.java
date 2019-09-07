@@ -1,9 +1,9 @@
-package org.gmnz.ddi.ch4;
+package org.gmnz.ddi.ctci.ch4;
 
 import java.util.Arrays;
 import java.util.Random;
 
-import org.gmnz.ddi.ch4.BinaryTree.Traversal;
+import org.gmnz.ddi.ctci.ch4.BinaryTree.Traversal;
 
 public class TestBinaryIntegerTree {
 
@@ -12,7 +12,7 @@ public class TestBinaryIntegerTree {
 		final int LENGTH = 15;
 		Integer[] v = new Integer[LENGTH];
 		Random rnd = new Random();
-		for (int i=0; i< LENGTH; i++) {
+		for (int i = 0; i < LENGTH; i++) {
 			v[i] = rnd.nextInt(100);
 		}
 

@@ -1,21 +1,18 @@
-package org.gmnz.ddi.ch4.graph;
+package org.gmnz.ddi.ctci.ch4;
 
+import org.gmnz.ddi.ctci.ch4.graph.Bfs;
+import org.gmnz.ddi.ctci.ch4.graph.Graph;
 
 public class TestBfs {
 
 	public static void main(String[] args) {
 
-/*
- * 12
- *
- * 0 1 2 6 5
- * 3 4 5
- * 4 5 6
- * 7 8
- * 9 10 11 12
- * 11 12
- *
- */
+		/*
+		 * 12
+		 *
+		 * 0 1 2 6 5 3 4 5 4 5 6 7 8 9 10 11 12 11 12
+		 *
+		 */
 
 		Graph g = new Graph(13);
 
@@ -37,8 +34,6 @@ public class TestBfs {
 		g.addEdge(9, 12);
 
 		g.addEdge(11, 12);
-
-
 
 		Bfs bfs = new Bfs(g);
 		bfs.bfs(0);

@@ -1,19 +1,14 @@
 package org.gmnz.ddi.ctci.ch4.graph;
 
-
 import java.util.Collection;
 import java.util.HashSet;
 
-
-class Graph {
+public class Graph {
 
 	private int nEdges;
 	private int nVertices;
 
 	private Collection<Integer>[] adj;
-
-
-
 
 	public Graph(int n) {
 		nVertices = n;
@@ -24,9 +19,6 @@ class Graph {
 		}
 	}
 
-
-
-
 	/*
 	 * inizializziamolo con un array
 	 */
@@ -36,22 +28,13 @@ class Graph {
 		nEdges++;
 	}
 
-
-
-
 	public int edges() {
 		return nEdges;
 	}
 
-
-
-
 	public int vertices() {
 		return nVertices;
 	}
-
-
-
 
 	public Iterable<Integer> adjacencies(int vertex) {
 		return adj[vertex];
