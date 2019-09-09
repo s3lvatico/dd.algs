@@ -55,7 +55,7 @@ public class TestMaxHeapPQ {
     }
 
 
-
+    @Test
     public void testDelMax() {
         MaxHeapPQ<Integer> heap = new MaxHeapPQ<>(5);
         heap.insert(2);
