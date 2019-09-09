@@ -68,4 +68,10 @@ public class TestMaxHeapPQ {
     }
 
 
+
+    @Test
+    public void testMaxWithEmptyHeap() {
+        MaxHeapPQ<Integer> heap = new MaxHeapPQ<>(5);
+        int max = heap.max();
+    }
 }
