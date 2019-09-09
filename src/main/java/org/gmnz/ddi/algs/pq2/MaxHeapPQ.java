@@ -21,7 +21,10 @@ public class MaxHeapPQ<K extends Comparable<K>> {
 
 
     private boolean less(int i, int j) {
-        return pq[i].compareTo(pq[j]) < 0;
+        if (i >= 1 && j >= 1)
+            return pq[i].compareTo(pq[j]) < 0;
+        else
+            return false;
     }
 
 
@@ -87,6 +90,8 @@ public class MaxHeapPQ<K extends Comparable<K>> {
 
 
     public void insert(K key) {
+        // l'inserimento avviene inserendo il nuovo elemento in coda all'heap
+        // e poi facendolo "emergere" fino alla sua posizione ordinata
         pq[++heapSize] = key;
         swim(heapSize);
     }
@@ -94,12 +99,18 @@ public class MaxHeapPQ<K extends Comparable<K>> {
 
 
     public K max() {
+        // in un heap così formato, l'elemento massimo si trova sempre in
+        // cima all'heap
         return pq[1];
     }
 
 
 
     public K delMax() {
+        // rimuover il massimo significa portarlo in fondo all'heap,
+        // aggiornare la dimensione, decrementandola, e poi facendo
+        // "sprofondare" la cima dell'heap fino al ripristino dell'
+        // invariante
         K max = max();
         swap(1, heapSize);
         heapSize--;
