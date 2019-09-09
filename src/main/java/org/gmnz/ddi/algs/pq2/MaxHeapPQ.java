@@ -1,6 +1,9 @@
 package org.gmnz.ddi.algs.pq2;
 
 
+import java.util.NoSuchElementException;
+
+
 /**
  * MaxHeapPQ
  */
@@ -92,6 +95,8 @@ public class MaxHeapPQ<K extends Comparable<K>> {
     public void insert(K key) {
         // l'inserimento avviene inserendo il nuovo elemento in coda all'heap
         // e poi facendolo "emergere" fino alla sua posizione ordinata
+        if (heapSize == pq.length)
+            throw new UnsupportedOperationException("heap is full");
         pq[++heapSize] = key;
         swim(heapSize);
     }
@@ -101,6 +106,8 @@ public class MaxHeapPQ<K extends Comparable<K>> {
     public K max() {
         // in un heap così formato, l'elemento massimo si trova sempre in
         // cima all'heap
+        if (isEmpty())
+            throw new NoSuchElementException("heap is empty");
         return pq[1];
     }
 
