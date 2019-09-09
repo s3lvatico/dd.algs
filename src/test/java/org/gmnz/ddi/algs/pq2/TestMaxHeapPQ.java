@@ -1,6 +1,8 @@
 package org.gmnz.ddi.algs.pq2;
 
 
+import java.util.NoSuchElementException;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -55,6 +57,7 @@ public class TestMaxHeapPQ {
     }
 
 
+
     @Test
     public void testDelMax() {
         MaxHeapPQ<Integer> heap = new MaxHeapPQ<>(5);
@@ -81,5 +84,22 @@ public class TestMaxHeapPQ {
     public void testDelMaxWithEmptyHeap() {
         MaxHeapPQ<Integer> heap = new MaxHeapPQ<>(5);
         heap.delMax();
+    }
+
+
+
+    @Test
+    public void testWithFib() {
+        int[] fibs = { 0, 1, 2, 3, 5, 8, 13, 21 };
+        MaxHeapPQ<Integer> pq = new MaxHeapPQ<>(10);
+
+        for (int f : fibs)
+            pq.insert(f);
+
+        Assert.assertEquals(fibs.length, pq.size());
+
+        Assert.assertTrue(21 == pq.max());
+        Assert.assertTrue(21 == pq.delMax());
+        Assert.assertEquals(fibs.length-1, pq.size());
     }
 }
