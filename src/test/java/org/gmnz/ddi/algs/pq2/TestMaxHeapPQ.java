@@ -69,7 +69,7 @@ public class TestMaxHeapPQ {
 
 
 
-    @Test
+    @Test(expected = NoSuchElementException.class)
     public void testMaxWithEmptyHeap() {
         MaxHeapPQ<Integer> heap = new MaxHeapPQ<>(5);
         int max = heap.max();
