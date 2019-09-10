@@ -16,14 +16,13 @@ public abstract class AbstractSortEngine<KEY extends Comparable<KEY>> {
 	protected int arrayLength;
 
 
-
-
 	/**
 	 * inizializza il motore con l'array specificato. Gestisce i parametri nulli
 	 * creando un array fittizio di dimensione 1
 	 *
 	 * @param arr
 	 */
+	@SuppressWarnings("unchecked")
 	protected AbstractSortEngine(KEY[] arr) {
 		if (arr == null) {
 			this.a = (KEY[]) new Comparable[] {};
@@ -36,9 +35,7 @@ public abstract class AbstractSortEngine<KEY extends Comparable<KEY>> {
 
 
 
-
 	protected abstract void sort();
-
 
 
 
@@ -56,18 +53,16 @@ public abstract class AbstractSortEngine<KEY extends Comparable<KEY>> {
 
 
 
-
 	/**
 	 * controlla che un elemento sia strettamente minore di un altro
 	 *
-	 * @param x
-	 * @param y
-	 * @return <code>true</code> se x < y
+	 * @param  x
+	 * @param  y
+	 * @return   <code>true</code> se x < y
 	 */
 	protected boolean less(KEY x, KEY y) {
 		return x.compareTo(y) < 0;
 	}
-
 
 
 
@@ -90,7 +85,6 @@ public abstract class AbstractSortEngine<KEY extends Comparable<KEY>> {
 			return true;
 		}
 	}
-
 
 
 

@@ -6,13 +6,11 @@ abstract class AbstractMergeSort<KEY extends Comparable<KEY>> extends AbstractSo
 	private KEY[] aux;
 
 
-
-
+	@SuppressWarnings("unchecked")
 	protected AbstractMergeSort(KEY[] arr) {
 		super(arr);
 		aux = (KEY[]) new Comparable[arrayLength];
 	}
-
 
 
 
@@ -59,7 +57,7 @@ abstract class AbstractMergeSort<KEY extends Comparable<KEY>> extends AbstractSo
 					a[k] = aux[i++]; // e l'indice del subarray sinistro scorre
 				}
 				else // confronto i due valori nei due subarray
-						 // prendo il valore più piccolo puntato dagli indici
+						// prendo il valore più piccolo puntato dagli indici
 					if (less(aux[i], aux[j])) {
 						a[k] = aux[i++];
 					}

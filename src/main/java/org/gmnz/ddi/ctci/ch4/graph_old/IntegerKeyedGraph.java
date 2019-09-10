@@ -1,10 +1,6 @@
 package org.gmnz.ddi.ctci.ch4.graph_old;
 
 
-import java.util.List;
-import java.util.Map;
-
-
 public class IntegerKeyedGraph {
 
 	static class Node {
@@ -52,5 +48,5 @@ public class IntegerKeyedGraph {
 
 	}
 
-	private Map<Node, List<Node>> adj;
+	// private Map<Node, List<Node>> adj;
 }

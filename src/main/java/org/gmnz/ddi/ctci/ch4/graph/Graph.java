@@ -1,7 +1,9 @@
 package org.gmnz.ddi.ctci.ch4.graph;
 
+
 import java.util.Collection;
 import java.util.HashSet;
+
 
 public class Graph {
 
@@ -10,14 +12,17 @@ public class Graph {
 
 	private Collection<Integer>[] adj;
 
+	@SuppressWarnings("unchecked")
 	public Graph(int n) {
 		nVertices = n;
-		adj = new HashSet[n];
+		adj = (Collection<Integer>[]) new HashSet[n];
 
 		for (int i = 0; i < n; i++) {
 			adj[i] = new HashSet<Integer>();
 		}
 	}
+
+
 
 	/*
 	 * inizializziamolo con un array
@@ -28,13 +33,19 @@ public class Graph {
 		nEdges++;
 	}
 
+
+
 	public int edges() {
 		return nEdges;
 	}
 
+
+
 	public int vertices() {
 		return nVertices;
 	}
+
+
 
 	public Iterable<Integer> adjacencies(int vertex) {
 		return adj[vertex];

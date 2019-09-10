@@ -50,7 +50,7 @@ public class MergeSortTopDown<KEY extends Comparable<KEY>> extends AbstractMerge
 
 	public static void main(String[] args) { // Read strings from standard input, sort them, and print.
 		String[] a = new In(args[0]).readAllStrings();
-		MergeSortTopDown sortEngine = new MergeSortTopDown(a);
+		MergeSortTopDown<String> sortEngine = new MergeSortTopDown<>(a);
 		sortEngine.sort();
 		sortEngine.show();
 	}

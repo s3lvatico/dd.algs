@@ -1,5 +1,6 @@
 package org.gmnz.ddi.algs.pq;
 
+
 /**
  * UnorderedArrayMaxPQ
  */
@@ -11,22 +12,31 @@ public class UnorderedArrayMaxPQ<KEY extends Comparable<KEY>> {
     /** dimensione della pq */
     private int n;
 
+    @SuppressWarnings("unchecked")
     public UnorderedArrayMaxPQ(int capacity) {
         pq = (KEY[]) new Comparable[capacity];
         n = 0;
     }
 
+
+
     public boolean isEmpty() {
         return n == 0;
     }
+
+
 
     public int size() {
         return n;
     }
 
+
+
     public void insert(KEY k) {
         pq[n++] = k;
     }
+
+
 
     public KEY delMax() {
         int max = 0; // indice dell'elemento max
@@ -43,10 +53,14 @@ public class UnorderedArrayMaxPQ<KEY extends Comparable<KEY>> {
 
     // metodi helper
 
+
+
     /** dice se l'elemento di posto i è strettamente minore di quello nel posto j */
     private boolean less(int i, int j) {
         return pq[i].compareTo(pq[j]) < 0;
     }
+
+
 
     /** scambia di posto nella coda gli elementi di posto i, j */
     private void swap(int i, int j) {

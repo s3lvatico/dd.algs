@@ -25,7 +25,7 @@ public interface BinaryTree<T> {
 
 
 
-		@Override
+		@Override @SuppressWarnings("unchecked")
 		public boolean equals(Object obj) {
 			if (this == obj) {
 				return true;
@@ -36,7 +36,7 @@ public interface BinaryTree<T> {
 			if (getClass() != obj.getClass()) {
 				return false;
 			}
-			Node other = (Node) obj;
+			Node<T> other = (Node<T>) obj;
 			if (value == null) {
 				if (other.value != null) {
 					return false;

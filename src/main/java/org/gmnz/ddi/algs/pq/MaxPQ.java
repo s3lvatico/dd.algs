@@ -7,12 +7,9 @@ public class MaxPQ<KEY extends Comparable<KEY>> {
 	private int n = 0;
 
 
-
-
 	private boolean less(int i, int j) {
 		return pq[i].compareTo(pq[j]) < 0;
 	}
-
 
 
 
@@ -24,11 +21,10 @@ public class MaxPQ<KEY extends Comparable<KEY>> {
 
 
 
-
+	@SuppressWarnings("unchecked")
 	public MaxPQ(int maxN) {
 		pq = (KEY[]) new Comparable[maxN + 1];
 	}
-
 
 
 
@@ -38,11 +34,9 @@ public class MaxPQ<KEY extends Comparable<KEY>> {
 
 
 
-
 	public int size() {
 		return n;
 	}
-
 
 
 
@@ -55,10 +49,9 @@ public class MaxPQ<KEY extends Comparable<KEY>> {
 	private void swim(int k) {
 		/*
 		 * internamente al ciclo while, k verrà modificato in modo che punti a elementi
-		 * che stanno via
-		 * via più in alto nell'heap. Questo significa che verrà via via diviso per 2, e
-		 * per come è organizzato l'heap significa andare via via verso l'ascendente del
-		 * nodo puntato da k.
+		 * che stanno via via più in alto nell'heap. Questo significa che verrà via via
+		 * diviso per 2, e per come è organizzato l'heap significa andare via via verso
+		 * l'ascendente del nodo puntato da k.
 		 */
 		while (k > 1 && less(k / 2, k)) {
 			/*
@@ -78,7 +71,6 @@ public class MaxPQ<KEY extends Comparable<KEY>> {
 			k = k / 2;
 		}
 	}
-
 
 
 
@@ -123,7 +115,6 @@ public class MaxPQ<KEY extends Comparable<KEY>> {
 
 
 
-
 	/**
 	 * Inserisce un elemento nuovo nella PQ.
 	 * <p>
@@ -136,7 +127,6 @@ public class MaxPQ<KEY extends Comparable<KEY>> {
 		pq[++n] = v;
 		swim(n);
 	}
-
 
 
 

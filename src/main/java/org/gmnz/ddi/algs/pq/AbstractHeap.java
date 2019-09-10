@@ -9,19 +9,16 @@ abstract class AbstractHeap<KEY extends Comparable<KEY>> extends AbstractSortEng
 	protected int n = 0;
 
 
-
-
+	@SuppressWarnings("unchecked")
 	AbstractHeap(int maxN) {
 		super((KEY[]) new Comparable[maxN + 1]);
 	}
 
 
 
-
 	protected boolean less(int i, int j) {
 		return less(a[i], a[j]);
 	}
-
 
 
 
@@ -56,7 +53,6 @@ abstract class AbstractHeap<KEY extends Comparable<KEY>> extends AbstractSortEng
 			k = k / 2;
 		}
 	}
-
 
 
 

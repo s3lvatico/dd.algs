@@ -43,6 +43,7 @@ public class ConnectedComponents {
 	/**
 	 * @param g
 	 */
+	@SuppressWarnings("unchecked")
 	public ConnectedComponents(Graph g) {
 		id = new int[g.countVertices()];
 		components = new Collection[g.countVertices()];

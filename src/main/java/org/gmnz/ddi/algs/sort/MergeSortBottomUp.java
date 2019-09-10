@@ -4,9 +4,9 @@ package org.gmnz.ddi.algs.sort;
 import edu.princeton.cs.algs4.In;
 
 
-public class MergeSortBottomUp extends AbstractMergeSort {
+public class MergeSortBottomUp<K extends Comparable<K>> extends AbstractMergeSort<K> {
 
-	protected MergeSortBottomUp(Comparable[] arr) {
+	protected MergeSortBottomUp(K[] arr) {
 		super(arr);
 	}
 
@@ -28,7 +28,7 @@ public class MergeSortBottomUp extends AbstractMergeSort {
 
 	public static void main(String[] args) { // Read strings from standard input, sort them, and print.
 		String[] a = new In(args[0]).readAllStrings();
-		AbstractSortEngine sortEngine = new MergeSortBottomUp(a);
+		AbstractSortEngine<String> sortEngine = new MergeSortBottomUp<>(a);
 		sortEngine.sort();
 		assert sortEngine.isSorted();
 		sortEngine.show();
