@@ -2,6 +2,13 @@
    "configurations": [
       {
          "type": "java",
+         "name": "CodeLens (Launch) - QSortG",
+         "request": "launch",
+         "mainClass": "org.gmnz.ddi.algs.sort2.QSortG",
+         "projectName": "dd-training"
+      },
+      {
+         "type": "java",
          "name": "CodeLens (Launch) - TestGraph",
          "request": "launch",
          "mainClass": "org.gmnz.ddi.ctci.ch4.TestGraph",
