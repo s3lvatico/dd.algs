@@ -1,6 +1,8 @@
 package org.gmnz.ddi.algs.sort2;
 
+
 import java.util.Random;
+
 
 public class QSortG {
 
@@ -14,6 +16,8 @@ public class QSortG {
 	 * terminazione
 	 */
 
+
+
 	private void quicksort(int[] v, int lo, int hi) {
 		// se gli indici coincidono o sono incrociati sto cercando di ordinare un array
 		// degenere
@@ -25,20 +29,24 @@ public class QSortG {
 		quicksort(v, partIdx, hi);
 	}
 
+
+
 	private void swap(int[] v, int x, int y) {
 		int tmp = v[x];
 		v[x] = v[y];
 		v[y] = tmp;
 	}
 
+
+
 	/**
 	 * il cuore del qs.
 	 * <p>
 	 *
 	 *
-	 * @param v
-	 * @param lo
-	 * @param hi
+	 * @param  v
+	 * @param  lo
+	 * @param  hi
 	 * @return
 	 */
 	int partition(int[] v, int lo, int hi) {
@@ -80,12 +88,16 @@ public class QSortG {
 		return lo;
 	}
 
+
+
 	private static void print(int[] v) {
 		for (int x : v) {
 			System.out.print(x + " ");
 		}
 	}
 	/* 9 5 7 6 8 3 4 1 2 */
+
+
 
 	static boolean isSorted(int[] v) {
 		if (v == null || v.length <= 1)
@@ -96,6 +108,8 @@ public class QSortG {
 		}
 		return true;
 	}
+
+
 
 	public static void main(String[] args) {
 		int[] v = new int[] { 9, 5, 7, 6, 8, 3, 4, 1, 2 };

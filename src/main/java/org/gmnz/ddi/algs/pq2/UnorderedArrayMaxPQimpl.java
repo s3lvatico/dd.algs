@@ -1,5 +1,6 @@
 package org.gmnz.ddi.algs.pq2;
 
+
 /**
  * UnorderedArrayMaxPQimpl
  */
@@ -7,10 +8,13 @@ public class UnorderedArrayMaxPQimpl<K extends Comparable<K>> extends AbstractPQ
 
     private int n;
 
+    @SuppressWarnings("unchecked")
     public UnorderedArrayMaxPQimpl(int size) {
         pq = (K[]) new Comparable[size];
         n = 0;
     }
+
+
 
     @Override
     public void insert(K key) {
@@ -19,6 +23,8 @@ public class UnorderedArrayMaxPQimpl<K extends Comparable<K>> extends AbstractPQ
         pq[n++] = key;
     }
 
+
+
     @Override
     public K max() {
         if (isEmpty())
@@ -26,6 +32,8 @@ public class UnorderedArrayMaxPQimpl<K extends Comparable<K>> extends AbstractPQ
         int max = getMaxIndex();
         return pq[max];
     }
+
+
 
     @Override
     public K delMax() {
@@ -36,6 +44,8 @@ public class UnorderedArrayMaxPQimpl<K extends Comparable<K>> extends AbstractPQ
         pq[max] = pq[--n];
         return maxKey;
     }
+
+
 
     private int getMaxIndex() {
         int i = 0;
@@ -48,10 +58,14 @@ public class UnorderedArrayMaxPQimpl<K extends Comparable<K>> extends AbstractPQ
         return max;
     }
 
+
+
     @Override
     public int size() {
         return n;
     }
+
+
 
     @Override
     public boolean isEmpty() {
