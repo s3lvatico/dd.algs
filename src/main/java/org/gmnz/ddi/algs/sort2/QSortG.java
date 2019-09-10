@@ -1,14 +1,20 @@
 package org.gmnz.ddi.algs.sort2;
 
 
-import java.util.Random;
+public class QSortG<K extends Comparable<K>> extends AbstractSortEngine<K> {
+
+	@SuppressWarnings("unchecked")
+	public QSortG(K[] arr) {
+		if (arr == null)
+			this.v = (K[]) new Comparable[0];
+		else
+			v = arr;
+	}
 
 
-public class QSortG {
 
-	int[] sort(int[] v) {
-		quicksort(v, 0, v.length - 1);
-		return v;
+	public void sort() {
+		quicksort(0, v.length - 1);
 	}
 
 	/*
@@ -18,23 +24,15 @@ public class QSortG {
 
 
 
-	private void quicksort(int[] v, int lo, int hi) {
+	private void quicksort(int lo, int hi) {
 		// se gli indici coincidono o sono incrociati sto cercando di ordinare un array
 		// degenere
 		if (lo >= hi) {
 			return;
 		}
-		int partIdx = partition(v, lo, hi);
-		quicksort(v, lo, partIdx - 1);
-		quicksort(v, partIdx, hi);
-	}
-
-
-
-	private void swap(int[] v, int x, int y) {
-		int tmp = v[x];
-		v[x] = v[y];
-		v[y] = tmp;
+		int partIdx = partition(lo, hi);
+		quicksort(lo, partIdx - 1);
+		quicksort(partIdx, hi);
 	}
 
 
@@ -49,12 +47,12 @@ public class QSortG {
 	 * @param  hi
 	 * @return
 	 */
-	int partition(int[] v, int lo, int hi) {
+	int partition(int lo, int hi) {
 		// determina l'indice dell'elemento rispetto al quale partizionare (lo si chiama
 		// pivot)
 		int pivotIndex = (lo + hi) / 2;
 		// seleziona (isola) il pivot
-		int pivot = v[pivotIndex];
+		K pivot = v[pivotIndex];
 		// In questo ciclo while gli indici lo e hi scorrono l'uno verso l'altro. ("lo"
 		// si incrementa e "hi" si decrementa).
 		// Il ciclo continua finché "lo" è non maggiore di "hi" (i due indici non si
@@ -69,15 +67,15 @@ public class QSortG {
 			// se gli elementi a sinistra [destra] del pivot sono strettamente minori
 			// [maggiori] del pivot allora sono già in posizione giusta, perciò si fa
 			// scorrere l'indice "lo" [ "hi" ]
-			while (v[lo] < pivot) {
+			while (less(lo, pivotIndex)) {
 				++lo;
 			}
-			while (pivot < v[hi]) {
+			while (less(pivotIndex, hi)) {
 				--hi;
 			}
 			// se i cursori non si sono incrociati si può fare lo scambio posizionale
 			if (lo <= hi) {
-				swap(v, lo, hi);
+				swap(lo, hi);
 				// i cursori vengono comunque fatti scorrere, poiché gli elementi che sono stati
 				// scambiati di posto ora occupano sicuramente la posizione corretta rispetto al
 				// pivot
@@ -88,43 +86,4 @@ public class QSortG {
 		return lo;
 	}
 
-
-
-	private static void print(int[] v) {
-		for (int x : v) {
-			System.out.print(x + " ");
-		}
-	}
-	/* 9 5 7 6 8 3 4 1 2 */
-
-
-
-	static boolean isSorted(int[] v) {
-		if (v == null || v.length <= 1)
-			return true;
-		for (int i = 1; i < v.length; i++) {
-			if (v[i - 1] > v[i])
-				return false;
-		}
-		return true;
-	}
-
-
-
-	public static void main(String[] args) {
-		int[] v = new int[] { 9, 5, 7, 6, 8, 3, 4, 1, 2 };
-		QSortG qs = new QSortG();
-		qs.sort(v);
-		print(v);
-		System.out.format("sorted? %s%n", isSorted(v));
-		System.out.println();
-		Random rnd = new Random();
-		v = new int[100];
-		for (int i = 0; i < 100; i++) {
-			v[i] = rnd.nextInt(500);
-		}
-		qs.sort(v);
-		print(v);
-		System.out.format("sorted? %s%n", isSorted(v));
-	}
 }
