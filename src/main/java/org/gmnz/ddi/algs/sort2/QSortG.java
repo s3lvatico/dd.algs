@@ -67,10 +67,10 @@ public class QSortG<K extends Comparable<K>> extends AbstractSortEngine<K> {
 			// se gli elementi a sinistra [destra] del pivot sono strettamente minori
 			// [maggiori] del pivot allora sono già in posizione giusta, perciò si fa
 			// scorrere l'indice "lo" [ "hi" ]
-			while (less(lo, pivotIndex)) {
+			while (less(v[lo], pivot)) {
 				++lo;
 			}
-			while (less(pivotIndex, hi)) {
+			while (less(pivot, v[hi])) {
 				--hi;
 			}
 			// se i cursori non si sono incrociati si può fare lo scambio posizionale

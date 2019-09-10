@@ -11,6 +11,9 @@ abstract class AbstractSortEngine<K extends Comparable<K>> {
         return v[i].compareTo(v[j]) < 0;
     }
 
+    protected boolean less(K x, K y) {
+        return x.compareTo(y) < 0;
+    }
 
 
     protected void swap(int i, int j) {
