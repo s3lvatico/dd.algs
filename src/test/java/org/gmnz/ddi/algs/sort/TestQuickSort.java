@@ -9,7 +9,7 @@ public class TestQuickSort {
 
 	@Test
 	public void testWithNullArray() {
-		AbstractSortEngine<String> sort = new QuickSort(null);
+		AbstractSortEngine<String> sort = new QuickSort<>(null);
 		Assert.assertTrue(sort.isSorted());
 	}
 
