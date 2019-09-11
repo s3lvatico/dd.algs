@@ -24,14 +24,26 @@ public class HeapSort<K extends Comparable<K>> {
 
     public void sort() {
         heapify();
+        heapsort();
     }
 
 
 
     void heapify() {
-        int heapSize = v.length;
+        int heapSize = v.length - 1;
         for (int i = v.length / 2; i >= 1; i--) {
             hu.sink(v, i, heapSize);
+        }
+    }
+
+
+
+    void heapsort() {
+        int heapSize = v.length - 1;
+        while (heapSize > 1) {
+            hu.swap(v, 1, heapSize);
+            hu.swim(v, heapSize);
+            heapSize--;
         }
     }
 

@@ -2,6 +2,13 @@
    "configurations": [
       {
          "type": "java",
+         "name": "CodeLens (Launch) - TestHeapSort",
+         "request": "launch",
+         "mainClass": "org.gmnz.ddi.algs.sort2.TestHeapSort",
+         "projectName": "dd-training"
+      },
+      {
+         "type": "java",
          "name": "CodeLens (Launch) - DummySortEngine",
          "request": "launch",
          "mainClass": "org.gmnz.ddi.algs.sort2.DummySortEngine",
