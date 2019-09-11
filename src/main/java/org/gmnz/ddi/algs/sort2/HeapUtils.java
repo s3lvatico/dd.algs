@@ -44,7 +44,7 @@ public class HeapUtils<K extends Comparable<K>> {
      * maxHeap
      */
     public void swim(K[] v, int i) {
-        while (i >= 1 && less(v, i / 2, i)) {
+        while (i > 1 && less(v, i / 2, i)) {
             swap(v, i / 2, i);
             i /= 2;
         }
@@ -73,4 +73,17 @@ public class HeapUtils<K extends Comparable<K>> {
                 break;
         }
     }
+
+
+
+    boolean isSorted(K[] v, int heapSize) {
+        int i = 2;
+        while (i <= heapSize) {
+            if (less(v, i, i-1))
+                return false;
+            i++;
+        }
+        return true;
+    }
+
 }

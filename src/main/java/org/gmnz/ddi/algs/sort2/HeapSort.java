@@ -42,8 +42,7 @@ public class HeapSort<K extends Comparable<K>> {
         int heapSize = v.length - 1;
         while (heapSize > 1) {
             hu.swap(v, 1, heapSize);
-            hu.swim(v, heapSize);
-            heapSize--;
+            hu.sink(v, 1, --heapSize);
         }
     }
 
@@ -53,6 +52,9 @@ public class HeapSort<K extends Comparable<K>> {
      * 2.3) restringi la dimensione dell'heap 2.4) ripeti finché la dimensione
      * dell'heap è >= 2
      */
+    boolean isSorted() {
+        return hu.isSorted(v, v.length-1);
+    }
 
 }
 
