@@ -4,13 +4,13 @@ package org.gmnz.ddi.algs.pq2;
 /**
  * UnorderedArrayMaxPQimpl
  */
-public class UnorderedArrayMaxPQimpl<K extends Comparable<K>> extends AbstractPQ<K> implements PriorityQueue<K> {
+public class UnorderedArrayMaxPQimpl<K extends Comparable<K>> extends ComparablesArrayManager<K> implements PriorityQueue<K> {
 
     private int n;
 
     @SuppressWarnings("unchecked")
     public UnorderedArrayMaxPQimpl(int size) {
-        pq = (K[]) new Comparable[size];
+        v = (K[]) new Comparable[size];
         n = 0;
     }
 
@@ -18,9 +18,9 @@ public class UnorderedArrayMaxPQimpl<K extends Comparable<K>> extends AbstractPQ
 
     @Override
     public void insert(K key) {
-        if (n == pq.length)
+        if (n == v.length)
             throw new UnsupportedOperationException("queue full");
-        pq[n++] = key;
+        v[n++] = key;
     }
 
 
@@ -30,7 +30,7 @@ public class UnorderedArrayMaxPQimpl<K extends Comparable<K>> extends AbstractPQ
         if (isEmpty())
             return null;
         int max = getMaxIndex();
-        return pq[max];
+        return v[max];
     }
 
 
@@ -40,8 +40,8 @@ public class UnorderedArrayMaxPQimpl<K extends Comparable<K>> extends AbstractPQ
         if (isEmpty())
             return null;
         int max = getMaxIndex();
-        K maxKey = pq[max];
-        pq[max] = pq[--n];
+        K maxKey = v[max];
+        v[max] = v[--n];
         return maxKey;
     }
 

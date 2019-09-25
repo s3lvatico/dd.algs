@@ -4,13 +4,13 @@ package org.gmnz.ddi.algs.pq2;
 /**
  * UnorderedArrayMaxPQimpl
  */
-public class OrderedArrayMaxPQimpl<K extends Comparable<K>> extends AbstractPQ<K> implements PriorityQueue<K> {
+public class OrderedArrayMaxPQimpl<K extends Comparable<K>> extends ComparablesArrayManager<K> implements PriorityQueue<K> {
 
     private int n;
 
     @SuppressWarnings("unchecked")
     public OrderedArrayMaxPQimpl(int size) {
-        pq = (K[]) new Comparable[size];
+        v = (K[]) new Comparable[size];
         n = 0;
     }
 
@@ -25,14 +25,14 @@ public class OrderedArrayMaxPQimpl<K extends Comparable<K>> extends AbstractPQ<K
     @Override
     public void insert(K key) {
 
-        if (n == pq.length)
+        if (n == v.length)
             throw new UnsupportedOperationException("queue full");
         int i = n - 1;
-        while (i >= 0 && less(key, pq[i])) {
-            pq[i + 1] = pq[i];
+        while (i >= 0 && less(key, v[i])) {
+            v[i + 1] = v[i];
             i--;
         }
-        pq[i + 1] = key;
+        v[i + 1] = key;
         n++;
     }
 
@@ -42,7 +42,7 @@ public class OrderedArrayMaxPQimpl<K extends Comparable<K>> extends AbstractPQ<K
     public K max() {
         if (isEmpty())
             return null;
-        return pq[n - 1];
+        return v[n - 1];
     }
 
 
@@ -51,7 +51,7 @@ public class OrderedArrayMaxPQimpl<K extends Comparable<K>> extends AbstractPQ<K
     public K delMax() {
         if (isEmpty())
             return null;
-        K maxKey = pq[n - 1];
+        K maxKey = v[n - 1];
         n--;
         return maxKey;
     }
