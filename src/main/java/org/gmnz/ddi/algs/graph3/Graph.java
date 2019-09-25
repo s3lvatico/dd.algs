@@ -34,5 +34,17 @@ public interface Graph {
      */
     Iterable<Integer> adj(int v);
 
-    // TODO eventualmente aggiungi toString()
+
+
+    /**
+     * grado di un vertice (il numero di archi ivi incidenti)
+     */
+    int degree(int v);
+
+
+
+    /**
+     * rappresentazione come stringa
+     */
+    String toString();
 }

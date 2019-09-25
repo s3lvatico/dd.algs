@@ -69,6 +69,13 @@ public class BasicGraph extends AbstractGraph {
 
 
     @Override
+    public int degree(int v) {
+        return adjacencies.get(v).size();
+    }
+
+
+
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
