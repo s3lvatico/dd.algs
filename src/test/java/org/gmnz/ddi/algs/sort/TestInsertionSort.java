@@ -1,5 +1,6 @@
 package org.gmnz.ddi.algs.sort;
 
+
 import org.gmnz.ddi.algs.sort.AbstractSortEngine;
 import org.gmnz.ddi.algs.sort.InsertionSort;
 import org.gmnz.ddi.algs.sort.SelectionSort;
@@ -8,6 +9,7 @@ import org.junit.Test;
 
 import edu.princeton.cs.algs4.In;
 
+
 public class TestInsertionSort {
 
 	@Test
@@ -15,6 +17,8 @@ public class TestInsertionSort {
 		AbstractSortEngine<String> sort = new SelectionSort<String>(null);
 		Assert.assertTrue(sort.isSorted());
 	}
+
+
 
 	@Test
 	public void testWithTinyFile() {

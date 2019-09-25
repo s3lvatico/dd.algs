@@ -1,7 +1,9 @@
 package org.gmnz.ddi.algs.pq2;
 
+
 import org.junit.Assert;
 import org.junit.Test;
+
 
 public class TestUnorderedArrayMaxPQ {
 
@@ -12,11 +14,15 @@ public class TestUnorderedArrayMaxPQ {
         Assert.assertEquals(0, pq.size());
     }
 
+
+
     @Test(expected = UnsupportedOperationException.class)
     public void testFailingInsert() {
         PriorityQueue<Integer> pq = PqFactory.newUnorderedArrayIntegerMaxPQ(0);
         pq.insert(42);
     }
+
+
 
     @Test
     public void testMaxWithEmptyQ() {
@@ -24,6 +30,8 @@ public class TestUnorderedArrayMaxPQ {
         Assert.assertNull(pq.delMax());
         Assert.assertNull(pq.max());
     }
+
+
 
     @Test
     public void testNotEmptyQ() {
@@ -39,6 +47,8 @@ public class TestUnorderedArrayMaxPQ {
         Assert.assertEquals("c", pq.delMax());
         Assert.assertEquals(2, pq.size());
     }
+
+
 
     @Test(expected = UnsupportedOperationException.class)
     public void testOverflow() {

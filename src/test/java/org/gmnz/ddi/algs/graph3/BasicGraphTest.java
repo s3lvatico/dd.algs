@@ -39,7 +39,10 @@ public class BasicGraphTest {
         }
     }
 
-    @Test public void graphCreation() {
+
+
+    @Test
+    public void graphCreation() {
         Graph g;
         try (Scanner s = new Scanner(BasicGraphTest.class.getResourceAsStream("/tinyGraph.txt"))) {
             g = new BasicGraph(s);

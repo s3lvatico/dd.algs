@@ -1,9 +1,11 @@
 package org.gmnz.ddi.algs.sort;
 
+
 import org.junit.Assert;
 import org.junit.Test;
 
 import edu.princeton.cs.algs4.In;
+
 
 public class TestMergeSort {
 
@@ -12,6 +14,8 @@ public class TestMergeSort {
 		AbstractSortEngine<String> sort = new MergeSortTopDown<>(null);
 		Assert.assertTrue(sort.isSorted());
 	}
+
+
 
 	@Test
 	public void testWithTinyFile() {

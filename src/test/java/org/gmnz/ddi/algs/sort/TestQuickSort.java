@@ -1,9 +1,11 @@
 package org.gmnz.ddi.algs.sort;
 
+
 import org.junit.Assert;
 import org.junit.Test;
 
 import edu.princeton.cs.algs4.In;
+
 
 public class TestQuickSort {
 
@@ -12,6 +14,8 @@ public class TestQuickSort {
 		AbstractSortEngine<String> sort = new QuickSort<>(null);
 		Assert.assertTrue(sort.isSorted());
 	}
+
+
 
 	@Test
 	public void testWithTinyFile() {
@@ -23,6 +27,8 @@ public class TestQuickSort {
 		Assert.assertTrue(sort.isSorted());
 	}
 
+
+
 	@Test
 	public void testGeneric() {
 		AbstractSortEngine<String> qSort = new QuickSort<String>(new String[] { "F", "A", "C", "D", "K", "R" });
@@ -30,6 +36,8 @@ public class TestQuickSort {
 		qSort.sort();
 		Assert.assertTrue(qSort.isSorted());
 	}
+
+
 
 	@Test
 	public void testOneElement() {

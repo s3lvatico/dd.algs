@@ -1,9 +1,11 @@
 package org.gmnz.ddi.algs.sort;
 
+
 import org.junit.Assert;
 import org.junit.Test;
 
 import edu.princeton.cs.algs4.In;
+
 
 public class TestSelectionSort {
 
@@ -12,6 +14,8 @@ public class TestSelectionSort {
 		AbstractSortEngine<String> sort = new SelectionSort<>(null);
 		Assert.assertTrue(sort.isSorted());
 	}
+
+
 
 	@Test
 	public void testWithTinyFile() {

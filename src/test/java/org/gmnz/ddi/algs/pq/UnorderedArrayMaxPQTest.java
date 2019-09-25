@@ -1,8 +1,10 @@
 package org.gmnz.ddi.algs.pq;
 
+
 import org.gmnz.ddi.algs.pq.UnorderedArrayMaxPQ;
 import org.junit.Assert;
 import org.junit.Test;
+
 
 /**
  * UnorderedArrayMaxPQTest
@@ -13,6 +15,8 @@ public class UnorderedArrayMaxPQTest {
     public void dummy() {
         Assert.assertTrue(true);
     }
+
+
 
     @Test
     public void testInsert() {
