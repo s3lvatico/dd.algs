@@ -40,8 +40,21 @@ public class MaxHeapPQ<K extends Comparable<K>> {
 
 
 
+    /**
+     * fa "emergere" se necessario l'elemento di posto <code>k</code>
+     * 
+     * @param k
+     */
     private void swim(int k) {
         int i = k;
+        /*
+         * a partire dall'indice indicato si scansiona l'heap verso la cima,
+         * controllando l'elemento (unico) di livello superiore. Trovandoci in un
+         * maxheap, salendo di livello devo trovare elementi più grandi di quello
+         * corrente. Se così non è eseguo uno scambio, mi sposto al livello superiore e
+         * ri-eseguo lo stesso controllo, finché eventualmente non si arriva in cima
+         * all'heap.
+         */
         while (i > 0 && less(i / 2, i)) {
             swap(i, i / 2);
             i /= 2;
@@ -50,26 +63,32 @@ public class MaxHeapPQ<K extends Comparable<K>> {
 
 
 
+    /**
+     * fa "sprofondare" se necessario l'elemento di posto <code>k</code>
+     * 
+     * @param k
+     */
     private void sink(int k) {
-        while (2 * k <= heapSize // posso scendere di un livello?
+        // scorro l'heap dal posto k verso il basso
+        while (2 * k <= heapSize // finché esiste il livello successivo dell'heap
         ) {
-            int j = 2 * k;
-            if (j < heapSize // j deve essere strettamente minore di heapSize, altrimenti
-                    // significa che j indica l'ultimissima foglia dell'albero
-                    // -- se così non è, devo controllare comunque l'elemento successivo
-                    // (che a questo punto di certo rappresenta l'ultima foglia dell'albero)
-                    // sia eventualmente maggiore di quello che sto considerando.
-                    // Così facendo, se devo eseguire uno scambio, ho la certezza che
-                    // nella posizione di arrivo ci sarà sempre l'elemento maggiore della terna
-                    // mantenendo così l'invariante dell'"heap"
-                    && less(j, j + 1))
-                j++;
+            int j = 2 * k; // vado al livello successivo
+            if (j < heapSize // essendo un maxheap binario ( == albero binario completo) ora mi trovo in uno
+                             // dei due discendenti del nodo in cui mi trovavo prima. Devo determinare se
+                             // scambiare o meno il nodo corrente con uno dei suoi discendenti. Ma i
+                             // discendenti sono due. E' quindi necessario individuare il massimo tra i
+                             // discendenti. Per far questo si controlla che la posizione corrente sia
+                             // strettamente minore dell'indice massimo dell'heap (altrimenti sarei alla fine
+                             // dell'heap e non ci sarebbero altri elementi da controllare)....
+
+                    && less(j, j + 1)) // ...e che, in caso di esistenza di un secondo elemento, questo sia maggiore
+                                       // del primo discendente. Se così è...
+                j++; // ... si aggiorna l'indice del massimo tra i discendenti
 
             if (!less(k, j))
                 // se la chiave da verificare è già maggiore o uguale del massimo tra i due
-                // discendenti
-                // del nodo corrente, vuol dire che la chiave è già in posizione corretta,
-                // quindi ci si ferma
+                // discendenti del nodo corrente, vuol dire che la chiave è già in posizione
+                // corretta, quindi ci si ferma
                 break;
             // altrimenti si scambia di posto
             swap(k, j);
@@ -93,31 +112,43 @@ public class MaxHeapPQ<K extends Comparable<K>> {
 
 
     public void insert(K key) {
-        // l'inserimento avviene inserendo il nuovo elemento in coda all'heap
-        // e poi facendolo "emergere" fino alla sua posizione ordinata
         if (heapSize == pq.length)
             throw new UnsupportedOperationException("heap is full");
+        // l'inserimento avviene inserendo il nuovo elemento in coda all'heap
+        // e poi facendolo "emergere" per mantenere verificato l'invariante dell'heap
         pq[++heapSize] = key;
         swim(heapSize);
     }
 
 
 
+    /**
+     * ottiene l'elemento massimo di questo heap
+     * 
+     * @return
+     */
     public K max() {
-        // in un heap così formato, l'elemento massimo si trova sempre in
-        // cima all'heap
         if (isEmpty())
             throw new NoSuchElementException("heap is empty");
+        // nel maxheap, il massimo sta sempre in cima al mucchio
         return pq[1];
     }
 
 
 
+    /**
+     * ottiene l'elemento massimo di questo heap e lo rimuove dall'heap stesso
+     * 
+     * @return
+     */
     public K delMax() {
-        // rimuover il massimo significa portarlo in fondo all'heap,
-        // aggiornare la dimensione, decrementandola, e poi facendo
-        // "sprofondare" la cima dell'heap fino al ripristino dell'
-        // invariante
+        /*
+         * questa implementazione è pigra, nel senso che non pulisce il riferimento
+         * all'elemento massimo dell'heap. Il massimo (i.e. la cima dell'heap) viene
+         * scambiato di posto con l'elemento in fondo all'heap, poi la dimensione
+         * dell'heap viene decrementata e poi si esegue un sink sulla cima dell'heap per
+         * mantenere verificato l'invariante dell'heap.
+         */
         K max = max();
         swap(1, heapSize);
         heapSize--;
