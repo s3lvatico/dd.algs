@@ -72,9 +72,9 @@ public class BasicGraph extends AbstractGraph {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        sb.append(String.format("V: %d | E: %d%n", V, nEdges));
+        sb.append(String.format("V: %d   |   E: %d%n", V, nEdges));
         for (Map.Entry<Integer, List<Integer>> entry : adjacencies.entrySet()) {
-            sb.append(String.format("%d : ", entry.getKey()));
+            sb.append(String.format("%4d : ", entry.getKey()));
             for (int x : entry.getValue()) {
                 sb.append(String.format("%4d", x));
             }
