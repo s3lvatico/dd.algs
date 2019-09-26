@@ -1,6 +1,11 @@
 @startuml package_class_diagram
 interface Graph
 interface Search
+interface Queue<K>  {
+    + insert(K)
+    + peek() : K
+    + poll() : K
+}
 abstract class AbstractGraph
 abstract class AbstractSearch
 class BasicGraph
