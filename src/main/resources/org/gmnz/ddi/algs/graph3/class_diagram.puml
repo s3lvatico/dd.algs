@@ -1,0 +1,14 @@
+@startuml package_class_diagram
+interface Graph
+interface Search
+abstract class AbstractGraph
+abstract class AbstractSearch
+class BasicGraph
+class Dfs
+
+Graph  <|.. AbstractGraph
+AbstractGraph <|-- BasicGraph
+Search <|.. AbstractSearch
+AbstractSearch  <|-- Dfs
+
+@enduml

@@ -1,4 +1,4 @@
-@startuml Sample graph
+@startuml sample_graph
     (0) -left- (1)
     (0) -- (2)
     (0) -- (5)
