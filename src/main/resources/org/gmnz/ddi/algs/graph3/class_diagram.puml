@@ -2,18 +2,24 @@
 interface Graph
 interface Search
 interface Queue<K>  {
-    + insert(K)
-    + peek() : K
-    + poll() : K
+    ~ insert(K)
+    ~ peek() : K
+    ~ poll() : K
 }
 abstract class AbstractGraph
 abstract class AbstractSearch
 class BasicGraph
 class Dfs
+class BasicQueue
+class Node <<nested>> { 
+    - key : K 
+}
 
 Graph  <|.. AbstractGraph
 AbstractGraph <|-- BasicGraph
 Search <|.. AbstractSearch
 AbstractSearch  <|-- Dfs
-
+Queue <|.. BasicQueue
+BasicQueue *--> Node
+Node --> Node : next
 @enduml
