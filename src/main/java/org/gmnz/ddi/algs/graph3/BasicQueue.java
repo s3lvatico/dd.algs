@@ -15,6 +15,8 @@ class BasicQueue<K> implements Queue<K> {
     private Node head;
     private Node tail;
 
+    private int size;
+
     @Override
     public void insert(K k) {
         if (head == null) {
@@ -29,6 +31,7 @@ class BasicQueue<K> implements Queue<K> {
             tail.next = n;
             tail = n;
         }
+        size++;
     }
 
 
@@ -51,7 +54,26 @@ class BasicQueue<K> implements Queue<K> {
         head = head.next;
         K key = n.key;
         n = null;
+        size--;
         return key;
     }
 
+
+
+    public int size() {
+        return size;
+    }
+
+
+
+    public String toString() {
+        StringBuilder sb = new StringBuilder("[  ");
+        Node n = head;
+        while (n != null) {
+            sb.append(n.key).append("  ");
+            n = n.next;
+        }
+        sb.append("]");
+        return sb.toString();
+    }
 }

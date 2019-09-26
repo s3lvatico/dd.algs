@@ -7,4 +7,6 @@ interface Queue<K> {
     K peek();
     K poll();
 
+    int size();
+
 }
