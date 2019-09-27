@@ -6,8 +6,6 @@ public class WeightedUF extends QuickUnionUF {
 	private int[] weight;
 
 
-
-
 	public WeightedUF(int n) {
 		super(n);
 		weight = new int[n];
@@ -15,7 +13,6 @@ public class WeightedUF extends QuickUnionUF {
 			weight[i] = 1;
 		}
 	}
-
 
 
 
@@ -36,7 +33,6 @@ public class WeightedUF extends QuickUnionUF {
 		}
 		nComponents--;
 	}
-
 
 
 }

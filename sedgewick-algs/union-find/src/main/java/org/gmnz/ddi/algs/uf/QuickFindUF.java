@@ -9,7 +9,6 @@ public class QuickFindUF extends UnionFind {
 
 
 
-
 	@Override
 	public void union(int p, int q) {
 		if (connected(p, q)) {
@@ -25,12 +24,10 @@ public class QuickFindUF extends UnionFind {
 
 
 
-
 	@Override
 	public int find(int p) {
 		return id[p];
 	}
-
 
 
 

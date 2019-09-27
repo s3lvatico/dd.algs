@@ -7,10 +7,7 @@ abstract class UnionFind {
 	protected int nComponents;
 
 
-
-
 	public abstract void union(int p, int q);
-
 
 
 
@@ -18,15 +15,13 @@ abstract class UnionFind {
 
 
 
-
 	/**
-	 * @param p
-	 * @param q
-	 * @return <code>true</code> se gli elementi p e q appartengono allo stesso
-	 *         componente
+	 * @param  p
+	 * @param  q
+	 * @return   <code>true</code> se gli elementi p e q appartengono allo stesso
+	 *           componente
 	 */
 	public abstract boolean connected(int p, int q);
-
 
 
 

@@ -10,13 +10,11 @@ public class QuickUnionUF extends UnionFind {
 
 
 
-
 	@Override
 	public void union(int p, int q) {
 		id[p] = q;
 		nComponents--;
 	}
-
 
 
 
@@ -31,12 +29,10 @@ public class QuickUnionUF extends UnionFind {
 
 
 
-
 	@Override
 	public boolean connected(int p, int q) {
 		return find(p) == find(q);
 	}
-
 
 
 
