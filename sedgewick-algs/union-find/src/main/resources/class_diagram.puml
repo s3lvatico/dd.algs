@@ -1,0 +1,15 @@
+@startuml class_diagram
+abstract class UnionFind {
+    ~ id : int[]
+    ~ nComponents : int
+    + union(p : int, q : int) : void
+    + find(p : int) : int
+    + connected(p: int, q : int) : boolean
+}
+class QuickFindUF
+class QuickUnionUF
+class WeightedUF
+UnionFind <|-- QuickFindUF
+UnionFind <|-- QuickUnionUF
+UnionFind <|-- WeightedUF
+@enduml
