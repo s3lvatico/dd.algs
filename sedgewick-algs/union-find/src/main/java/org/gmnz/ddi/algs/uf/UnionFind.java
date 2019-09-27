@@ -1,6 +1,15 @@
 package org.gmnz.ddi.algs.uf;
 
 
+/**
+ * Insieme di elementi che appartengono inizialmente a insiemi tutti distinti.
+ * <p>
+ * Due elementi che non appartengono allo stesso insieme possono essere resi
+ * appartenenti allo stesso insieme con l'operazione {@code union}
+ * <p>
+ * Si può determinare a quale insieme appartiene un componente con l'operazione
+ * {@code find}
+ */
 abstract class UnionFind {
 
 	protected int[] id;
