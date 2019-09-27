@@ -2,46 +2,10 @@
    "configurations": [
       {
          "type": "java",
-         "name": "CodeLens (Launch) - TestHeapSort",
-         "request": "launch",
-         "mainClass": "org.gmnz.ddi.algs.sort2.TestHeapSort",
-         "projectName": "dd-training"
-      },
-      {
-         "type": "java",
-         "name": "CodeLens (Launch) - DummySortEngine",
-         "request": "launch",
-         "mainClass": "org.gmnz.ddi.algs.sort2.DummySortEngine",
-         "projectName": "dd-training"
-      },
-      {
-         "type": "java",
-         "name": "CodeLens (Launch) - QSortG",
-         "request": "launch",
-         "mainClass": "org.gmnz.ddi.algs.sort2.QSortG",
-         "projectName": "dd-training"
-      },
-      {
-         "type": "java",
-         "name": "CodeLens (Launch) - TestGraph",
-         "request": "launch",
-         "mainClass": "org.gmnz.ddi.ctci.ch4.TestGraph",
-         "projectName": "dd-training"
-      },
-      {
-         "type": "java",
          "name": "CodeLens (Launch) - WhatIsXor",
          "request": "launch",
          "mainClass": "org.gmnz.hr.WhatIsXor",
          "projectName": "dd-training"
-      },
-      {
-         "type": "java",
-         "name": "CodeLens (Launch) - QSort2",
-         "request": "launch",
-         "mainClass": "org.gmnz.ddalg.sort.QSort2",
-         "projectName": "dd.algs",
-         "args": "qsortexample.txt"
       }
    ]
 }
