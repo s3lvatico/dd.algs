@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - QuickUnionUF",
+            "request": "launch",
+            "mainClass": "org.gmnz.ddi.algs.uf.QuickUnionUF",
+            "projectName": "union-find"
+        }
+    ]
+}
