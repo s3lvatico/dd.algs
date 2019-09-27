@@ -32,11 +32,15 @@ La `union` prevede la scrittura esplicita dell'id del componente al quale l'elem
 Più raffinata: invece di scrivere nell'array l'id del componente, si scrive l'indice dell'elemento collegato all'elemento specificato.
 
 Per fissare meglio le idee
+
 |  1 | 2  | 3  |  4 |  5 |  6 |   7|  8 |
 |---|---|---|---|---|---|---|---|
 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
+
 In questa condizione ogni elemento fa riferimento a sé stesso. Se ora si uniscono, ad esempio, 5 e 8, basterà dire che l'elemento 5 fa riferimento all'elemento 8, mentre l'elemento 8 continuerà a far riferimento a sé stesso. (vale anche il viceversa, SRdG)
+
 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
 |---|---|---|---|---|---|---|---|
 | 1 | 2 | 3 | 4 | 8 | 6 | 7 | 8 |
+
 
