@@ -41,6 +41,16 @@ In questa condizione ogni elemento fa riferimento a sé stesso. Se ora si unisco
 
 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 |
 |---|---|---|---|---|---|---|---|
-| 1 | 2 | 3 | 4 | 8 | 6 | 7 | 8 |
+| 1 | 2 | 3 | 4 | **8** | 6 | 7 | 8 |
 
+Che è come dire _l'elemento 5 è nello stesso componente dell'elemento 8_. L'elemento 8, poiché ha un riferimento su sé stesso, viene interpretato come capostipite di un componente.
 
+Questo complica leggermente l'operazione `find`, che ora consiste nel risalire la struttura (sembrerà un albero) fino ad incontrare un elemento che ha come riferimento sé stesso.
+
+Discorso analogo per l'operazione `connected`, che si risolve nel controllo `connected(x, y) <==> find(x) == find(y)`, ossia se x e y hanno lo stesso capostipite.
+
+### Classe `WeightedUF`
+
+Raffina il QuickUnion tenendo traccia del "peso" di ogni nodo. Il peso di un nodo è il numero di nodi che hanno quel nodo come cpaostipite. All'inizio tutti i nodi hanno peso 1. Nel momento in cui un nodo diventa capostipite di un altro nodo, questi aggiunge al proprio peso il peso dell'altro nodo. In questo modo si cerca di bilanciare il più possibile la struttura ad albero che si crea, in modo da ottimizzare l'operazione `find`.
+
+Si ottimizza l'operazione `union` agganciando sempre il nodo più "leggero" al nodo più "pesante".

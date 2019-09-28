@@ -11,5 +11,5 @@ class QuickUnionUF
 class WeightedUF
 UnionFind <|-- QuickFindUF
 UnionFind <|-- QuickUnionUF
-UnionFind <|-- WeightedUF
+QuickUnionUF <|-- WeightedUF
 @enduml
