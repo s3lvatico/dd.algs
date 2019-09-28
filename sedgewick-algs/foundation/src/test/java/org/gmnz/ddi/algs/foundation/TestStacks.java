@@ -1,6 +1,7 @@
 package org.gmnz.ddi.algs.foundation;
 
 
+import org.gmnz.ddi.algs.util.Point2d;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -27,6 +28,21 @@ public class TestStacks {
 
       Assert.assertNull(si.pop());
 
+   }
+
+
+
+   @Test
+   public void complexStack() {
+      Point2d p = new Point2d();
+      p.setA(2);
+      p.setB(-1);
+
+      Stack<Point2d> pointStack = Stacks.createComparableStack();
+      pointStack.push(p);
+      // Point2d [a=2.0, b=-1.0]
+      Assert.assertEquals("Point2d [a=2.0, b=-1.0]", p.toString());
+      Assert.assertEquals(1, pointStack.size());
    }
 
 }
