@@ -8,4 +8,11 @@ class Node<K> {
     K value;
     Node<K> next;
 
+    Node(K k) {
+        this.value = k;
+    }
+
+
+
+    Node() {}
 }
