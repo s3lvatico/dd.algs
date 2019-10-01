@@ -5,8 +5,10 @@ package org.gmnz.ddi.algs.foundation;
  */
 public class Stacks {
 
+   private Stacks() {}
+
    public static Stack<Integer> createIntegerStack() {
-      return new StackImpl<Integer>();
+      return new StackImpl<>();
    }
 
    public static <K extends Comparable<K>> Stack<K> createComparableStack() {

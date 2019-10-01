@@ -1,12 +1,18 @@
 package org.gmnz.ddi.algs.foundation;
 
+
 /**
  * Queues
  */
 public class Queues {
 
+    private Queues() {
+    }
+
+
+
     public static Queue<Integer> createIntegerQueue() {
-        return new QueueImpl<Integer>();
+        return new QueueImpl<>();
     }
 
 
