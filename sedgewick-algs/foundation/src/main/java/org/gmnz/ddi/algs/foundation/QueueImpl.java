@@ -42,7 +42,6 @@ class QueueImpl<K> implements Queue<K> {
         Node<K> n = head;
         head = head.next;
         K key = n.value;
-        // n = null;
         size--;
         return key;
     }
