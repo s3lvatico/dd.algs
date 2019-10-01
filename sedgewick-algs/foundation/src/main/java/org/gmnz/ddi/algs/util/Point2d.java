@@ -8,6 +8,29 @@ public class Point2d implements Comparable<Point2d> {
    private double a;
    private double b;
 
+   /**
+    * crea un nuovo punto nell'origine
+    */
+   public Point2d() {
+      a = 0;
+      b = 0;
+   }
+
+
+
+   /**
+    * crea un nuovo punto alle coordinate specificate
+    * 
+    * @param a 1st coord
+    * @param b 2nd coord
+    */
+   public Point2d(double a, double b) {
+      this.a = a;
+      this.b = b;
+   }
+
+
+
    public double getA() {
       return a;
    }
