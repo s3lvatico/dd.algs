@@ -1,4 +1,4 @@
-package org.gmnz.ddi.algs.util;
+package org.gmnz.ddi.algs.foundation;
 
 
 import org.gmnz.ddi.algs.foundation.Queue;
