@@ -40,15 +40,14 @@ public class Point2d implements Comparable<Point2d> {
 
    @Override
    public int compareTo(Point2d o) {
+      if (this.equals(o)) {
+         return 0;
+      }
       double delta = this.modulus() - o.modulus();
       if (delta < 0) {
          return -1;
       } else {
-         if (delta > 0) {
-            return 1;
-         } else {
-            return 0;
-         }
+         return 1;
       }
    }
 
