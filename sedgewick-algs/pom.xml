@@ -15,6 +15,7 @@
 	<modules>
 		<module>union-find</module>
 		<module>foundation</module>
+		<module>sorting</module>
 	</modules>
 
 </project>
