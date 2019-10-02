@@ -4,8 +4,6 @@
 	<artifactId>hackerrank</artifactId>
 	<version>0.1.0-SNAPSHOT</version>
 
-	<packaging>pom</packaging>
-
 	<parent>
 		<groupId>org.gmnz</groupId>
 		<artifactId>dd-training</artifactId>

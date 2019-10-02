@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - FraudulentActivityNotification",
+            "request": "launch",
+            "mainClass": "org.gmnz.hr.FraudulentActivityNotification",
+            "projectName": "hackerrank"
+        }
+    ]
+}
