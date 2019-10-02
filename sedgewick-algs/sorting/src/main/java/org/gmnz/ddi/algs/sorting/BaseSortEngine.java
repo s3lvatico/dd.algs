@@ -1,5 +1,6 @@
 package org.gmnz.ddi.algs.sorting;
 
+
 /**
  * BaseSortEngine
  */
@@ -11,7 +12,61 @@ class BaseSortEngine {
         arr[j] = temp;
     }
 
-    // TODO aggiungi overload di swap con almeno int e boolean
+
+
+    protected void swap(byte[] arr, int i, int j) {
+        byte temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+
+
+    protected void swap(short[] arr, int i, int j) {
+        short temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+
+
+    protected void swap(int[] arr, int i, int j) {
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+
+
+    protected void swap(long[] arr, int i, int j) {
+        long temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+
+
+    protected void swap(float[] arr, int i, int j) {
+        float temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+
+
+    protected void swap(double[] arr, int i, int j) {
+        double temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
+
+
+
+    protected void swap(boolean[] arr, int i, int j) {
+        boolean temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+    }
 
 
 
