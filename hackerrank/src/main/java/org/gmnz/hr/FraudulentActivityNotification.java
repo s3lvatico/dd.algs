@@ -54,13 +54,16 @@ public class FraudulentActivityNotification {
          * 
          * 
          */
+
+        int notifications = 0;
+
         final int L = expenditure.length;
 
         // array per il calcolo della mediana
         int[] window = new int[d];
 
         // mappa
-        int[] windowMap = new int[d];
+        int[] window2expenditures = new int[d];
 
         // inizializzato a -1
         Arrays.fill(window, -1);
@@ -74,16 +77,33 @@ public class FraudulentActivityNotification {
 
             // ciclo transitorio per l'array secondario
             if (k < d) {
-                insertAndSort(expenditure, k, window, windowMap);
+                insertAndSort(expenditure, k, window, window2expenditures);
             }
             else {
-                // TODO ramo else da aggiungere
+                // k >= d
 
+                // 1) controlla se va inviata una segnalazione
+                notifications += suspectFraud(expenditure[k], window) ? 1 : 0;
+
+                // 2) trova l'elemento più vecchio dalla finestra. Qual è l'elemento più
+                // vecchio della finestra? Quello che nell'array iniziale è in posizione k-d
+                int pos2remove = 0;
+                while (window2expenditures[pos2remove] != k - d) {
+                    pos2remove++;
+                }
+
+                // 3) sostituiscilo con il valore corrente
+                window[pos2remove] = expenditure[k];
+
+                // 4) va aggiornata anche la mappa
+                window2expenditures[pos2remove] = k;
+
+                // 5) riordinare l'array (e la mappa)
             }
             k++;
         }
 
-        return -1;
+        return notifications;
     }
 
     /*
@@ -100,11 +120,14 @@ public class FraudulentActivityNotification {
      * 
      * se esistono x, i_1 tali che expenditures[i_1] = x allora esistendo i_2 tale
      * che window[i_2] = x, risulta windowMap[i_2] = i_1
+     * 
+     * se i_1 e i_2 sono gli indici di x rispettivamente in expenditures e window,
+     * allora windowMap[i_2] = i_1
      */
 
 
 
-    private static void insertAndSort(int[] exp, int k, int[] w, int[] map) {
+    private static void insertAndSort(int[] exp, int k, int[] w, int[] windowMap) {
         // indice per la scansione
         int i = 0;
 
@@ -118,7 +141,7 @@ public class FraudulentActivityNotification {
         while (i < wlen && !inserted) {
             if (w[i] == -1) {
                 w[i] = x;
-                map[i] = k;
+                windowMap[i] = k;
                 inserted = true;
             }
             else {
@@ -131,9 +154,9 @@ public class FraudulentActivityNotification {
                     w[i] = x;
 
                     // salva il vecchio valore della mappa
-                    int mapIdx = map[i];
+                    int mapIdx = windowMap[i];
                     // aggiorna la mappa
-                    map[i] = k;
+                    windowMap[i] = k;
 
                     int j = i + 1;
                     while (j < wlen && y != -1) {
@@ -143,8 +166,8 @@ public class FraudulentActivityNotification {
                         y = z;
 
                         // aggiorna i successivi valori nella mappa
-                        int a = map[j];
-                        map[j] = mapIdx;
+                        int a = windowMap[j];
+                        windowMap[j] = mapIdx;
                         mapIdx = a;
 
                         // avanza
@@ -154,6 +177,26 @@ public class FraudulentActivityNotification {
                 }
             }
             i++;
+        }
+    }
+
+
+
+    private static boolean suspectFraud(int expense, int[] w) {
+        return expense >= findMedian(w) * 2;
+    }
+
+
+
+    private static double findMedian(int[] v) {
+        int l = v.length;
+        if (l % 2 == 1) {
+            // . . . . . . .
+            return (double) v[l / 2];
+        }
+        else {
+            // . . . . . . . .
+            return ((double) v[l / 2] + v[l / 2 + 1]) / 2;
         }
     }
 
