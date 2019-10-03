@@ -9,52 +9,6 @@ public class FraudulentActivityNotification {
 
     static int activityNotifications(int[] expenditure, int d) {
 
-        /*
-         * l'array expenditure è ENORME
-         * 
-         * l'intero d è un sottoinsieme dell'array
-         * 
-         * l'idea iniziale è:
-         * 
-         * prendi i primi d elementi di expenditure copiali in un array lungo d ordinare
-         * questo secondo array trova la mediana valuta la mediana
-         * 
-         * dalla posizione d+1 devi fare altro togliere l'elemento che in expenditure è
-         * più vecchio >> ogni elemento del mio array da ordinare porta con sé
-         * l'informazione sulla posizione che ha nell'array originale inserire
-         * l'elemento nuovo (magari già in ordine) trovare mediana valutare mediana
-         */
-
-        /*
-         * soluzione che spreca spazio [ q y x t l j k m ] v [ 0 1 2 3 4 5 6 7 ]
-         * 
-         * supponi d=3
-         * 
-         * scansione con "r". r comincia da d in 0..d-1 carico in un altro array, un
-         * array "di lavoro", diciamo w [ q y x ] w ... length(w) = 3 = d [ 0 1 2 ] la
-         * prima volta è sort dell'array [ q x y ] w [ 0 2 1 ] ==> trova mediana (che
-         * vale x) + verifica se "t" >= 2*x poi il nuovo elemento andrebbe inserito in
-         * w. qual è il nuovo elemento? è t, è quello in posizione r, lo so perché lo
-         * sto analizzando ora. quale elemento devo togliere da w? quello che nell'array
-         * originale è in posizione r-d PROBLEMA: come metto in relazione le posizioni
-         * dell'array originale e le posizioni dell'array ordinato? Trovare una
-         * struttura dati che mi dice
-         * "l'elemento in posizione j in v, sta in posizione k in w"
-         * 
-         * Basterebbe un array lungo quanto v? forse sì perché è biunivoco con v, e
-         * poiché length(w) <= length(v)
-         */
-
-        /*
-         * 
-         * altra via
-         * 
-         * supponiamo d = 5, length(v) >> 5
-         * 
-         * 
-         * 
-         */
-
         int notifications = 0;
 
         final int L = expenditure.length;
@@ -67,7 +21,6 @@ public class FraudulentActivityNotification {
 
         // inizializzato a -1
         Arrays.fill(window, -1);
-        print(window);
 
         // indice di scansione dell'array principale
         int k = 0;
@@ -87,43 +40,26 @@ public class FraudulentActivityNotification {
 
                 // 2) trova l'elemento più vecchio dalla finestra. Qual è l'elemento più
                 // vecchio della finestra? Quello che nell'array iniziale è in posizione k-d
-                int pos2remove = 0;
-                while (window2expenditures[pos2remove] != k - d) {
-                    pos2remove++;
+                int removalPosition = 0;
+                while (window2expenditures[removalPosition] != k - d) {
+                    removalPosition++;
                 }
 
                 // 3) sostituiscilo con il valore corrente
-                window[pos2remove] = expenditure[k];
+                window[removalPosition] = expenditure[k];
 
                 // 4) va aggiornata anche la mappa
-                window2expenditures[pos2remove] = k;
+                window2expenditures[removalPosition] = k;
 
                 // 5) riordinare l'array (e la mappa)
+                reorder(window, window2expenditures, removalPosition);
             }
+            print(window);
             k++;
         }
 
         return notifications;
     }
-
-    /*
-     * MOMENTO , altra idea
-     * 
-     * invece di usare un array parallelo lungo quanto quello iniziale, potrei
-     * usarne uno parallelo lungo quanto la finestra di osservazione. In questo
-     * array mantengo l'indice che l'elemento i-esimo della finestra ha sull'array
-     * iniziale.
-     * 
-     * Qualcosa del tipo:
-     * 
-     * int[] windowMap, windowMap.length = window.length
-     * 
-     * se esistono x, i_1 tali che expenditures[i_1] = x allora esistendo i_2 tale
-     * che window[i_2] = x, risulta windowMap[i_2] = i_1
-     * 
-     * se i_1 e i_2 sono gli indici di x rispettivamente in expenditures e window,
-     * allora windowMap[i_2] = i_1
-     */
 
 
 
@@ -178,6 +114,64 @@ public class FraudulentActivityNotification {
             }
             i++;
         }
+    }
+
+
+
+    private static void reorder(int[] w, int[] map, int p) {
+        final int l = w.length - 1;
+        if (p == 0) {
+            // estremo sx
+            shiftToRight(p, w, map, l);
+        }
+        else
+            if (p == l) {
+                // estremo dx
+                shiftToLeft(p, w, map);
+            }
+            else {
+                // da qualche parte in mezzo
+                if (w[p] > w[p + 1]) {
+                    shiftToRight(p, w, map, l);
+                }
+                else
+                    if (w[p] < w[p - 1]) {
+                        shiftToLeft(p, w, map);
+                    }
+            }
+    }
+
+
+
+    private static void shiftToRight(int i, int[] w, int[] map, int l) {
+        while (i < l && w[i] > w[i + 1]) {
+            int x = w[i];
+            w[i] = w[i + 1];
+            w[i + 1] = x;
+
+            x = map[i];
+            map[i] = map[i + 1];
+            map[i + 1] = x;
+
+            i++;
+        }
+    }
+
+
+
+    private static void shiftToLeft(int i, int[] w, int[] map) {
+        while (i > 0 && w[i] < w[i - 1]) {
+            int x = w[i];
+            w[i] = w[i - 1];
+            w[i - 1] = x;
+
+            x = map[i];
+            map[i] = map[i - 1];
+            map[i - 1] = x;
+
+            i--;
+        }
+
     }
 
 
