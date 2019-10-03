@@ -59,10 +59,8 @@ public class FraudulentActivityNotification {
         // array per il calcolo della mediana
         int[] window = new int[d];
 
-        // array di supporto
-        // l'elemento di expenditure all'indice i, si trova in window all'indice
-        // indexMap[i]
-        int[] indexMap = new int[L];
+        // mappa
+        int[] windowMap = new int[d];
 
         // inizializzato a -1
         Arrays.fill(window, -1);
@@ -76,46 +74,80 @@ public class FraudulentActivityNotification {
 
             // ciclo transitorio per l'array secondario
             if (k < d) {
-                insertAndSort(expenditure[k], window, indexMap);
+                insertAndSort(expenditure, k, window, windowMap);
             }
-            // TODO ramo else da aggiungere
+            else {
+                // TODO ramo else da aggiungere
+                
+            }
             k++;
         }
 
         return -1;
     }
 
-
-
-    /**
-     * inserisci l'elemento {@code x} nell'array {@code w} mantenendolo ordinato, e
-     * aggiorna {@code map}
+    /*
+     * MOMENTO , altra idea
      * 
-     * @param x
-     * @param w
-     * @param map
+     * invece di usare un array parallelo lungo quanto quello iniziale, potrei
+     * usarne uno parallelo lungo quanto la finestra di osservazione. In questo
+     * array mantengo l'indice che l'elemento i-esimo della finestra ha sull'array
+     * iniziale.
+     * 
+     * Qualcosa del tipo:
+     * 
+     * int[] windowMap, windowMap.length = window.length
+     * 
+     * se esistono x, i_1 tali che expenditures[i_1] = x allora esistendo i_2 tale
+     * che window[i_2] = x, risulta windowMap[i_2] = i_1
      */
-    private static void insertAndSort(int x, int[] w, int[] map) {
+
+
+
+    private static void insertAndSort(int[] exp, int k, int[] w, int[] map) {
+        // indice per la scansione
         int i = 0;
+
         int wlen = w.length;
+
+        int x = exp[k];
+
+        // ci si ferma quando questo è true
         boolean inserted = false;
+
         while (i < wlen && !inserted) {
             if (w[i] == -1) {
                 w[i] = x;
-                map[i] = i;
+                map[i] = k;
                 inserted = true;
             }
             else {
                 if (x < w[i]) {
                     // x deve stare in posizione i
+
+                    // salva il vecchio contenuto di w in i
                     int y = w[i];
+                    // aggiorna w[i]
                     w[i] = x;
+
+                    // salva il vecchio valore della mappa
+                    int mapIdx = map[i];
+                    // aggiorna la mappa
                     map[i] = i;
+
                     int j = i + 1;
                     while (j < wlen) {
+                        // aggiorna i successivi valori nella finestra
                         int z = w[j];
                         w[j] = y;
                         y = z;
+
+                        // aggiorna i successivi valori nella mappa
+                        int a = map[j];
+                        map[j] = mapIdx;
+                        mapIdx = a;
+
+                        // avanza
                         j++;
                     }
                     inserted = true;
