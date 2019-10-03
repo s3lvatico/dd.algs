@@ -78,7 +78,7 @@ public class FraudulentActivityNotification {
             }
             else {
                 // TODO ramo else da aggiungere
-                
+
             }
             k++;
         }
@@ -133,10 +133,10 @@ public class FraudulentActivityNotification {
                     // salva il vecchio valore della mappa
                     int mapIdx = map[i];
                     // aggiorna la mappa
-                    map[i] = i;
+                    map[i] = k;
 
                     int j = i + 1;
-                    while (j < wlen) {
+                    while (j < wlen && y != -1) {
                         // aggiorna i successivi valori nella finestra
                         int z = w[j];
                         w[j] = y;
@@ -181,7 +181,6 @@ public class FraudulentActivityNotification {
 
         int d = 5;
         System.out.println(activityNotifications(v, d));
-
     }
 
 }
