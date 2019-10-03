@@ -2,6 +2,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - CountingSort",
+            "request": "launch",
+            "mainClass": "org.gmnz.hr.CountingSort",
+            "projectName": "hackerrank"
+        },
+        {
+            "type": "java",
             "name": "ReadStdIn",
             "request": "launch",
             "mainClass": "org.gmnz.hr.ReadStdIn",
