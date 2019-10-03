@@ -2,10 +2,54 @@
     "configurations": [
         {
             "type": "java",
+            "name": "ReadStdIn",
+            "request": "launch",
+            "mainClass": "org.gmnz.hr.ReadStdIn",
+            "projectName": "hackerrank",
+            "args": [
+                "^<",
+                "C:\\dev\\src\\dd.algs\\hackerrank\\target\\classes\\in.txt"
+            ]
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - FraudulentActivityNotification",
             "request": "launch",
             "mainClass": "org.gmnz.hr.FraudulentActivityNotification",
             "projectName": "hackerrank"
+        },
+        {
+            "type": "java",
+            "name": "FraudulentActivityNotification testCase1",
+            "request": "launch",
+            "mainClass": "org.gmnz.hr.FraudulentActivityNotification",
+            "projectName": "hackerrank",
+            "args": [
+                "^<",
+                "C:\\dev\\src\\dd.algs\\hackerrank\\target\\classes\\fraud-testCase1.txt"
+            ]
+        },
+        {
+            "type": "java",
+            "name": "FraudulentActivityNotification testCase2",
+            "request": "launch",
+            "mainClass": "org.gmnz.hr.FraudulentActivityNotification",
+            "projectName": "hackerrank",
+            "args": [
+                "^<",
+                "C:\\dev\\src\\dd.algs\\hackerrank\\target\\classes\\fraud-testCase2.txt"
+            ]
+        },
+        {
+            "type": "java",
+            "name": "FraudulentActivityNotification testCase4",
+            "request": "launch",
+            "mainClass": "org.gmnz.hr.FraudulentActivityNotification",
+            "projectName": "hackerrank",
+            "args": [
+                "^<",
+                "C:\\dev\\src\\dd.algs\\hackerrank\\target\\classes\\fraud-testCase4.txt"
+            ]
         }
     ]
 }

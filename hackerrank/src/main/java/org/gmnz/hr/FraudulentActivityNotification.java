@@ -57,7 +57,7 @@ public class FraudulentActivityNotification {
                 // 5) riordinare l'array (e la mappa)
                 reorder(window, window2expenditures, removalPosition);
             }
-            print(window);
+            // print(window);
             k++;
         }
 
@@ -209,26 +209,27 @@ public class FraudulentActivityNotification {
     }
 
 
-
     // public static void main(String[] args) {
-        // Random r = new Random();
-        // final int L = 15;
-        // int[] v = new int[L];
-        // for (int i = 0; i < L; i++) {
-        //     v[i] = r.nextInt(50);
-        // }
-        // print(v);
+    // Random r = new Random();
+    // final int L = 15;
+    // int[] v = new int[L];
+    // for (int i = 0; i < L; i++) {
+    // v[i] = r.nextInt(50);
+    // }
+    // print(v);
 
-        // int d = 5;
-        // System.out.println(activityNotifications(v, d));
+    // int d = 5;
+    // System.out.println(activityNotifications(v, d));
 
 
     // }
-    
+
     private static final Scanner scanner = new Scanner(System.in);
-    
+
     public static void main(String[] args) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
+        // BufferedWriter bufferedWriter = new BufferedWriter(new
+        // FileWriter(System.getenv("OUTPUT_PATH")));
 
         String[] nd = scanner.nextLine().split(" ");
 
@@ -248,10 +249,12 @@ public class FraudulentActivityNotification {
 
         int result = activityNotifications(expenditure, d);
 
-        bufferedWriter.write(String.valueOf(result));
-        bufferedWriter.newLine();
+        System.out.println(result);
 
-        bufferedWriter.close();
+        // bufferedWriter.write(String.valueOf(result));
+        // bufferedWriter.newLine();
+
+        // bufferedWriter.close();
 
         scanner.close();
     }
