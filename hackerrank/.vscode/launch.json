@@ -15,7 +15,7 @@
             "projectName": "hackerrank",
             "args": [
                 "^<",
-                "C:\\dev\\src\\dd.algs\\hackerrank\\target\\classes\\in.txt"
+                "${workspaceFolder}\\target\\classes\\in.txt"
             ]
         },
         {
@@ -33,7 +33,7 @@
             "projectName": "hackerrank",
             "args": [
                 "^<",
-                "C:\\dev\\src\\dd.algs\\hackerrank\\target\\classes\\fraud-testCase1.txt"
+                "${workspaceFolder}\\target\\classes\\fraud-testCase1.txt"
             ]
         },
         {
@@ -44,7 +44,7 @@
             "projectName": "hackerrank",
             "args": [
                 "^<",
-                "C:\\dev\\src\\dd.algs\\hackerrank\\target\\classes\\fraud-testCase2.txt"
+                "${workspaceFolder}\\target\\classes\\fraud-testCase2.txt"
             ]
         },
         {
@@ -55,7 +55,7 @@
             "projectName": "hackerrank",
             "args": [
                 "^<",
-                "C:\\dev\\src\\dd.algs\\hackerrank\\target\\classes\\fraud-testCase4.txt"
+                "${workspaceFolder}\\target\\classes\\fraud-testCase4.txt"
             ]
         }
     ]
