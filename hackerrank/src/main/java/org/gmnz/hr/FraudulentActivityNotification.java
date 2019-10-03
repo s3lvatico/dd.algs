@@ -56,15 +56,17 @@ public class FraudulentActivityNotification {
          */
         final int L = expenditure.length;
 
-        // array di supporto
-        int[] z = new int[L];
-
         // array per il calcolo della mediana
-        int[] w = new int[d];
+        int[] window = new int[d];
+
+        // array di supporto
+        // l'elemento di expenditure all'indice i, si trova in window all'indice
+        // indexMap[i]
+        int[] indexMap = new int[L];
 
         // inizializzato a -1
-        Arrays.fill(w, -1);
-        print(w);
+        Arrays.fill(window, -1);
+        print(window);
 
         // indice di scansione dell'array principale
         int k = 0;
@@ -74,7 +76,7 @@ public class FraudulentActivityNotification {
 
             // ciclo transitorio per l'array secondario
             if (k < d) {
-                insertAndSort(w, expenditure[k]);
+                insertAndSort(expenditure[k], window, indexMap);
             }
             // TODO ramo else da aggiungere
             k++;
@@ -85,19 +87,30 @@ public class FraudulentActivityNotification {
 
 
 
-    private static void insertAndSort(int[] w, int x) {
+    /**
+     * inserisci l'elemento {@code x} nell'array {@code w} mantenendolo ordinato, e
+     * aggiorna {@code map}
+     * 
+     * @param x
+     * @param w
+     * @param map
+     */
+    private static void insertAndSort(int x, int[] w, int[] map) {
         int i = 0;
         int wlen = w.length;
         boolean inserted = false;
         while (i < wlen && !inserted) {
             if (w[i] == -1) {
                 w[i] = x;
+                map[i] = i;
                 inserted = true;
-            } else {
+            }
+            else {
                 if (x < w[i]) {
                     // x deve stare in posizione i
                     int y = w[i];
                     w[i] = x;
+                    map[i] = i;
                     int j = i + 1;
                     while (j < wlen) {
                         int z = w[j];
