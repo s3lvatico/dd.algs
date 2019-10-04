@@ -76,7 +76,7 @@ public class ArrayUtils {
             upperBound = tmp;
         }
         for (int i = 0; i < v.length; i++) {
-            v[i] = lowerBound + r.nextInt(upperBound);
+            v[i] = lowerBound + r.nextInt(upperBound - lowerBound);
         }
         return v;
     }
