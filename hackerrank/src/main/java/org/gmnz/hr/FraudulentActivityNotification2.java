@@ -1,11 +1,9 @@
 package org.gmnz.hr;
 
-
 import java.io.IOException;
 import java.util.Queue;
 import java.util.Scanner;
 import java.util.concurrent.ArrayBlockingQueue;
-
 
 public class FraudulentActivityNotification2 {
 
@@ -15,44 +13,36 @@ public class FraudulentActivityNotification2 {
 
         final int L = expenditure.length;
 
-        // array per il calcolo della mediana
-        // dovrà essere in qualche modo ordinato
-        int[] window = new int[d];
-
-        
         Queue<Integer> q = new ArrayBlockingQueue<>(d);
-        int k = d;
 
-        // igiene igienica , specie in via di estinzione
-        // il cielo è sempre azzurro
-        // formaggiera
-        // vicolo cieco
-        
-
-        // I cataloghi delle vacanze riportavano immagini splendid
-
-        // le giraffe sono golose di foglie di acacie
-
-        // Il profumo delle bucce delle arance mi ricorda il Natale
-
-        
+        int maxValue = -1;
 
         for (int i = 0; i < d; i++) {
             q.add(expenditure[i]);
+            if (expenditure[i] > maxValue) {
+                maxValue = expenditure[i];
+            }
         }
 
+        int[] counts = new int[maxValue + 1];
+        int[] sums = new int[maxValue + 1];
+
+        for (int x : q) {
+            counts[x]++;
+        }
+        for (int i = 1; i < counts.length; i++)
+            sums[i] = sums[i-1] + counts[i];
+            
+
+        int k = d;
         while (k < L) {
 
-
-            
             // print(window);
             k++;
         }
 
         return notifications;
     }
-
-
 
     private static void insertAndSort(int[] exp, int k, int[] w, int[] windowMap) {
         // indice per la scansione
@@ -70,8 +60,7 @@ public class FraudulentActivityNotification2 {
                 w[i] = x;
                 windowMap[i] = k;
                 inserted = true;
-            }
-            else {
+            } else {
                 if (x < w[i]) {
                     // x deve stare in posizione i
 
@@ -107,32 +96,23 @@ public class FraudulentActivityNotification2 {
         }
     }
 
-
-
     private static void reorder(int[] w, int[] map, int p) {
         final int l = w.length - 1;
         if (p == 0) {
             // estremo sx
             shiftToRight(p, w, map, l);
-        }
-        else
-            if (p == l) {
-                // estremo dx
+        } else if (p == l) {
+            // estremo dx
+            shiftToLeft(p, w, map);
+        } else {
+            // da qualche parte in mezzo
+            if (w[p] > w[p + 1]) {
+                shiftToRight(p, w, map, l);
+            } else if (w[p] < w[p - 1]) {
                 shiftToLeft(p, w, map);
             }
-            else {
-                // da qualche parte in mezzo
-                if (w[p] > w[p + 1]) {
-                    shiftToRight(p, w, map, l);
-                }
-                else
-                    if (w[p] < w[p - 1]) {
-                        shiftToLeft(p, w, map);
-                    }
-            }
+        }
     }
-
-
 
     private static void shiftToRight(int i, int[] w, int[] map, int l) {
         while (i < l && w[i] > w[i + 1]) {
@@ -147,8 +127,6 @@ public class FraudulentActivityNotification2 {
             i++;
         }
     }
-
-
 
     private static void shiftToLeft(int i, int[] w, int[] map) {
         while (i > 0 && w[i] < w[i - 1]) {
@@ -165,27 +143,20 @@ public class FraudulentActivityNotification2 {
 
     }
 
-
-
     private static boolean suspectFraud(int expense, int[] w) {
         return expense >= findMedian(w) * 2;
     }
-
-
 
     private static double findMedian(int[] v) {
         int l = v.length;
         if (l % 2 == 1) {
             // . . . . . . .
             return (double) v[l / 2];
-        }
-        else {
+        } else {
             // . . . . . . . .
             return ((double) v[l / 2] + v[l / 2 + 1]) / 2;
         }
     }
-
-
 
     private static void print(int[] v) {
         StringBuilder sb = new StringBuilder("[");
@@ -195,7 +166,6 @@ public class FraudulentActivityNotification2 {
         sb.append("  ]");
         System.out.println(sb.toString());
     }
-
 
     // public static void main(String[] args) {
     // Random r = new Random();
@@ -208,7 +178,6 @@ public class FraudulentActivityNotification2 {
 
     // int d = 5;
     // System.out.println(activityNotifications(v, d));
-
 
     // }
 
