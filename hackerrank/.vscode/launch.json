@@ -79,6 +79,17 @@
                 "^<",
                 "${workspaceFolder}\\target\\classes\\fraud-testCase1.txt"
             ]
+        },
+        {
+            "type": "java",
+            "name": "Fraud2 testCaseG1",
+            "request": "launch",
+            "mainClass": "org.gmnz.hr.FraudulentActivityNotification2",
+            "projectName": "hackerrank",
+            "args": [
+                "^<",
+                "${workspaceFolder}\\target\\classes\\fraud-testCaseG1.txt"
+            ]
         }
     ]
 }

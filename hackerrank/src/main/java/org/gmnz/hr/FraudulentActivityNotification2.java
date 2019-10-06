@@ -13,9 +13,6 @@ public class FraudulentActivityNotification2 {
 
     private static final int MAX_EXPENSE = 200;
 
-    // o o o o o o o o o o
-    // 0 1 2 3 4 5 6 7 8 9
-
     static int activityNotifications(int[] expenditure, int d) {
 
         int notifications = 0;
