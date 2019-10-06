@@ -2,7 +2,6 @@ package org.gmnz.hr;
 
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Queue;
@@ -66,17 +65,6 @@ public class FraudulentActivityNotification2 {
 
 
 
-    private static int[] countingSort(Iterable<Integer> q, int d, int[] sums) {
-        int[] sorted = new int[d];
-        for (int x : q) {
-            sums[x] -= 1;
-            sorted[sums[x]] = x;
-        }
-        return sorted;
-    }
-
-
-
     private static double countingSortWmedian(Iterable<Integer> q, int l, int[] sums) {
         Map<Integer, Integer> mm = new HashMap<>();
         double result = -1;
@@ -123,30 +111,6 @@ public class FraudulentActivityNotification2 {
             sums[x] += mm.get(x);
         }
         return result;
-    }
-
-
-
-    private static double median(int[] v) {
-        int l = v.length;
-        if (l % 2 == 1) {
-            // . . . . . . .
-            return (double) v[l / 2];
-        } else {
-            // . . . . . . . .
-            return ((double) v[l / 2] + v[l / 2 + 1]) / 2;
-        }
-    }
-
-
-
-    private static void print(int[] v) {
-        StringBuilder sb = new StringBuilder("[");
-        for (int x : v) {
-            sb.append(String.format("%4d", x));
-        }
-        sb.append("  ]");
-        System.out.println(sb.toString());
     }
 
     private static final Scanner scanner = new Scanner(System.in);
