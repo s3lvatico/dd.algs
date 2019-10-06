@@ -1,153 +1,85 @@
 package org.gmnz.hr;
 
+
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Queue;
 import java.util.Scanner;
 import java.util.concurrent.ArrayBlockingQueue;
 
+
 public class FraudulentActivityNotification2 {
+
+    private static final int MAX_EXPENSE = 200;
 
     static int activityNotifications(int[] expenditure, int d) {
 
         int notifications = 0;
 
-        final int L = expenditure.length;
-
         Queue<Integer> q = new ArrayBlockingQueue<>(d);
-
-        int maxValue = -1;
 
         for (int i = 0; i < d; i++) {
             q.add(expenditure[i]);
-            if (expenditure[i] > maxValue) {
-                maxValue = expenditure[i];
-            }
         }
 
-        int[] counts = new int[maxValue + 1];
-        int[] sums = new int[maxValue + 1];
+        // per il counting sort ho bisogno degli indici fino a maxValue
+        int[] counts = new int[MAX_EXPENSE];
+        int[] sums = new int[MAX_EXPENSE];
 
         for (int x : q) {
             counts[x]++;
         }
-        for (int i = 1; i < counts.length; i++)
-            sums[i] = sums[i-1] + counts[i];
-            
+
+        updateSums(counts, sums, 0);
+
+        int[] sortedWindow = countingSort(q, d, Arrays.copyOf(sums, sums.length));
 
         int k = d;
-        while (k < L) {
 
-            // print(window);
+        notifications += expenditure[k] >= 2 * median(sortedWindow) ? 1 : 0;
+
+        while (k < expenditure.length - 1) {
+            int expRemoved = q.remove();
+            int expInserted = expenditure[k];
+            q.add(expInserted);
+            counts[expRemoved]--;
+            counts[expInserted]++;
+
+            // int minIndex = Math.min(expInserted, expRemoved);
+            // sums[expRemoved]--;
+
+            updateSums(counts, sums, 0);
+
+            sortedWindow = countingSort(q, d, sums);
             k++;
+            notifications += expenditure[k] >= 2 * median(sortedWindow) ? 1 : 0;
         }
 
         return notifications;
     }
 
-    private static void insertAndSort(int[] exp, int k, int[] w, int[] windowMap) {
-        // indice per la scansione
-        int i = 0;
 
-        int wlen = w.length;
 
-        int x = exp[k];
+    private static void updateSums(int[] counts, int[] sums, int fromIndex) {
+        sums[0] = counts[0];
+        for (int i = fromIndex + 1; i < counts.length; i++)
+            sums[i] = sums[i - 1] + counts[i];
+    }
 
-        // ci si ferma quando questo è true
-        boolean inserted = false;
 
-        while (i < wlen && !inserted) {
-            if (w[i] == -1) {
-                w[i] = x;
-                windowMap[i] = k;
-                inserted = true;
-            } else {
-                if (x < w[i]) {
-                    // x deve stare in posizione i
 
-                    // salva il vecchio contenuto di w in i
-                    int y = w[i];
-                    // aggiorna w[i]
-                    w[i] = x;
-
-                    // salva il vecchio valore della mappa
-                    int mapIdx = windowMap[i];
-                    // aggiorna la mappa
-                    windowMap[i] = k;
-
-                    int j = i + 1;
-                    while (j < wlen && y != -1) {
-                        // aggiorna i successivi valori nella finestra
-                        int z = w[j];
-                        w[j] = y;
-                        y = z;
-
-                        // aggiorna i successivi valori nella mappa
-                        int a = windowMap[j];
-                        windowMap[j] = mapIdx;
-                        mapIdx = a;
-
-                        // avanza
-                        j++;
-                    }
-                    inserted = true;
-                }
-            }
-            i++;
+    private static int[] countingSort(Iterable<Integer> q, int d, int[] sums) {
+        int[] sorted = new int[d];
+        for (int x : q) {
+            sums[x] -= 1;
+            sorted[sums[x]] = x;
         }
+        return sorted;
     }
 
-    private static void reorder(int[] w, int[] map, int p) {
-        final int l = w.length - 1;
-        if (p == 0) {
-            // estremo sx
-            shiftToRight(p, w, map, l);
-        } else if (p == l) {
-            // estremo dx
-            shiftToLeft(p, w, map);
-        } else {
-            // da qualche parte in mezzo
-            if (w[p] > w[p + 1]) {
-                shiftToRight(p, w, map, l);
-            } else if (w[p] < w[p - 1]) {
-                shiftToLeft(p, w, map);
-            }
-        }
-    }
 
-    private static void shiftToRight(int i, int[] w, int[] map, int l) {
-        while (i < l && w[i] > w[i + 1]) {
-            int x = w[i];
-            w[i] = w[i + 1];
-            w[i + 1] = x;
 
-            x = map[i];
-            map[i] = map[i + 1];
-            map[i + 1] = x;
-
-            i++;
-        }
-    }
-
-    private static void shiftToLeft(int i, int[] w, int[] map) {
-        while (i > 0 && w[i] < w[i - 1]) {
-            int x = w[i];
-            w[i] = w[i - 1];
-            w[i - 1] = x;
-
-            x = map[i];
-            map[i] = map[i - 1];
-            map[i - 1] = x;
-
-            i--;
-        }
-
-    }
-
-    private static boolean suspectFraud(int expense, int[] w) {
-        return expense >= findMedian(w) * 2;
-    }
-
-    private static double findMedian(int[] v) {
+    private static double median(int[] v) {
         int l = v.length;
         if (l % 2 == 1) {
             // . . . . . . .
@@ -158,6 +90,8 @@ public class FraudulentActivityNotification2 {
         }
     }
 
+
+
     private static void print(int[] v) {
         StringBuilder sb = new StringBuilder("[");
         for (int x : v) {
@@ -166,20 +100,6 @@ public class FraudulentActivityNotification2 {
         sb.append("  ]");
         System.out.println(sb.toString());
     }
-
-    // public static void main(String[] args) {
-    // Random r = new Random();
-    // final int L = 15;
-    // int[] v = new int[L];
-    // for (int i = 0; i < L; i++) {
-    // v[i] = r.nextInt(50);
-    // }
-    // print(v);
-
-    // int d = 5;
-    // System.out.println(activityNotifications(v, d));
-
-    // }
 
     private static final Scanner scanner = new Scanner(System.in);
 
