@@ -11,20 +11,21 @@ import java.util.concurrent.ArrayBlockingQueue;
 
 public class FraudulentActivityNotification2 {
 
-    private static final int MAX_EXPENSE = 200;
-
     static int activityNotifications(int[] expenditure, int d) {
 
         int notifications = 0;
 
         Queue<Integer> q = new ArrayBlockingQueue<>(d);
-
+        int maxExpense = 200;
         for (int i = 0; i < d; i++) {
             q.add(expenditure[i]);
+            // if (expenditure[i] > maxExpense) {
+            // maxExpense = expenditure[i];
+            // }
         }
 
-        int[] counts = new int[MAX_EXPENSE + 1];
-        int[] sums = new int[MAX_EXPENSE + 1];
+        int[] counts = new int[maxExpense + 1];
+        int[] sums = new int[maxExpense + 1];
 
         for (int x : q) {
             counts[x]++;
@@ -34,19 +35,28 @@ public class FraudulentActivityNotification2 {
 
         int k = d;
 
-        notifications += expenditure[k] >= 2 * countingSortWmedian(q, d, sums) ? 1 : 0;
+        boolean notificationIssued = expenditure[k] >= 2 * countingSortWmedian(q, d, sums);
+        notifications += notificationIssued ? 1 : 0;
 
         while (k < expenditure.length - 1) {
             int expRemoved = q.remove();
             int expInserted = expenditure[k];
             q.add(expInserted);
-            counts[expRemoved]--;
-            counts[expInserted]++;
 
-            updateSums(counts, sums, Math.min(expRemoved, expInserted));
+            if (expRemoved == expInserted && notificationIssued) {
+                notifications++;
+                k++;
+            } else {
+                counts[expRemoved]--;
+                sums[expRemoved]--;
+                counts[expInserted]++;
 
-            k++;
-            notifications += expenditure[k] >= 2 * countingSortWmedian(q, d, sums) ? 1 : 0;
+                updateSums(counts, sums, Math.min(expRemoved, expInserted));
+
+                k++;
+                notificationIssued = expenditure[k] >= 2 * countingSortWmedian(q, d, sums);
+                notifications += notificationIssued ? 1 : 0;
+            }
         }
 
         return notifications;
