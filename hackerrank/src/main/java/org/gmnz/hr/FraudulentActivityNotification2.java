@@ -3,6 +3,8 @@ package org.gmnz.hr;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Queue;
 import java.util.Scanner;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -11,6 +13,9 @@ import java.util.concurrent.ArrayBlockingQueue;
 public class FraudulentActivityNotification2 {
 
     private static final int MAX_EXPENSE = 200;
+
+    // o o o o o o o o o o
+    // 0 1 2 3 4 5 6 7 8 9
 
     static int activityNotifications(int[] expenditure, int d) {
 
@@ -22,9 +27,8 @@ public class FraudulentActivityNotification2 {
             q.add(expenditure[i]);
         }
 
-        // per il counting sort ho bisogno degli indici fino a maxValue
-        int[] counts = new int[MAX_EXPENSE];
-        int[] sums = new int[MAX_EXPENSE];
+        int[] counts = new int[MAX_EXPENSE + 1];
+        int[] sums = new int[MAX_EXPENSE + 1];
 
         for (int x : q) {
             counts[x]++;
@@ -32,11 +36,9 @@ public class FraudulentActivityNotification2 {
 
         updateSums(counts, sums, 0);
 
-        int[] sortedWindow = countingSort(q, d, Arrays.copyOf(sums, sums.length));
-
         int k = d;
 
-        notifications += expenditure[k] >= 2 * median(sortedWindow) ? 1 : 0;
+        notifications += expenditure[k] >= 2 * countingSortWmedian(q, d, sums) ? 1 : 0;
 
         while (k < expenditure.length - 1) {
             int expRemoved = q.remove();
@@ -45,14 +47,10 @@ public class FraudulentActivityNotification2 {
             counts[expRemoved]--;
             counts[expInserted]++;
 
-            // int minIndex = Math.min(expInserted, expRemoved);
-            // sums[expRemoved]--;
+            updateSums(counts, sums, Math.min(expRemoved, expInserted));
 
-            updateSums(counts, sums, 0);
-
-            sortedWindow = countingSort(q, d, sums);
             k++;
-            notifications += expenditure[k] >= 2 * median(sortedWindow) ? 1 : 0;
+            notifications += expenditure[k] >= 2 * countingSortWmedian(q, d, sums) ? 1 : 0;
         }
 
         return notifications;
@@ -75,6 +73,56 @@ public class FraudulentActivityNotification2 {
             sorted[sums[x]] = x;
         }
         return sorted;
+    }
+
+
+
+    private static double countingSortWmedian(Iterable<Integer> q, int l, int[] sums) {
+        Map<Integer, Integer> mm = new HashMap<>();
+        double result = -1;
+        if (l % 2 == 0) {
+            boolean b1 = false;
+            boolean b2 = false;
+            int x1 = -1;
+            int x2 = -1;
+            for (int x : q) {
+                sums[x] -= 1;
+                if (!mm.containsKey(x)) {
+                    mm.put(x, 1);
+                } else {
+                    mm.put(x, mm.get(x) + 1);
+                }
+                if (sums[x] == l / 2) {
+                    x1 = x;
+                    b1 = true;
+                }
+                if (sums[x] == 1 + l / 2) {
+                    x2 = x;
+                    b2 = true;
+                }
+                if (b1 && b2) {
+                    result = ((double) (x1 + x2)) / 2;
+                    break;
+                }
+            }
+        } else {
+            for (int x : q) {
+                sums[x] -= 1;
+                if (!mm.containsKey(x)) {
+                    mm.put(x, 1);
+                } else {
+                    mm.put(x, mm.get(x) + 1);
+                }
+                if (sums[x] == l / 2) {
+                    result = x;
+                    break;
+                }
+            }
+        }
+        for (Integer x : mm.keySet()) {
+            sums[x] += mm.get(x);
+        }
+        return result;
     }
 
 
