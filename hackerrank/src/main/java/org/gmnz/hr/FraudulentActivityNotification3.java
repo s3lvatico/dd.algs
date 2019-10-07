@@ -1,11 +1,13 @@
 package org.gmnz.hr;
 
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Scanner;
 import java.util.concurrent.ArrayBlockingQueue;
+
 
 public class FraudulentActivityNotification3 {
 
@@ -26,7 +28,7 @@ public class FraudulentActivityNotification3 {
         }
 
         int[] counts = new int[maxExpense + 1];
-        
+
         // l'idea è di SFRUTTARE l'algoritmo del counting sort... NON NECESSARIAMENTE
         // applicarlo
 
@@ -51,7 +53,8 @@ public class FraudulentActivityNotification3 {
             if (expRemoved == expInserted && notificationIssued) {
                 notifications++;
                 k++;
-            } else {
+            }
+            else {
                 counts[expRemoved]--;
                 sums[expRemoved]--;
                 counts[expInserted]++;
@@ -67,11 +70,38 @@ public class FraudulentActivityNotification3 {
         return notifications;
     }
 
+
+
+    private static boolean checkForFraud(Iterable<Integer> q, int[] count, int windowSize, int maxValue, int expense) {
+        int[] sums = new int[maxValue + 1];
+        sums[0] = count[0];
+        if (windowSize % 2 == 1) {
+            int p = 1 + windowSize / 2;
+            for (int i = 1; i < count.length; i++) {
+                int x = sums[i-1] + count[i];
+                if (x == p) {
+                    // Trovata la mediana
+                    return expense >= 2*x;
+                }
+            }
+        }
+        else {
+            int p1 = windowSize / 2;
+            int p2 = 1 + p1;
+            // TODO finire
+        }
+        return true; // FIXME non va bene eh
+    }
+
+
+
     private static void updateSums(int[] counts, int[] sums, int fromIndex) {
         sums[0] = counts[0];
         for (int i = fromIndex + 1; i < counts.length; i++)
             sums[i] = sums[i - 1] + counts[i];
     }
+
+
 
     private static double countingSortWmedian(Iterable<Integer> q, int l, int[] sums) {
         Map<Integer, Integer> mm = new HashMap<>();
@@ -85,7 +115,8 @@ public class FraudulentActivityNotification3 {
                 sums[x] -= 1;
                 if (!mm.containsKey(x)) {
                     mm.put(x, 1);
-                } else {
+                }
+                else {
                     mm.put(x, mm.get(x) + 1);
                 }
                 if (sums[x] == l / 2) {
@@ -101,12 +132,14 @@ public class FraudulentActivityNotification3 {
                     break;
                 }
             }
-        } else {
+        }
+        else {
             for (int x : q) {
                 sums[x] -= 1;
                 if (!mm.containsKey(x)) {
                     mm.put(x, 1);
-                } else {
+                }
+                else {
                     mm.put(x, mm.get(x) + 1);
                 }
                 if (sums[x] == l / 2) {
