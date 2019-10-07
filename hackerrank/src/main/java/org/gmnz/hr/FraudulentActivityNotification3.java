@@ -1,13 +1,11 @@
 package org.gmnz.hr;
 
-
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Scanner;
 import java.util.concurrent.ArrayBlockingQueue;
-
 
 public class FraudulentActivityNotification3 {
 
@@ -17,16 +15,21 @@ public class FraudulentActivityNotification3 {
 
         Queue<Integer> q = new ArrayBlockingQueue<>(d);
 
-        int maxExpense = 200;
+        int maxExpense = -1;
+        for (int x : expenditure) {
+            if (x > maxExpense)
+                maxExpense = x;
+        }
 
         for (int i = 0; i < d; i++) {
             q.add(expenditure[i]);
-            // if (expenditure[i] > maxExpense) {
-            // maxExpense = expenditure[i];
-            // }
         }
 
         int[] counts = new int[maxExpense + 1];
+        
+        // l'idea è di SFRUTTARE l'algoritmo del counting sort... NON NECESSARIAMENTE
+        // applicarlo
+
         int[] sums = new int[maxExpense + 1];
 
         for (int x : q) {
@@ -64,15 +67,11 @@ public class FraudulentActivityNotification3 {
         return notifications;
     }
 
-
-
     private static void updateSums(int[] counts, int[] sums, int fromIndex) {
         sums[0] = counts[0];
         for (int i = fromIndex + 1; i < counts.length; i++)
             sums[i] = sums[i - 1] + counts[i];
     }
-
-
 
     private static double countingSortWmedian(Iterable<Integer> q, int l, int[] sums) {
         Map<Integer, Integer> mm = new HashMap<>();
