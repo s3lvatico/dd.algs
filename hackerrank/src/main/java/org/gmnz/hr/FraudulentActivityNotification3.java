@@ -29,9 +29,6 @@ public class FraudulentActivityNotification3 {
 
         int[] counts = new int[maxExpense + 1];
 
-        // l'idea è di SFRUTTARE l'algoritmo del counting sort... NON NECESSARIAMENTE
-        // applicarlo
-
         int[] sums = new int[maxExpense + 1];
 
         for (int x : q) {
@@ -40,7 +37,6 @@ public class FraudulentActivityNotification3 {
 
         int k = d;
 
-        // TODO TEST!
         boolean notificationIssued = checkForFraud(q, counts, d, maxExpense, expenditure[k]);
         notifications += notificationIssued ? 1 : 0;
 
@@ -84,6 +80,9 @@ public class FraudulentActivityNotification3 {
                     // Trovata la mediana
                     return expense >= 2 * x;
                 }
+                else {
+                    sums[i] = x;
+                }
             }
         } else {
             int p1 = windowSize / 2;
@@ -102,6 +101,7 @@ public class FraudulentActivityNotification3 {
                     x2 = x;
                     b2 = true;
                 }
+                sums[i] = x;
                 if (b1 && b2) {
                     break;
                 }

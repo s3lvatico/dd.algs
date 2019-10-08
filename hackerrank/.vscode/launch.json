@@ -1,5 +1,6 @@
 {
     "configurations": [
+
         {
             "type": "java",
             "name": "CodeLens (Launch) - CountingSort",
@@ -89,6 +90,17 @@
             "args": [
                 "^<",
                 "${workspaceFolder}\\target\\classes\\fraud-testCaseG1.txt"
+            ]
+        },
+        {
+            "type": "java",
+            "name": "Fraud3 testCase0",
+            "request": "launch",
+            "mainClass": "org.gmnz.hr.FraudulentActivityNotification3",
+            "projectName": "hackerrank",
+            "args": [
+                "^<",
+                "${workspaceFolder}\\target\\classes\\fraud-testCase0.txt"
             ]
         }
     ]
