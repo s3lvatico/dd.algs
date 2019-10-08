@@ -78,7 +78,7 @@ public class FraudulentActivityNotification3 {
             for (int i = 1; i < count.length; i++) {
                 int x = sums[i - 1] + count[i];
                 if (x - 1 >= p) {
-                    return expense >= 2 * i;                   
+                    return expense >= 2 * i;
                 }
                 else {
                     sums[i] = x;
@@ -86,7 +86,7 @@ public class FraudulentActivityNotification3 {
             }
         }
         else {
-            int p1 = windowSize / 2;
+            int p1 = windowSize / 2 - 1;
             int p2 = 1 + p1;
             boolean b1 = false;
             boolean b2 = false;
@@ -94,12 +94,22 @@ public class FraudulentActivityNotification3 {
             int x2 = 0;
             for (int i = 1; i < count.length; i++) {
                 int x = sums[i - 1] + count[i];
-                if (x >= p1) {
-                    x1 = x;
-                    b1 = true;
+                if (x - 1 >= p1 && !b1) {
+                    if (x - 1 >= p2) {
+                        // se sono qui è perché il valore "i" è presente in un intervallo di indici del
+                        // (futuro) array ordinato che include o travalica gli indici che servono a
+                        // calcolare la mediana
+                        return expense >= 2 * i;
+                    }
+                    else {
+                        x1 = i;
+                        b1 = true;
+                        sums[i] = x;
+                        continue;
+                    }
                 }
-                if (x >= p2) {
-                    x2 = x;
+                if (x - 1 >= p2) {
+                    x2 = i;
                     b2 = true;
                 }
                 sums[i] = x;
@@ -114,6 +124,13 @@ public class FraudulentActivityNotification3 {
 
 
 
+    /**
+     * @deprecated           non usarlo MAI più
+     * 
+     * @param      counts
+     * @param      sums
+     * @param      fromIndex
+     */
     @Deprecated
     static void updateSums(int[] counts, int[] sums, int fromIndex) {
         sums[0] = counts[0];
@@ -123,6 +140,14 @@ public class FraudulentActivityNotification3 {
 
 
 
+    /**
+     * @deprecated      non usarlo MAI più
+     * 
+     * @param      q
+     * @param      l
+     * @param      sums
+     * @return
+     */
     @Deprecated
     static double countingSortWmedian(Iterable<Integer> q, int l, int[] sums) {
         Map<Integer, Integer> mm = new HashMap<>();
