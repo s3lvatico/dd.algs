@@ -29,7 +29,7 @@ public class FraudulentActivityNotification3 {
 
         int[] counts = new int[maxExpense + 1];
 
-        int[] sums = new int[maxExpense + 1];
+        // int[] sums = new int[maxExpense + 1];
 
         for (int x : q) {
             counts[x]++;
@@ -37,31 +37,32 @@ public class FraudulentActivityNotification3 {
 
         int k = d;
 
-        boolean notificationIssued = checkForFraud(q, counts, d, maxExpense, expenditure[k]);
+        boolean notificationIssued = checkForFraud(counts, d, maxExpense, expenditure[k]);
         notifications += notificationIssued ? 1 : 0;
 
         while (k < expenditure.length - 1) {
-
-            // TODO test e rivedere
 
             int expRemoved = q.remove();
             int expInserted = expenditure[k];
             q.add(expInserted);
 
-            if (expRemoved == expInserted && notificationIssued) {
-                notifications++;
-                k++;
-            } else {
-                counts[expRemoved]--;
-                sums[expRemoved]--;
-                counts[expInserted]++;
+            // if (expRemoved == expInserted && notificationIssued) {
+            // notifications++;
+            // k++;
+            // }
+            // else {
+            counts[expRemoved]--;
+            // sums[expRemoved]--;
+            counts[expInserted]++;
 
-                updateSums(counts, sums, Math.min(expRemoved, expInserted));
+            // updateSums(counts, sums, Math.min(expRemoved, expInserted));
 
-                k++;
-                notificationIssued = expenditure[k] >= 2 * countingSortWmedian(q, d, sums);
-                notifications += notificationIssued ? 1 : 0;
-            }
+            k++;
+
+            notificationIssued = checkForFraud(counts, d, maxExpense, expenditure[k]);
+            notifications += notificationIssued ? 1 : 0;
+
+            // }
         }
 
         return notifications;
@@ -69,22 +70,22 @@ public class FraudulentActivityNotification3 {
 
 
 
-    private static boolean checkForFraud(Iterable<Integer> q, int[] count, int windowSize, int maxValue, int expense) {
+    private static boolean checkForFraud(int[] count, int windowSize, int maxValue, int expense) {
         int[] sums = new int[maxValue + 1];
         sums[0] = count[0];
         if (windowSize % 2 == 1) {
             int p = windowSize / 2;
             for (int i = 1; i < count.length; i++) {
                 int x = sums[i - 1] + count[i];
-                if (x == p) {
-                    // Trovata la mediana
-                    return expense >= 2 * x;
+                if (x - 1 >= p) {
+                    return expense >= 2 * i;                   
                 }
                 else {
                     sums[i] = x;
                 }
             }
-        } else {
+        }
+        else {
             int p1 = windowSize / 2;
             int p2 = 1 + p1;
             boolean b1 = false;
@@ -93,11 +94,11 @@ public class FraudulentActivityNotification3 {
             int x2 = 0;
             for (int i = 1; i < count.length; i++) {
                 int x = sums[i - 1] + count[i];
-                if (x == p1) {
+                if (x >= p1) {
                     x1 = x;
                     b1 = true;
                 }
-                if (x == p2) {
+                if (x >= p2) {
                     x2 = x;
                     b2 = true;
                 }
@@ -113,7 +114,8 @@ public class FraudulentActivityNotification3 {
 
 
 
-    private static void updateSums(int[] counts, int[] sums, int fromIndex) {
+    @Deprecated
+    static void updateSums(int[] counts, int[] sums, int fromIndex) {
         sums[0] = counts[0];
         for (int i = fromIndex + 1; i < counts.length; i++)
             sums[i] = sums[i - 1] + counts[i];
@@ -121,7 +123,8 @@ public class FraudulentActivityNotification3 {
 
 
 
-    private static double countingSortWmedian(Iterable<Integer> q, int l, int[] sums) {
+    @Deprecated
+    static double countingSortWmedian(Iterable<Integer> q, int l, int[] sums) {
         Map<Integer, Integer> mm = new HashMap<>();
         double result = -1;
         if (l % 2 == 0) {
@@ -133,7 +136,8 @@ public class FraudulentActivityNotification3 {
                 sums[x] -= 1;
                 if (!mm.containsKey(x)) {
                     mm.put(x, 1);
-                } else {
+                }
+                else {
                     mm.put(x, mm.get(x) + 1);
                 }
                 if (sums[x] == l / 2) {
@@ -149,12 +153,14 @@ public class FraudulentActivityNotification3 {
                     break;
                 }
             }
-        } else {
+        }
+        else {
             for (int x : q) {
                 sums[x] -= 1;
                 if (!mm.containsKey(x)) {
                     mm.put(x, 1);
-                } else {
+                }
+                else {
                     mm.put(x, mm.get(x) + 1);
                 }
                 if (sums[x] == l / 2) {
