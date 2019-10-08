@@ -2,8 +2,6 @@ package org.gmnz.hr;
 
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Queue;
 import java.util.Scanner;
 import java.util.concurrent.ArrayBlockingQueue;
@@ -29,8 +27,6 @@ public class FraudulentActivityNotification3 {
 
         int[] counts = new int[maxExpense + 1];
 
-        // int[] sums = new int[maxExpense + 1];
-
         for (int x : q) {
             counts[x]++;
         }
@@ -46,23 +42,14 @@ public class FraudulentActivityNotification3 {
             int expInserted = expenditure[k];
             q.add(expInserted);
 
-            // if (expRemoved == expInserted && notificationIssued) {
-            // notifications++;
-            // k++;
-            // }
-            // else {
             counts[expRemoved]--;
-            // sums[expRemoved]--;
             counts[expInserted]++;
-
-            // updateSums(counts, sums, Math.min(expRemoved, expInserted));
 
             k++;
 
             notificationIssued = checkForFraud(counts, d, maxExpense, expenditure[k]);
             notifications += notificationIssued ? 1 : 0;
 
-            // }
         }
 
         return notifications;
@@ -122,83 +109,6 @@ public class FraudulentActivityNotification3 {
         throw new RuntimeException("non è stato trovato l'indice della mediana");
     }
 
-
-
-    /**
-     * @deprecated           non usarlo MAI più
-     * 
-     * @param      counts
-     * @param      sums
-     * @param      fromIndex
-     */
-    @Deprecated
-    static void updateSums(int[] counts, int[] sums, int fromIndex) {
-        sums[0] = counts[0];
-        for (int i = fromIndex + 1; i < counts.length; i++)
-            sums[i] = sums[i - 1] + counts[i];
-    }
-
-
-
-    /**
-     * @deprecated      non usarlo MAI più
-     * 
-     * @param      q
-     * @param      l
-     * @param      sums
-     * @return
-     */
-    @Deprecated
-    static double countingSortWmedian(Iterable<Integer> q, int l, int[] sums) {
-        Map<Integer, Integer> mm = new HashMap<>();
-        double result = -1;
-        if (l % 2 == 0) {
-            boolean b1 = false;
-            boolean b2 = false;
-            int x1 = -1;
-            int x2 = -1;
-            for (int x : q) {
-                sums[x] -= 1;
-                if (!mm.containsKey(x)) {
-                    mm.put(x, 1);
-                }
-                else {
-                    mm.put(x, mm.get(x) + 1);
-                }
-                if (sums[x] == l / 2) {
-                    x1 = x;
-                    b1 = true;
-                }
-                if (sums[x] == 1 + l / 2) {
-                    x2 = x;
-                    b2 = true;
-                }
-                if (b1 && b2) {
-                    result = ((double) (x1 + x2)) / 2;
-                    break;
-                }
-            }
-        }
-        else {
-            for (int x : q) {
-                sums[x] -= 1;
-                if (!mm.containsKey(x)) {
-                    mm.put(x, 1);
-                }
-                else {
-                    mm.put(x, mm.get(x) + 1);
-                }
-                if (sums[x] == l / 2) {
-                    result = x;
-                    break;
-                }
-            }
-        }
-        for (Integer x : mm.keySet()) {
-            sums[x] += mm.get(x);
-        }
-        return result;
-    }
 
     private static final Scanner scanner = new Scanner(System.in);
 
