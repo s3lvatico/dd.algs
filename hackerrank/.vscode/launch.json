@@ -102,6 +102,28 @@
                 "^<",
                 "${workspaceFolder}\\target\\classes\\fraud-testCase0.txt"
             ]
+        },
+        {
+            "type": "java",
+            "name": "Fraud3 testCase2",
+            "request": "launch",
+            "mainClass": "org.gmnz.hr.FraudulentActivityNotification3",
+            "projectName": "hackerrank",
+            "args": [
+                "^<",
+                "${workspaceFolder}\\target\\classes\\fraud-testCase2.txt"
+            ]
+        },
+        {
+            "type": "java",
+            "name": "Fraud3 testCase5",
+            "request": "launch",
+            "mainClass": "org.gmnz.hr.FraudulentActivityNotification3",
+            "projectName": "hackerrank",
+            "args": [
+                "^<",
+                "${workspaceFolder}\\target\\classes\\fraud-testCase5.txt"
+            ]
         }
     ]
 }
