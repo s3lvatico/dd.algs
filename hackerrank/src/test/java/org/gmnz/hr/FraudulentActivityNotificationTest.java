@@ -7,7 +7,7 @@ import java.util.Scanner;
 import java.util.concurrent.ArrayBlockingQueue;
 
 
-public class FraudulentActivityNotification3 {
+public class FraudulentActivityNotificationTest {
 
     static int activityNotifications(int[] expenditure, int d) {
 
@@ -66,13 +66,11 @@ public class FraudulentActivityNotification3 {
                 int x = sums[i - 1] + count[i];
                 if (x - 1 >= p) {
                     return expense >= 2 * i;
-                }
-                else {
+                } else {
                     sums[i] = x;
                 }
             }
-        }
-        else {
+        } else {
             int p1 = windowSize / 2 - 1;
             int p2 = 1 + p1;
             boolean b1 = false;
@@ -87,8 +85,7 @@ public class FraudulentActivityNotification3 {
                         // (futuro) array ordinato che include o travalica gli indici che servono a
                         // calcolare la mediana
                         return expense >= 2 * i;
-                    }
-                    else {
+                    } else {
                         x1 = i;
                         b1 = true;
                         sums[i] = x;
@@ -108,7 +105,6 @@ public class FraudulentActivityNotification3 {
         }
         throw new RuntimeException("non è stato trovato l'indice della mediana");
     }
-
 
     private static final Scanner scanner = new Scanner(System.in);
 
