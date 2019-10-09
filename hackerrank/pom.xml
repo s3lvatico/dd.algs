@@ -19,6 +19,7 @@
 			<groupId>org.gmnz</groupId>
 			<artifactId>sorting</artifactId>
 			<version>0.2.1-SNAPSHOT</version>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
