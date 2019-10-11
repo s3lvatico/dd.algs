@@ -1,6 +1,5 @@
 package org.gmnz.ddi.algs.sorting;
 
-
 /**
  * BaseSortEngine. Classe base contenente il minimo di metodi di utilità e
  * comuni ai vari algoritmi di ordinamento.
@@ -20,8 +19,6 @@ class BaseSortEngine {
         arr[j] = temp;
     }
 
-
-
     /**
      * come {@link #swap(Comparable[], int, int)} ma con array di {@code byte}
      */
@@ -30,8 +27,6 @@ class BaseSortEngine {
         arr[i] = arr[j];
         arr[j] = temp;
     }
-
-
 
     /**
      * come {@link #swap(Comparable[], int, int)} ma con array di {@code short}
@@ -42,8 +37,6 @@ class BaseSortEngine {
         arr[j] = temp;
     }
 
-
-
     /**
      * come {@link #swap(Comparable[], int, int)} ma con array di {@code int}
      */
@@ -52,8 +45,6 @@ class BaseSortEngine {
         arr[i] = arr[j];
         arr[j] = temp;
     }
-
-
 
     /**
      * come {@link #swap(Comparable[], int, int)} ma con array di {@code long}
@@ -64,8 +55,6 @@ class BaseSortEngine {
         arr[j] = temp;
     }
 
-
-
     /**
      * come {@link #swap(Comparable[], int, int)} ma con array di {@code float}
      */
@@ -74,8 +63,6 @@ class BaseSortEngine {
         arr[i] = arr[j];
         arr[j] = temp;
     }
-
-
 
     /**
      * come {@link #swap(Comparable[], int, int)} ma con array di {@code double}
@@ -87,8 +74,6 @@ class BaseSortEngine {
         arr[j] = temp;
     }
 
-
-
     /**
      * come {@link #swap(Comparable[], int, int)} ma con array di {@code boolean}
      */
@@ -98,17 +83,14 @@ class BaseSortEngine {
         arr[j] = temp;
     }
 
-
-
     /**
      * verifica se due elementi {@code Comparable} sono in sequenza, i.e. il primo
      * strettamente inferiore del secondo.
      * 
-     * @param  <K> il tipo che estenda {@link Comparable}
-     * @param  c1  primo elemento
-     * @param  c2  secondo elemento
-     * @return     {@code true} se il primo elemento è strettamente inferiore al
-     *             secondo
+     * @param <K> il tipo che estenda {@link Comparable}
+     * @param c1  primo elemento
+     * @param c2  secondo elemento
+     * @return {@code true} se il primo elemento è strettamente inferiore al secondo
      */
     protected <K extends Comparable<K>> boolean less(K c1, K c2) {
         return c1.compareTo(c2) < 0;
