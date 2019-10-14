@@ -16,6 +16,11 @@ public class MergeSort extends BaseSortEngine {
 
 
 
+	/**
+	 * ordina l'array specificato nel costruttore e lo restituisce
+	 * 
+	 * @return array ordinato
+	 */
 	public int[] sort() {
 		mergeSort(0, v.length - 1);
 		return v;
@@ -82,32 +87,45 @@ public class MergeSort extends BaseSortEngine {
 
 		// fusione (con riordino)
 
-		// scansione di tutto l'intervallo di interesse
+		// la fusione consiste nella scansione di tutto l'intervallo di interesse
+
 		/*
 		 * per ogni valore dell'indice k si considerano in sequenza i valori dei due
-		 * array dei quali si vuol fare la fusione . Il k-esimo posto è occupato dal
-		 * minore dei due valori indicati dagli indici di scansione i e j, fatti salvi i
-		 * casi in cui i due subarray siano "esauriti". Quando si prende uno dei valori
-		 * dei due array, il rispettivo indice di scansione viene fatto avanzare.
+		 * array da unire . Il k-esimo posto è occupato dal minore dei due valori
+		 * indicati dagli indici di scansione i e j, fatti salvi i casi in cui i due
+		 * subarray siano "esauriti". Quando si prende uno dei valori dei due array, il
+		 * rispettivo indice di scansione viene fatto avanzare.
+		 */
+		/*
+		 * nota che l'indice k indica la posizione corrente nell'array di destinazione
+		 * nella quale si andrà a scrivere, mentre gli indici i e j indicano le
+		 * posizioni negli array da unire dalle quali si legge.
 		 */
 		for (int k = lo; k <= hi; k++) {
 			// ho finito a sinistra?
 			if (i > mid) {
 				// allora prendo da destra
-				v[k] = aux[j++]; // e l'indice del subarray destro scorre
+				v[k] = aux[j];
+				// e l'indice del subarray destro scorre
+				j++;
 			}
 			else // ho finito a destra?
 				if (j > hi) {
 					// alllora prendo da sinistra
-					v[k] = aux[i++]; // e l'indice del subarray sinistro scorre
+					v[k] = aux[i];
+					// e l'indice del subarray sinistro scorre
+					i++;
 				}
 				else // confronto i due valori nei due subarray
 						// prendo il valore più piccolo puntato dagli indici
+						// e poi faccio scorrere l'indice appropriato
 					if (less(aux[i], aux[j])) {
-						v[k] = aux[i++];
+						v[k] = aux[i];
+						i++;
 					}
 					else {
 						v[k] = aux[j++];
+						j++;
 					}
 		}
 	}
