@@ -10,14 +10,16 @@ class BaseSortEngine {
      * Scambia di posto due elementi date le posizioni
      * 
      * @param arr array su cui operare
-     * @param i   indice del primo elemento
-     * @param j   indice del secondo elemento
+     * @param i indice del primo elemento
+     * @param j indice del secondo elemento
      */
     protected void swap(Comparable<?>[] arr, int i, int j) {
         Comparable<?> temp = arr[i];
         arr[i] = arr[j];
         arr[j] = temp;
     }
+
+
 
     /**
      * come {@link #swap(Comparable[], int, int)} ma con array di {@code byte}
@@ -28,6 +30,8 @@ class BaseSortEngine {
         arr[j] = temp;
     }
 
+
+
     /**
      * come {@link #swap(Comparable[], int, int)} ma con array di {@code short}
      */
@@ -36,6 +40,8 @@ class BaseSortEngine {
         arr[i] = arr[j];
         arr[j] = temp;
     }
+
+
 
     /**
      * come {@link #swap(Comparable[], int, int)} ma con array di {@code int}
@@ -46,6 +52,8 @@ class BaseSortEngine {
         arr[j] = temp;
     }
 
+
+
     /**
      * come {@link #swap(Comparable[], int, int)} ma con array di {@code long}
      */
@@ -55,6 +63,8 @@ class BaseSortEngine {
         arr[j] = temp;
     }
 
+
+
     /**
      * come {@link #swap(Comparable[], int, int)} ma con array di {@code float}
      */
@@ -63,6 +73,8 @@ class BaseSortEngine {
         arr[i] = arr[j];
         arr[j] = temp;
     }
+
+
 
     /**
      * come {@link #swap(Comparable[], int, int)} ma con array di {@code double}
@@ -74,6 +86,8 @@ class BaseSortEngine {
         arr[j] = temp;
     }
 
+
+
     /**
      * come {@link #swap(Comparable[], int, int)} ma con array di {@code boolean}
      */
@@ -83,13 +97,15 @@ class BaseSortEngine {
         arr[j] = temp;
     }
 
+
+
     /**
      * verifica se due elementi {@code Comparable} sono in sequenza, i.e. il primo
      * strettamente inferiore del secondo.
      * 
      * @param <K> il tipo che estenda {@link Comparable}
-     * @param c1  primo elemento
-     * @param c2  secondo elemento
+     * @param c1 primo elemento
+     * @param c2 secondo elemento
      * @return {@code true} se il primo elemento è strettamente inferiore al secondo
      */
     protected <K extends Comparable<K>> boolean less(K c1, K c2) {

@@ -50,7 +50,7 @@ public class BaseSortEngineTest {
 
             for (int i = 0; i < arrayLength; i++) {
                 short s = Short.MIN_VALUE;
-                s += new Integer(rnd.nextInt(Short.MAX_VALUE)).shortValue();
+                s += Integer.valueOf(rnd.nextInt(Short.MAX_VALUE)).shortValue();
                 vshort[i] = s;
 
                 int n = Integer.MIN_VALUE + rnd.nextInt(Integer.MAX_VALUE);
@@ -72,13 +72,13 @@ public class BaseSortEngineTest {
             bse.swap(vbyte, idx1, idx2);
             Assert.assertEquals(byteExp1, vbyte[idx1]);
             Assert.assertEquals(byteExp2, vbyte[idx2]);
-            
+
             short shortExp1 = vshort[idx2];
             short shortExp2 = vshort[idx1];
             bse.swap(vshort, idx1, idx2);
             Assert.assertEquals(shortExp1, vshort[idx1]);
             Assert.assertEquals(shortExp2, vshort[idx2]);
-            
+
             int intExp1 = vint[idx2];
             int intExp2 = vint[idx1];
             bse.swap(vint, idx1, idx2);
@@ -91,10 +91,7 @@ public class BaseSortEngineTest {
             Assert.assertEquals(longExp1, vlong[idx1]);
             Assert.assertEquals(longExp2, vlong[idx2]);
 
-
-
         }
     }
-
 
 }
