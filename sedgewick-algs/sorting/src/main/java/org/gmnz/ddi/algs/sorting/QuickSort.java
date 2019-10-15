@@ -64,7 +64,7 @@ public class QuickSort extends BaseSortEngine {
 			// --
 
 			// se gli elementi a sinistra [destra] del pivot sono strettamente minori
-			// [maggiori] del pivot allora sono già in posizione giusta, perciò si fa
+			// [maggiori] del pivot allora sono già nella partizione giusta, perciò si fa
 			// scorrere l'indice "lo" [ "hi" ]
 			while (less(v[lo], pivot)) {
 				++lo;
@@ -74,14 +74,21 @@ public class QuickSort extends BaseSortEngine {
 			}
 			// se i cursori non si sono incrociati si può fare lo scambio posizionale
 			if (lo <= hi) {
-				swap(v, lo, hi);
-				// i cursori vengono comunque fatti scorrere, poiché gli elementi che sono stati
-				// scambiati di posto ora occupano sicuramente la posizione corretta rispetto al
-				// pivot
+				if (v[lo] != v[hi])
+					// ma solo se effettivamente ce n'è bisogno, è inutile scambiare due valori
+					// uguali
+					swap(v, lo, hi);
+
+				// i cursori vengono comunque fatti scorrere
 				lo++;
 				hi--;
 			}
 		}
+		// "lo" in effetti risulta essere più importante di "hi", perché in ultimo
+		// contiene il vero indice di partizionamento dell'array. La porzione di array
+		// considerata è ora in uno stato per cui tutti gli elementi (strettamente) a
+		// sinistra di "lo" sono (strettamente) minori del pivot originale, mentre
+		// quelli da "lo" in poi sono non-minori del pivot
 		return lo;
 	}
 
