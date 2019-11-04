@@ -6,8 +6,8 @@ package org.gmnz.ddi.algs.sorting;
  */
 public class MergeSort extends BaseSortEngine {
 
-	private int[] aux;
 	private int[] v;
+	private int[] aux;
 
 	public MergeSort(int[] v) {
 		aux = new int[v.length];
@@ -37,7 +37,7 @@ public class MergeSort extends BaseSortEngine {
 	 * Altrimenti viene individuato un indice intermedio e viene richiamato questo
 	 * stesso metodo con i due subarray tra <code>[lo..mid]</code> e
 	 * <code>[mid+1..hi]</code>. Quando gli array non sono ulteriormente
-	 * suddivisibili, riachiama {@link #merge(int, int, int)} delle due parti
+	 * suddivisibili, richiama {@link #merge(int, int, int)} delle due parti
 	 * individuate, che ricreerà un subarray ordinato.
 	 *
 	 * @param lo
@@ -45,12 +45,13 @@ public class MergeSort extends BaseSortEngine {
 	 */
 	private void mergeSort(int lo, int hi) {
 		// terminazione della ricorsione
-		if (hi <= lo) {
+		if (lo >= hi) {
 			return;
 		}
 
 		// indice intermedio
-		int mid = lo + (hi - lo) / 2;
+		int mid = (lo + hi) / 2;
+
 
 		// ricorsione per il sub-array basso
 		mergeSort(lo, mid);
@@ -66,66 +67,28 @@ public class MergeSort extends BaseSortEngine {
 
 	/**
 	 * Unisce i due subarray contenuti nell'array principale nell'intervallo
-	 * [lo..mid] e [mid+1..hi].
+	 * <code>[lo..mid]</code> e <code>[mid+1..hi]</code>.
 	 * <p>
-	 * Precondizione: lo <= mid <= hi
-	 *
-	 * @param a
-	 * @param lo
-	 * @param mid
-	 * @param hi
+	 * Precondizione: <code>lo <= mid <= hi</code>
+	 * 
 	 */
 	private void merge(int lo, int mid, int hi) {
-		// mi segno i punti in cui partono i due subarray
-		int i = lo;
-		int j = mid + 1;
-
-		// copio la porzione [lo..hi] di interesse nell'array ausiliario
-		for (int k = lo; k <= hi; k++) {
-			aux[k] = v[k];
-		}
-
-		// fusione (con riordino)
-
-		// la fusione consiste nella scansione di tutto l'intervallo di interesse
-
-		/*
-		 * per ogni valore dell'indice k si considerano in sequenza i valori dei due
-		 * array da unire . Il k-esimo posto è occupato dal minore dei due valori
-		 * indicati dagli indici di scansione i e j, fatti salvi i casi in cui i due
-		 * subarray siano "esauriti". Quando si prende uno dei valori dei due array, il
-		 * rispettivo indice di scansione viene fatto avanzare.
-		 */
-		/*
-		 * nota che l'indice k indica la posizione corrente nell'array di destinazione
-		 * nella quale si andrà a scrivere, mentre gli indici i e j indicano le
-		 * posizioni negli array da unire dalle quali si legge.
-		 */
-		for (int k = lo; k <= hi; k++) {
-			// ho finito a sinistra?
-			if (i > mid) {
-				// allora prendo da destra
-				v[k] = aux[j];
-				// e l'indice del subarray destro scorre
-				j++;
+		int r = lo;
+		int s = mid + 1;
+		for (int i = lo; i <= hi; i++) {
+			if (r > mid) {
+				v[i] = aux[s++];
 			}
-			else // ho finito a destra?
-				if (j > hi) {
-					// alllora prendo da sinistra
-					v[k] = aux[i];
-					// e l'indice del subarray sinistro scorre
-					i++;
+			else
+				if (s > hi) {
+					v[i] = aux[r++];
 				}
-				else // confronto i due valori nei due subarray
-						// prendo il valore più piccolo puntato dagli indici
-						// e poi faccio scorrere l'indice appropriato
-					if (less(aux[i], aux[j])) {
-						v[k] = aux[i];
-						i++;
+				else
+					if (aux[r] < aux[s]) {
+						v[i] = aux[r++];
 					}
 					else {
-						v[k] = aux[j++];
-						j++;
+						v[i] = aux[s++];
 					}
 		}
 	}
