@@ -75,19 +75,29 @@ public class MergeSort extends BaseSortEngine {
 	private void merge(int lo, int mid, int hi) {
 		int r = lo;
 		int s = mid + 1;
+
+		// nell'intervallo lo..hi
 		for (int i = lo; i <= hi; i++) {
+			// nell'i-esima posizione di v:
 			if (r > mid) {
+				// se r è oltre mid vuol dire che ho esaurito tutti gli elementi dell'array a
+				// sinistra, quindi prendo dall'array di destra
 				v[i] = aux[s++];
 			}
 			else
 				if (s > hi) {
+					// se s è oltre hi vuol dire che ho esaurito tutti gli elementi dell'array
+					// a destra, quindi prendo dall'array di sinistra
 					v[i] = aux[r++];
 				}
 				else
+					// ci sono ancora elementi di ambo gli array da considerare, quindi
 					if (aux[r] < aux[s]) {
+						// a sinistra c'è un valore minore --> si prende da sinistra
 						v[i] = aux[r++];
 					}
 					else {
+						// a destra c'è un valore minore --> si prende da destra
 						v[i] = aux[s++];
 					}
 		}
