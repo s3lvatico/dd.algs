@@ -35,44 +35,49 @@ public class QuickSort extends BaseSortEngine {
 
 
 	/**
-	 * il cuore del qs.
+	 * Il cuore del qs è il <b>partizionamento</b>. In questo contesto,
+	 * "partizionare" significa manipolare l'array iniziale in qualche modo e
+	 * restituire al client un indice tale che (1) tutti gli elementi a sinistra di
+	 * quell'indice sono strettamente minori del valore presente a quell'indice, (2)
+	 * tutti gli elementi a destra sono maggiori del valore presente a quell'indice.
 	 * <p>
+	 * Per trovare l'indice si sceglie un elemento arbitrario dell'array.
+	 * Tipicamente si sceglie di usare l'elemento che si trova verso il centro
+	 * dell'array. Dati poi {@code lo} e {@code hi} gli indici entro i quali
+	 * lavorare, si confrontano i valori presenti a quegli indici con il pivot
+	 * scelto.
+	 * 
 	 *
-	 *
-	 * @param  v
-	 * @param  lo
-	 * @param  hi
-	 * @return
+	 * 
+	 * @param  lo indice basso
+	 * @param  hi indice alto
+	 * @return    indice di partizionamento
 	 */
 	int partition(int lo, int hi) {
-		// determina l'indice dell'elemento rispetto al quale partizionare (lo si chiama
-		// pivot)
-		int pivotIndex = (lo + hi) / 2;
 
 		// seleziona (isola) il pivot
-		int pivot = v[pivotIndex];
+		int pivot = v[(lo + hi) / 2];
 
 		// In questo ciclo while gli indici lo e hi scorrono l'uno verso l'altro. ("lo"
 		// si incrementa e "hi" si decrementa).
-		// Il ciclo continua finché "lo" è non maggiore di "hi" (i due indici non si
-		// incrociano, al massimo coincidono)
+		// Il ciclo continua finché gli indici non si incontrano o non si incrociano.
 		while (lo <= hi) {
 			// sessione di scorrimento degli indici, alla fine della quale occorre
 			// controllare ancora che gli indici rispettino la condizione all'inizio del
 			// ciclo - questo è necessario per capire se si deve fare uno scambio oppure no
 
-			// --
-
-			// se gli elementi a sinistra [destra] del pivot sono strettamente minori
-			// [maggiori] del pivot allora sono già nella partizione giusta, perciò si fa
-			// scorrere l'indice "lo" [ "hi" ]
+			// se gli elementi puntati da "lo" [ "hi" ] sono strettamente minori
+			// [maggiori] del pivot allora significa che si trovano già nella partizione
+			// giusta, perciò si fa scorrere l'indice "lo" [ "hi" ]
 			while (less(v[lo], pivot)) {
 				++lo;
 			}
 			while (less(pivot, v[hi])) {
 				--hi;
 			}
-			// se i cursori non si sono incrociati si può fare lo scambio posizionale
+
+			// se i cursori non si sono (ancora) incrociati si può fare lo scambio
+			// posizionale
 			if (lo <= hi) {
 				if (v[lo] != v[hi])
 					// ma solo se effettivamente ce n'è bisogno, è inutile scambiare due valori
