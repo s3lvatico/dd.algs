@@ -10,7 +10,7 @@ public class InsertionSort extends BaseSortEngine {
          return;
       for (int i = 1; i < v.length; i++) {
          for (int j = i; j > 0; j--) {
-            if (v[j] < v[j - 1]) {
+            if (less(v[j], v[j - 1])) {
                swap(v, j, j - 1);
             }
          }
