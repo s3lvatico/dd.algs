@@ -100,10 +100,10 @@ class BaseSortEngine {
 
 
     /**
-     * verifica se due elementi {@code Comparable} sono in sequenza, i.e. il primo
-     * strettamente inferiore del secondo.
+     * verifica se due elementi {@code Comparable} sono in ordine strettamente
+     * crescente.
      * 
-     * @param <K> il tipo che estenda {@link Comparable}
+     * @param <K> il tipo che estende {@link Comparable}
      * @param c1 primo elemento
      * @param c2 secondo elemento
      * @return {@code true} se il primo elemento è strettamente inferiore al secondo
