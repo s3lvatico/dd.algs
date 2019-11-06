@@ -175,8 +175,9 @@ public class ArrayUtils {
             return new double[] {};
         double[] v = new double[length];
         Random r = new Random();
+        range = Math.abs(range);
         for (int i = 0; i < v.length; i++) {
-            v[i] = lowerBound + Math.abs(range) * r.nextDouble();
+            v[i] = lowerBound +  range * r.nextDouble();
         }
         return v;
     }

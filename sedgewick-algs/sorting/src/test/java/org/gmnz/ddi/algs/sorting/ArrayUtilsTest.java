@@ -1,11 +1,9 @@
 package org.gmnz.ddi.algs.sorting;
 
-
 import java.util.Random;
 
 import org.junit.Assert;
 import org.junit.Test;
-
 
 /**
  * ArrayUtilsTest
@@ -26,8 +24,6 @@ public class ArrayUtilsTest {
         v = new int[] { 1, 2, 3 };
         Assert.assertTrue(ArrayUtils.isSorted(v));
     }
-
-
 
     @Test
     public void randomIntArray() {
@@ -62,8 +58,6 @@ public class ArrayUtilsTest {
         System.out.println(ArrayUtils.toString(v));
     }
 
-
-
     @Test
     public void randomDoubleArray() {
         Assert.assertNull(ArrayUtils.randomDoubleArray(-Math.abs(new Random().nextInt()), 0.0d, 0.0d));
@@ -78,7 +72,7 @@ public class ArrayUtilsTest {
         dblv = ArrayUtils.randomDoubleArray(length, lowerBound, range);
         Assert.assertNotNull(dblv);
         for (double d : dblv) {
-            Assert.assertTrue(d >= lowerBound && d <= lowerBound + range);
+            Assert.assertTrue(d >= lowerBound && d <= (long)lowerBound + range);
         }
     }
 }
