@@ -4,13 +4,16 @@ package org.gmnz.ddi.algs.sorting;
 /**
  * MergeSort per array di interi
  */
-public class MergeSort extends BaseSortEngine {
+public class MergeSort<K extends Comparable<K>> extends BaseSortEngine {
 
-	private int[] v;
-	private int[] aux;
+	// private int[] v;
+	// private int[] aux;
 
-	public MergeSort(int[] v) {
-		aux = new int[v.length];
+	private K[] v;
+	private K[] aux;
+
+	public MergeSort(K[] v) {
+		aux = (K[]) new Comparable[v.length];
 		this.v = v;
 	}
 
@@ -21,7 +24,11 @@ public class MergeSort extends BaseSortEngine {
 	 * 
 	 * @return array ordinato
 	 */
-	public int[] sort() {
+	public K[] sort() {
+		// copio la porzione [lo..hi] di interesse nell'array ausiliario
+		for (int k = 0; k < v.length; k++) {
+			aux[k] = v[k];
+		}
 		mergeSort(0, v.length - 1);
 		return v;
 	}
@@ -91,7 +98,7 @@ public class MergeSort extends BaseSortEngine {
 				}
 				else
 					// ci sono ancora elementi di ambo gli array da considerare, quindi
-					if (aux[r] < aux[s]) {
+					if (less(v[r], v[s])) {
 						// a sinistra c'è un valore minore --> si prende da sinistra
 						v[i] = aux[r++];
 					}

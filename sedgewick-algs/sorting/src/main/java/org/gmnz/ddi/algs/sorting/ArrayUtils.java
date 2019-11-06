@@ -86,6 +86,20 @@ public class ArrayUtils {
 
 
 
+    public static <K extends Comparable<K>> boolean isSorted(K[] v) {
+        if (v == null || v.length < 2)
+            return true;
+        int i = 1;
+        while (i < v.length) {
+            if (v[i].compareTo(v[i - 1]) < 0)
+                return false;
+            i++;
+        }
+        return true;
+    }
+
+
+
     /**
      * Genera un array di numeri interi (pseudo) casuali. Si specifica la lunghezza
      * dell'array; i valori dell'array sono nell'intervallo [low, high[ (aperto a
@@ -105,6 +119,26 @@ public class ArrayUtils {
         if (length == 0)
             return new int[] {};
         int[] v = new int[length];
+        Random r = new Random();
+        if (lowerBound > upperBound) {
+            int tmp = lowerBound;
+            lowerBound = upperBound;
+            upperBound = tmp;
+        }
+        for (int i = 0; i < v.length; i++) {
+            v[i] = lowerBound + r.nextInt(Math.abs(upperBound - lowerBound));
+        }
+        return v;
+    }
+
+
+
+    public static Integer[] randomIntegerArray(int length, int lowerBound, int upperBound) {
+        if (length < 0)
+            return null;
+        if (length == 0)
+            return new Integer[] {};
+        Integer[] v = new Integer[length];
         Random r = new Random();
         if (lowerBound > upperBound) {
             int tmp = lowerBound;
