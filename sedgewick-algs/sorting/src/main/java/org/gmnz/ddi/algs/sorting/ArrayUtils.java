@@ -38,12 +38,15 @@ public class ArrayUtils {
     public static String toString(int[] v) {
         double dblHighestMagnitude = 0;
         for (int x : v) {
-            double dblMag = Math.log10(x);
+            double dblMag = Math.log10(Math.abs(x));
             if (dblMag > dblHighestMagnitude)
                 dblHighestMagnitude = dblMag;
         }
         dblHighestMagnitude = Math.ceil(dblHighestMagnitude);
+        final int MAX_SPACING = 4;
         int spacing = Double.valueOf(Math.round(dblHighestMagnitude / 1.618)).intValue();
+        if (spacing > MAX_SPACING)
+            spacing = MAX_SPACING;
         int magnitude = Double.valueOf(dblHighestMagnitude).intValue();
 
         int formatWidth = magnitude + spacing;
