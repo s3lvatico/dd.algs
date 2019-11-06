@@ -34,24 +34,23 @@ public class MergeSort extends BaseSortEngine {
 	 * Se gli indici {@code lo} e {@code hi} coincidono o si incrociano, si ferma la
 	 * ricorsione.
 	 * <p>
-	 * Altrimenti viene individuato un indice intermedio e viene richiamato questo
-	 * stesso metodo con i due subarray tra <code>[lo..mid]</code> e
-	 * <code>[mid+1..hi]</code>. Quando gli array non sono ulteriormente
-	 * suddivisibili, richiama {@link #merge(int, int, int)} delle due parti
-	 * individuate, che ricreerà un subarray ordinato.
+	 * Altrimenti viene individuato un indice intermedio e si fa ricorsione con i
+	 * due subarray tra <code>[lo..mid]</code> e <code>[mid+1..hi]</code>. Quando
+	 * gli array non sono ulteriormente suddivisibili, richiama
+	 * {@link #merge(int, int, int)} sui due subarray, che ricreerà un subarray
+	 * ordinato.
 	 *
 	 * @param lo
 	 * @param hi
 	 */
 	private void mergeSort(int lo, int hi) {
-		// terminazione della ricorsione
+		// controllo di terminazione della ricorsione
 		if (lo >= hi) {
 			return;
 		}
 
 		// indice intermedio
 		int mid = (lo + hi) / 2;
-
 
 		// ricorsione per il sub-array basso
 		mergeSort(lo, mid);
