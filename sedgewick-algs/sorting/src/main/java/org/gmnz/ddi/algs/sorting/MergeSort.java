@@ -1,6 +1,5 @@
 package org.gmnz.ddi.algs.sorting;
 
-
 /**
  * MergeSort per array di interi
  */
@@ -25,10 +24,6 @@ public class MergeSort<K extends Comparable<K>> extends BaseSortEngine {
 	 * @return array ordinato
 	 */
 	public K[] sort() {
-		// copio la porzione [lo..hi] di interesse nell'array ausiliario
-		for (int k = 0; k < v.length; k++) {
-			aux[k] = v[k];
-		}
 		mergeSort(0, v.length - 1);
 		return v;
 	}
@@ -82,6 +77,11 @@ public class MergeSort<K extends Comparable<K>> extends BaseSortEngine {
 		int r = lo;
 		int s = mid + 1;
 
+		// copio la porzione [lo..hi] di interesse nell'array ausiliario
+		for (int k = lo; k <= hi; k++) {
+			aux[k] = v[k];
+		}
+
 		// nell'intervallo lo..hi
 		for (int i = lo; i <= hi; i++) {
 			// nell'i-esima posizione di v:
@@ -89,20 +89,17 @@ public class MergeSort<K extends Comparable<K>> extends BaseSortEngine {
 				// se r è oltre mid vuol dire che ho esaurito tutti gli elementi dell'array a
 				// sinistra, quindi prendo dall'array di destra
 				v[i] = aux[s++];
-			}
-			else
+			} else
 				if (s > hi) {
 					// se s è oltre hi vuol dire che ho esaurito tutti gli elementi dell'array
 					// a destra, quindi prendo dall'array di sinistra
 					v[i] = aux[r++];
-				}
-				else
+				} else
 					// ci sono ancora elementi di ambo gli array da considerare, quindi
-					if (less(v[r], v[s])) {
+					if (less(aux[r], aux[s])) {
 						// a sinistra c'è un valore minore --> si prende da sinistra
 						v[i] = aux[r++];
-					}
-					else {
+					} else {
 						// a destra c'è un valore minore --> si prende da destra
 						v[i] = aux[s++];
 					}
