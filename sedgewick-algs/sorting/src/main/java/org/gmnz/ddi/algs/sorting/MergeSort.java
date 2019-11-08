@@ -11,6 +11,7 @@ public class MergeSort<K extends Comparable<K>> extends BaseSortEngine {
 	private K[] v;
 	private K[] aux;
 
+	@SuppressWarnings("unchecked")
 	public MergeSort(K[] v) {
 		aux = (K[]) new Comparable[v.length];
 		this.v = v;
