@@ -24,6 +24,8 @@ public class HeapSort<K extends Comparable<K>> {
         hu = new HeapUtils<>();
     }
 
+
+
     /**
      * Consiste di due passi principali
      * <p>
@@ -31,8 +33,8 @@ public class HeapSort<K extends Comparable<K>> {
      * <li>trasformazione dell'array in un heap
      * <li>heapsort vero e proprio
      * </ul>
-     * Infine restituisce un array di lunghezza pari a quella dell'array iniziale, ottenuto
-     * dall'heap.
+     * Infine restituisce un array di lunghezza pari a quella dell'array iniziale,
+     * ottenuto dall'heap.
      * 
      * @return array di {@link Comparable} ordinato
      */
@@ -48,12 +50,15 @@ public class HeapSort<K extends Comparable<K>> {
         return sortedArray;
     }
 
+
+
     /**
      * Trasforma l'array interno in un heap vero e proprio.
      * <p>
-     * Dovendo far "affondare" gli elementi, conviene partire da metà array, in modo che le
-     * operazioni inizino a partire dal penultimo livello dell'albero binario (non ha senso iniziare
-     * dal fondo, perché non ci sono elementi che possono affondare)
+     * Dovendo far "affondare" gli elementi, conviene partire da metà array, in modo
+     * che le operazioni inizino a partire dal penultimo livello dell'albero binario
+     * (non ha senso iniziare dal fondo, perché non ci sono elementi che possono
+     * affondare)
      */
     void heapify() {
         int heapSize = heap.length - 1;
@@ -61,6 +66,8 @@ public class HeapSort<K extends Comparable<K>> {
             hu.sink(heap, i, heapSize);
         }
     }
+
+
 
     /**
      * 
@@ -74,9 +81,10 @@ public class HeapSort<K extends Comparable<K>> {
     }
 
     /*
-     * l'heapsort si compone di due passaggi: 1) trasforma l'array in un maxheap 2.1) scambia di
-     * posto la cima dell'heap con l'ultimo elemento 2.2) sink(1) 2.3) restringi la dimensione
-     * dell'heap 2.4) ripeti finché la dimensione dell'heap è >= 2
+     * l'heapsort si compone di due passaggi: 1) trasforma l'array in un maxheap
+     * 2.1) scambia di posto la cima dell'heap con l'ultimo elemento 2.2) sink(1)
+     * 2.3) restringi la dimensione dell'heap 2.4) ripeti finché la dimensione
+     * dell'heap è >= 2
      */
 
 }

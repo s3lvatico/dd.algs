@@ -7,17 +7,17 @@ import java.util.Random;
 /**
  * ArrayUtils
  */
-public class ArrayUtils {
+public final class ArrayUtils {
 
-    private ArrayUtils() {
-    }
+    private ArrayUtils() {}
 
 
 
     /**
+     * Rappresenta in strina un array di <code>byte</code>
      * 
-     * @param  v array di byte
-     * @return   rappresentazione in stringa
+     * @param v array di byte
+     * @return rappresentazione in stringa
      */
     public static String toString(byte[] v) {
         StringBuilder sb = new StringBuilder("[");
@@ -31,9 +31,10 @@ public class ArrayUtils {
 
 
     /**
+     * * Rappresenta in strina un array di <code>int</code>
      * 
-     * @param  v array di interi
-     * @return   rappresentazione in stringa
+     * @param v array di interi
+     * @return rappresentazione in stringa
      */
     public static String toString(int[] v) {
         double dblHighestMagnitude = 0;
@@ -63,21 +64,23 @@ public class ArrayUtils {
 
 
     /**
-     * Controlla se un array di interi è ordinato - se ogni elemento è maggiore o
-     * uguale del precedente.
+     * Controlla se un array di <code>int</code> è ordinato. Un array è ordinato se
+     * e solo se ogni elemento (a parte l'ultimo) è non maggiore del successivo.
      * <p>
      * Gli array nulli, quelli di lunghezza 0 o 1 sono considerati ordinati.
      * 
-     * @param  v array di interi
-     * @return   {@code true} se {@code v} è ordinato, nullo o ha lunghezza
-     *           strettamente minore di 2, altrimenti {@code false}
+     * @param v array di <code>int</code>
+     * @return {@code true} se {@code v} è ordinato, nullo o ha lunghezza
+     * strettamente minore di 2, altrimenti {@code false}
      */
     public static boolean isSorted(int[] v) {
+        // array nulli e di lunghezza 0 o 1 sono considerati ordinati
         if (v == null || v.length < 2)
             return true;
         int i = 1;
         while (i < v.length) {
             if (v[i] < v[i - 1])
+                // se un elemento è maggiore del successivo, l'array non è ordinato
                 return false;
             i++;
         }
@@ -86,6 +89,18 @@ public class ArrayUtils {
 
 
 
+    /**
+     * Controlla se un array di oggetti {@link Comparable} è ordinato. Un array è
+     * ordinato se e solo se ogni elemento (a parte l'ultimo) è non maggiore del
+     * successivo.
+     * <p>
+     * Gli array nulli, quelli di lunghezza 0 o 1 sono considerati ordinati.
+     * 
+     * @param v array di {@link Comparable}
+     * @return {@code true} se {@code v} è ordinato, nullo o ha lunghezza
+     * strettamente minore di 2, altrimenti {@code false}
+     * 
+     */
     public static <K extends Comparable<K>> boolean isSorted(K[] v) {
         if (v == null || v.length < 2)
             return true;
@@ -108,10 +123,10 @@ public class ArrayUtils {
      * Specificando lunghezze negative si ottiene un {@code null}. Specificando
      * lunghezza 0 si ottiene un array vuoto.
      * 
-     * @param  length     lunghezza richiesta dell'array
-     * @param  lowerBound valore minimo (incluso)
-     * @param  upperBound valore massimo (escluso)
-     * @return            array di numeri interi casuali
+     * @param length lunghezza richiesta dell'array
+     * @param lowerBound valore minimo (incluso)
+     * @param upperBound valore massimo (escluso)
+     * @return array di numeri interi casuali
      */
     public static int[] randomIntArray(int length, int lowerBound, int upperBound) {
         if (length < 0)
@@ -133,6 +148,11 @@ public class ArrayUtils {
 
 
 
+    /**
+     * Analogo di {@link #randomIntArray(int, int, int)}, ma che usa oggetti
+     * {@link Integer}
+     * 
+     */
     public static Integer[] randomIntegerArray(int length, int lowerBound, int upperBound) {
         if (length < 0)
             return null;
@@ -163,10 +183,10 @@ public class ArrayUtils {
      * <p>
      * A titolo cautelativo, internamente viene usato {@code Math.abs(range)}.
      * 
-     * @param  length     lunghezza array
-     * @param  lowerBound valore minimo
-     * @param  range      estensione massima
-     * @return            array di {@code double} casuali
+     * @param length lunghezza array
+     * @param lowerBound valore minimo
+     * @param range estensione massima
+     * @return array di {@code double} casuali
      */
     public static double[] randomDoubleArray(int length, double lowerBound, double range) {
         if (length < 0)
@@ -177,7 +197,7 @@ public class ArrayUtils {
         Random r = new Random();
         range = Math.abs(range);
         for (int i = 0; i < v.length; i++) {
-            v[i] = lowerBound +  range * r.nextDouble();
+            v[i] = lowerBound + range * r.nextDouble();
         }
         return v;
     }
