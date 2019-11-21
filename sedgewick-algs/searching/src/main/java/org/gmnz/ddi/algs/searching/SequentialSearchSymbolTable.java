@@ -21,6 +21,8 @@ public class SequentialSearchSymbolTable<K, V> extends AbstractSymbolTable<K, V>
 
     @Override
     public void put(K key, V value) {
+        if (key == null)
+            throw new IllegalArgumentException("null keys are not allowed");
         for (Node x = first; x != null; x = x.next) {
             if (x.key.equals(key)) {
                 x.value = value;
