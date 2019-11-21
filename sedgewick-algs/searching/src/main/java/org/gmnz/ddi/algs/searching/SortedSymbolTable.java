@@ -57,13 +57,14 @@ public interface SortedSymbolTable<K extends Comparable<K>, V> extends SymbolTab
     void deleteMax();
 
     /**
-     * <i>Range query</i>.
-     * <p>
+     * 
      * Numero di chiavi tra {@code lo} e {@code hi}
      */
     int size(K lo, K hi);
 
     /**
+     * <i>Range query</i>.
+     * <p>
      * Insieme ordinato delle chiavi in {@code [lo..hi]}
      */
     Iterable<K> keys(K lo, K hi);
