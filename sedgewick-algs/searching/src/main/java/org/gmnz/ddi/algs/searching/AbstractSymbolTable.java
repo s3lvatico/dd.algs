@@ -19,4 +19,9 @@ abstract class AbstractSymbolTable<K, V> implements SymbolTable<K, V> {
     public boolean isEmpty() {
         return size() == 0;
     }
+
+    protected void checkNullKey(K key) {
+        if (key == null)
+            throw new IllegalArgumentException("null keys are not allowed");
+    }
 }
