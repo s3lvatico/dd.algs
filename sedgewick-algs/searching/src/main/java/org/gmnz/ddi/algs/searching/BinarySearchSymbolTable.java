@@ -1,7 +1,6 @@
 package org.gmnz.ddi.algs.searching;
 
-public class BinarySearchSymbolTable<K extends Comparable<K>, V>
-        extends AbstractSortedSymbolTable<K, V> {
+public class BinarySearchSymbolTable<K extends Comparable<K>, V> extends AbstractSortedSymbolTable<K, V> {
 
     private K[] k;
     private V[] v;
@@ -14,10 +13,14 @@ public class BinarySearchSymbolTable<K extends Comparable<K>, V>
         n = 0;
     }
 
+
+
     @Override
     public int size() {
         return n;
     }
+
+
 
     @Override
     public int rank(K key) {
@@ -31,13 +34,16 @@ public class BinarySearchSymbolTable<K extends Comparable<K>, V>
             int cmp = k[mid].compareTo(key);
             if (cmp < 0)
                 hi = mid - 1;
-            else if (cmp > 0)
-                lo = mid + 1;
             else
-                return mid;
+                if (cmp > 0)
+                    lo = mid + 1;
+                else
+                    return mid;
         }
         return lo;
     }
+
+
 
     @Override
     public V get(K key) {
@@ -51,11 +57,25 @@ public class BinarySearchSymbolTable<K extends Comparable<K>, V>
             return null;
     }
 
+
+
+    @Override
+    public void put(K key, V value) {
+        checkNullKey(key);
+        if (n == k.length)
+            throw new UnsupportedOperationException("table full");
+
+    }
+
+
+
     @Override
     public K min() {
         // TODO Auto-generated method stub
         return null;
     }
+
+
 
     @Override
     public K max() {
@@ -63,11 +83,15 @@ public class BinarySearchSymbolTable<K extends Comparable<K>, V>
         return null;
     }
 
+
+
     @Override
     public K floor(K key) {
         // TODO Auto-generated method stub
         return null;
     }
+
+
 
     @Override
     public K ceiling(K key) {
@@ -83,16 +107,12 @@ public class BinarySearchSymbolTable<K extends Comparable<K>, V>
         return null;
     }
 
+
+
     @Override
     public Iterable<K> keys(K lo, K hi) {
         // TODO Auto-generated method stub
         return null;
-    }
-
-    @Override
-    public void put(K key, V value) {
-        // TODO Auto-generated method stub
-
     }
 
 }
