@@ -12,13 +12,13 @@ public interface SortedSymbolTable<K extends Comparable<K>, V> extends SymbolTab
 
     /**
      * @return la chiave più piccola, i.e. quella tale che ogni altra chiave della
-     *         tabella gli è maggiore
+     * tabella gli è maggiore
      */
     K min();
 
     /**
      * @return la chiave più grande, i.e. quella tale che ogni altra chiave della
-     *         tabella gli è minore.
+     * tabella gli è minore.
      */
     K max();
 
@@ -33,7 +33,13 @@ public interface SortedSymbolTable<K extends Comparable<K>, V> extends SymbolTab
     K ceiling(K key);
 
     /**
-     * Rango
+     * Rango. Nell'insieme ordinato delle chiavi, determina il numero di chiavi che
+     * precedono la chiave specificata (i.e. quelle che le sono strettamente
+     * minori).
+     * <p>
+     * Nota che non è necessario che la chiave specificata si trovi effettivamente
+     * nella ST, quindi {@code rank()} fornisce effettivamente la posizione che la
+     * chiave specificata <i>dovrebbe</i> avere se si trovasse nella tabella.
      * 
      * @return il numero di chiavi minori di {@code key}
      */
