@@ -1,5 +1,9 @@
 package org.gmnz.ddi.algs.searching;
 
+
+import java.util.LinkedList;
+
+
 public class BinarySearchSymbolTable<K extends Comparable<K>, V> extends AbstractSortedSymbolTable<K, V> {
 
     private K[] k;
@@ -26,19 +30,29 @@ public class BinarySearchSymbolTable<K extends Comparable<K>, V> extends Abstrac
     public int rank(K key) {
         checkNullKey(key);
 
-        int lo = 0;
-        int hi = n - 1;
+        // int lo = 0;
+        // int hi = n - 1;
 
-        while (lo <= hi) {
+        return rank(key, 0, n - 1);
+        // sostituita la versione iterativa con quella ricorsiva
+        /*
+         * while (lo <= hi) { int mid = lo + (hi - lo) / 2; int cmp =
+         * k[mid].compareTo(key); if (cmp < 0) hi = mid - 1; else if (cmp > 0) lo = mid
+         * + 1; else return mid; } return lo;
+         */ }
+
+
+
+    private int rank(K key, int lo, int hi) {
+        if (lo <= hi) {
             int mid = lo + (hi - lo) / 2;
-            int cmp = k[mid].compareTo(key);
+            int cmp = key.compareTo(k[mid]);
             if (cmp < 0)
-                hi = mid - 1;
+                return rank(key, lo, mid - 1);
+            if (cmp > 0)
+                return rank(key, mid + 1, hi);
             else
-                if (cmp > 0)
-                    lo = mid + 1;
-                else
-                    return mid;
+                return mid;
         }
         return lo;
     }
@@ -47,9 +61,9 @@ public class BinarySearchSymbolTable<K extends Comparable<K>, V> extends Abstrac
 
     @Override
     public V get(K key) {
+        checkNullKey(key);
         if (isEmpty())
             return null;
-        checkNullKey(key);
         int r = rank(key);
         if (r < n && k[r].equals(key))
             return v[r];
@@ -62,57 +76,72 @@ public class BinarySearchSymbolTable<K extends Comparable<K>, V> extends Abstrac
     @Override
     public void put(K key, V value) {
         checkNullKey(key);
+        int r = rank(key);
+        if (r < n && k[r].equals(key)) {
+            v[r] = value;
+            return;
+        }
         if (n == k.length)
             throw new UnsupportedOperationException("table full");
-
+        for (int i = n; i > r; i--) {
+            k[i] = k[i - 1];
+            v[i] = v[i - 1];
+        }
+        k[r] = key;
+        v[r] = value;
+        n++;
     }
 
 
 
     @Override
     public K min() {
-        // TODO Auto-generated method stub
-        return null;
+        return k[0];
     }
 
 
 
     @Override
     public K max() {
-        // TODO Auto-generated method stub
-        return null;
+        return k[n - 1];
     }
 
 
 
     @Override
     public K floor(K key) {
-        // TODO Auto-generated method stub
-        return null;
+        throw new UnsupportedOperationException();
     }
 
 
 
     @Override
     public K ceiling(K key) {
-        // TODO Auto-generated method stub
-        return null;
+        checkNullKey(key);
+        int r = rank(key);
+        return k[r];
     }
 
 
 
     @Override
     public K select(int r) {
-        // TODO Auto-generated method stub
-        return null;
+        if (r < n - 1)
+            return k[r];
+        else
+            throw new IllegalArgumentException();
     }
 
 
 
     @Override
     public Iterable<K> keys(K lo, K hi) {
-        // TODO Auto-generated method stub
-        return null;
+        LinkedList<K> keys = new LinkedList<>();
+        for (int i = rank(lo); i < rank(hi); i++)
+            keys.add(k[i]);
+        if (contains(hi))
+            keys.add(k[rank(hi)]);
+        return keys;
     }
 
 }
