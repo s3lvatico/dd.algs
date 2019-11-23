@@ -28,7 +28,7 @@ public interface SortedSymbolTable<K extends Comparable<K>, V> extends SymbolTab
     K floor(K key);
 
     /**
-     * @return la minore tra tutte le chiavi minori o uguali a {@code key}
+     * @return la minore tra tutte le chiavi maggiori o uguali a {@code key}
      */
     K ceiling(K key);
 

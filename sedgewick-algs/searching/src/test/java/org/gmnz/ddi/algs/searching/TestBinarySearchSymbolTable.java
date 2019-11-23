@@ -1,6 +1,8 @@
 package org.gmnz.ddi.algs.searching;
 
 
+import static org.junit.Assert.assertEquals;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -119,4 +121,160 @@ public class TestBinarySearchSymbolTable {
       st.put(4, "exceeding element");
    }
 
+
+
+   @Test
+   public void testMin() {
+      fillTableWithSampleData();
+      Assert.assertEquals(Integer.valueOf(3), st.min());
+   }
+
+
+
+   @Test
+   public void testMax() {
+      fillTableWithSampleData();
+      Assert.assertEquals(Integer.valueOf(15), st.max());
+   }
+
+
+
+   @Test
+   public void testFloor() {
+      Assert.assertNull(st.floor(64));
+      fillTableWithSampleData();
+      Assert.assertNull(st.floor(2));
+      Assert.assertEquals(Integer.valueOf(3), st.floor(3));
+      Assert.assertEquals(Integer.valueOf(15), st.floor(64));
+   }
+
+
+
+   @Test(expected = IllegalArgumentException.class)
+   public void testFloorWithNull() {
+      st.floor(null);
+   }
+
+
+
+   @Test
+   public void testCeiling() {
+      Assert.assertNull(st.ceiling(64));
+      fillTableWithSampleData();
+      Assert.assertNull(st.ceiling(64));
+      Assert.assertEquals(Integer.valueOf(12), st.ceiling(10));
+   }
+
+
+
+   @Test(expected = IllegalArgumentException.class)
+   public void testCeilingWithNullKey() {
+      st.ceiling(null);
+   }
+
+
+
+   @Test(expected = IllegalArgumentException.class)
+   public void testSelectNegativeRank() {
+      st.select(-2);
+   }
+
+
+
+   @Test(expected = IllegalArgumentException.class)
+   public void testSelectExcessiveRank() {
+      st.select(DEFAULT_TABLE_SIZE);
+   }
+
+
+
+   @Test
+   public void testSelect() {
+      fillTableWithSampleData();
+      // 12 è la chiave di rango 3 (cioè ha 3 chiavi dietro di sé, infatti sono 3, 6 e
+      // 9)
+      Assert.assertEquals(Integer.valueOf(12), st.select(3));
+
+      // deve valere l'identità select(rank(k)) = k per ogni k della ST
+      Assert.assertEquals(Integer.valueOf(9), st.select(st.rank(9)));
+
+      // deve valere anche l'identità inversa: rank(select(r)) = r per ogni r valido
+      Assert.assertEquals(Integer.valueOf(3), Integer.valueOf(st.rank(st.select(3))));
+   }
+
+
+
+   @Test
+   public void testKeysSet() {
+      st.keys().forEach(t -> {
+         Assert.fail();
+      });
+
+      fillTableWithSampleData();
+
+      StringBuilder sbValues = new StringBuilder();
+      st.keys().forEach(n -> {
+         sbValues.append(st.get(n));
+      });
+      Assert.assertEquals("ABCDE", sbValues.toString());
+   }
+
+
+
+   @Test
+   public void testSizeRanged() {
+      fillTableWithSampleData();
+      // indici in ordine sbagliato, size == 0
+      Assert.assertEquals(0, st.size(6, 3));
+
+      Assert.assertEquals(3, st.size(6, 12));
+      Assert.assertEquals(3, st.size(5, 13));
+   }
+
+
+
+   @Test(expected = IllegalArgumentException.class)
+   public void testSizeRangedWithLoNull() {
+      st.size(null, Integer.valueOf(2));
+   }
+
+
+
+   @Test(expected = IllegalArgumentException.class)
+   public void testSizeRangedWithHiNull() {
+      st.size(Integer.valueOf(2), null);
+   }
+
+
+
+   @Test
+   public void testKeysRangedWithNulls() {
+      try {
+         st.keys(null, Integer.valueOf(1));
+         Assert.fail("should've thrown exception");
+      } catch (IllegalArgumentException e) {
+         // ok
+      }
+      try {
+         st.keys(Integer.valueOf(1), null);
+         Assert.fail("should've thrown exception");
+      } catch (IllegalArgumentException e) {
+         // ok
+      }
+   }
+
+
+
+   @Test
+   public void testKeysRanged() {
+      st.keys(3, 3).forEach(key -> {
+         Assert.fail("expecting an empty set");
+      });
+      fillTableWithSampleData();
+      StringBuilder sb = new StringBuilder();
+      st.keys(6, 12).forEach(key -> {
+         sb.append(key).append(",");
+      });
+      assertEquals("6,9,12,", sb.toString());
+   }
 }

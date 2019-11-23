@@ -1,6 +1,7 @@
 package org.gmnz.ddi.algs.searching;
 
 
+import java.util.HashSet;
 import java.util.LinkedList;
 
 
@@ -110,7 +111,16 @@ public class BinarySearchSymbolTable<K extends Comparable<K>, V> extends Abstrac
 
     @Override
     public K floor(K key) {
-        throw new UnsupportedOperationException();
+        checkNullKey(key);
+        if (isEmpty())
+            return null;
+        int r = rank(key);
+        if (contains(key))
+            return k[r];
+        if (r <= 0)
+            return null;
+        else
+            return k[r - 1];
     }
 
 
@@ -119,14 +129,17 @@ public class BinarySearchSymbolTable<K extends Comparable<K>, V> extends Abstrac
     public K ceiling(K key) {
         checkNullKey(key);
         int r = rank(key);
-        return k[r];
+        if (r >= n)
+            return null;
+        else
+            return k[r];
     }
 
 
 
     @Override
     public K select(int r) {
-        if (r < n - 1)
+        if (0 <= r && r < n)
             return k[r];
         else
             throw new IllegalArgumentException();
@@ -136,6 +149,10 @@ public class BinarySearchSymbolTable<K extends Comparable<K>, V> extends Abstrac
 
     @Override
     public Iterable<K> keys(K lo, K hi) {
+        checkNullKey(lo);
+        checkNullKey(hi);
+        if (isEmpty())
+            return new HashSet<>();
         LinkedList<K> keys = new LinkedList<>();
         for (int i = rank(lo); i < rank(hi); i++)
             keys.add(k[i]);

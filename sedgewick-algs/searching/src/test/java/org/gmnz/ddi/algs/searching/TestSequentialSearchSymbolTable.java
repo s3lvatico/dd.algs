@@ -1,9 +1,11 @@
 package org.gmnz.ddi.algs.searching;
 
+
 import java.util.function.Consumer;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
 
 public class TestSequentialSearchSymbolTable {
 
@@ -14,16 +16,22 @@ public class TestSequentialSearchSymbolTable {
         st = new SequentialSearchSymbolTable<>();
     }
 
+
+
     @Test
     public void testPut() {
         st.put(64, "Commodore");
         Assert.assertEquals("Commodore", st.get(64));
     }
 
+
+
     @Test(expected = IllegalArgumentException.class)
     public void testPutWithNull() {
         st.put(null, "74");
     }
+
+
 
     @Test
     public void testGet() {
@@ -33,10 +41,14 @@ public class TestSequentialSearchSymbolTable {
         Assert.assertTrue(st.get(64).equals("C"));
     }
 
+
+
     @Test(expected = IllegalArgumentException.class)
     public void testGetWithNull() {
         st.get(null);
     }
+
+
 
     @Test
     public void testDelete() {
@@ -52,10 +64,14 @@ public class TestSequentialSearchSymbolTable {
         Assert.assertNull(st.get(64));
     }
 
+
+
     @Test(expected = IllegalArgumentException.class)
     public void testDeleteWithNull() {
         st.delete(null);
     }
+
+
 
     @Test
     public void testSize() {
@@ -68,6 +84,8 @@ public class TestSequentialSearchSymbolTable {
         st.delete(2);
         Assert.assertEquals(1, st.size());
     }
+
+
 
     @Test
     public void testKeysSet() {
@@ -86,12 +104,16 @@ public class TestSequentialSearchSymbolTable {
         Assert.assertEquals("ABC", sbValues.toString());
     }
 
+
+
     @Test
     public void testContains() {
         st.put(64, "C");
         Assert.assertTrue(st.contains(64));
         Assert.assertFalse(st.contains(42));
     }
+
+
 
     @Test
     public void testIsEmpty() {
