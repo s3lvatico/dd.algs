@@ -88,16 +88,30 @@ public class BinarySearchTree<K extends Comparable<K>, V> extends AbstractSorted
 
    @Override
    public K min() {
-      // TODO Auto-generated method stub
-      return null;
+      if (root == null)
+         return null;
+      return min(root).key;
+   }
+
+
+
+   private Node min(Node x) {
+      return x.left == null ? x : x.left;
    }
 
 
 
    @Override
    public K max() {
-      // TODO Auto-generated method stub
-      return null;
+      if (root == null)
+         return null;
+      return max(root).key;
+   }
+
+
+
+   private Node max(Node x) {
+      return x.right == null ? x : x.right;
    }
 
 

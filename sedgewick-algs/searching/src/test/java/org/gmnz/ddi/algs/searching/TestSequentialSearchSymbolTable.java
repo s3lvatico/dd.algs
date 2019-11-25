@@ -1,7 +1,6 @@
 package org.gmnz.ddi.algs.searching;
 
 
-import java.util.function.Consumer;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
