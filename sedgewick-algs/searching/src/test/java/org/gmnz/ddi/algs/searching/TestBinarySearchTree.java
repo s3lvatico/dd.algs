@@ -9,10 +9,24 @@ import org.junit.Test;
 public class TestBinarySearchTree {
 
    private BinarySearchTree<Integer, String> bst;
+   private static final String[] ARR_SEARCH_EXAMPLE = { "S", "E", "A", "R", "C", "H", "E", "X", "A", "M", "P", "L", "E" };
+
+   private BinarySearchTree<String, Integer> searchExampleBst;
 
    @Before
    public void beforeEachTest() {
       bst = new BinarySearchTree<>();
+      searchExampleBst = new BinarySearchTree<>();
+   }
+
+
+
+   private void fillWithSearchExample() {
+      int value = 0;
+      for (String s : ARR_SEARCH_EXAMPLE) {
+         searchExampleBst.put(s, value++);
+      }
+
    }
 
 
@@ -50,4 +64,64 @@ public class TestBinarySearchTree {
       bst.put(64, "C=64 my great love");
       Assert.assertEquals("C=64 my great love", bst.get(64));
    }
+
+
+
+   @Test
+   public void testFloor() {
+      fillWithSearchExample();
+      Assert.assertEquals("M", searchExampleBst.floor("O"));
+      Assert.assertEquals("X", searchExampleBst.floor("X"));
+      Assert.assertEquals("A", searchExampleBst.floor("A"));
+      Assert.assertEquals("A", searchExampleBst.floor("B"));
+      Assert.assertEquals("C", searchExampleBst.floor("D"));
+      Assert.assertNull(searchExampleBst.floor("@"));
+   }
+
+
+
+   @Test(expected = IllegalArgumentException.class)
+   public void testFloorWithNullKey() {
+      fillWithSearchExample();
+      searchExampleBst.floor(null);
+   }
+
+
+
+   @Test(expected = IllegalArgumentException.class)
+   public void testCeilingWithNullKey() {
+      fillWithSearchExample();
+      searchExampleBst.ceiling(null);
+   }
+
+
+
+   @Test
+   public void testCeiling() {
+      fillWithSearchExample();
+      Assert.assertNull(searchExampleBst.ceiling("Y"));
+      Assert.assertEquals("A", searchExampleBst.ceiling("A"));
+      Assert.assertEquals("C", searchExampleBst.ceiling("B"));
+      Assert.assertEquals("E", searchExampleBst.ceiling("D"));
+      Assert.assertEquals("E", searchExampleBst.ceiling("E"));
+      Assert.assertEquals("H", searchExampleBst.ceiling("F"));
+      Assert.assertEquals("H", searchExampleBst.ceiling("G"));
+      Assert.assertEquals("L", searchExampleBst.ceiling("I"));
+      Assert.assertEquals("L", searchExampleBst.ceiling("J"));
+      Assert.assertEquals("L", searchExampleBst.ceiling("K"));
+      Assert.assertEquals("L", searchExampleBst.ceiling("L"));
+      Assert.assertEquals("M", searchExampleBst.ceiling("M"));
+      Assert.assertEquals("P", searchExampleBst.ceiling("N"));
+      Assert.assertEquals("P", searchExampleBst.ceiling("O"));
+      Assert.assertEquals("P", searchExampleBst.ceiling("P"));
+      Assert.assertEquals("R", searchExampleBst.ceiling("Q"));
+      Assert.assertEquals("R", searchExampleBst.ceiling("R"));
+      Assert.assertEquals("S", searchExampleBst.ceiling("S"));
+      Assert.assertEquals("X", searchExampleBst.ceiling("T"));
+      Assert.assertEquals("X", searchExampleBst.ceiling("U"));
+      Assert.assertEquals("X", searchExampleBst.ceiling("V"));
+      Assert.assertEquals("X", searchExampleBst.ceiling("W"));
+      Assert.assertEquals("X", searchExampleBst.ceiling("X"));
+   }
+
 }

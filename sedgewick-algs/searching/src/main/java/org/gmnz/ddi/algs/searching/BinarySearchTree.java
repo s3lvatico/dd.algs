@@ -35,6 +35,16 @@ public class BinarySearchTree<K extends Comparable<K>, V> extends AbstractSorted
          this.value = value;
          this.n = n;
       }
+
+
+
+      @Override
+      public String toString() {
+         StringBuilder sb = new StringBuilder("(");
+         sb.append(key.toString()).append(", ");
+         sb.append(value.toString()).append(")");
+         return sb.toString();
+      }
    }
 
    private int size(Node x) {
