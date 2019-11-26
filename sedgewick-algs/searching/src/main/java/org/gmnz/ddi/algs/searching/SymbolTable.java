@@ -21,13 +21,15 @@ public interface SymbolTable<K, V> {
     void put(K key, V value);
 
     /**
-     * Restituisce il valore associato alla chiave specificata.
+     * Restituisce il valore associato alla chiave specificata, oppure
+     * <code>null</code> se la chiave non è presente nella ST.
      * <p>
      * Le implementazioni dovrebbero lanciare un'eccezione nel caso si specificasse
      * una chiave nulla.
      * 
-     * @param key chiave (non {@code null})
-     * @return il valore associato alla chiave specificata, oppure {@code null}.
+     * @param key chiave (non <code>null</code>)
+     * @return il valore associato alla chiave specificata, oppure
+     * <code>null</code>.
      */
     V get(K key);
 
