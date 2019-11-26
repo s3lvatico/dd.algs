@@ -83,7 +83,8 @@ public class BinarySearchTree<K extends Comparable<K>, V> extends AbstractSorted
    @Override
    public V get(K key) {
       checkNullKey(key);
-      return get(root, key).value;
+      Node x = get(root, key);
+      return x != null ? x.value : null;
    }
 
 
