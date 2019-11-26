@@ -124,4 +124,22 @@ public class TestBinarySearchTree {
       Assert.assertEquals("X", searchExampleBst.ceiling("X"));
    }
 
+
+
+   @Test
+   public void testMin() {
+      Assert.assertNull(bst.min());
+      fillWithSearchExample();
+      Assert.assertEquals("A", searchExampleBst.min());
+   }
+
+
+
+   @Test
+   public void testMax() {
+      Assert.assertNull(bst.max());
+      fillWithSearchExample();
+      Assert.assertEquals("X", searchExampleBst.max());
+   }
+
 }
