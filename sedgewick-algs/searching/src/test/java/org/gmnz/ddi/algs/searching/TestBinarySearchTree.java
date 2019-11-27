@@ -142,4 +142,20 @@ public class TestBinarySearchTree {
       Assert.assertEquals("X", searchExampleBst.max());
    }
 
+
+
+   @Test
+   public void select() {
+      fillWithSearchExample();
+      Assert.assertEquals("A", searchExampleBst.select(0));
+      Assert.assertEquals("C", searchExampleBst.select(1));
+      Assert.assertEquals("E", searchExampleBst.select(2));
+   }
+
+
+
+   @Test(expected = IllegalArgumentException.class)
+   public void selectWithWrongRank() {
+      bst.select(-1);
+   }
 }

@@ -289,18 +289,35 @@ public class BinarySearchTree<K extends Comparable<K>, V> extends AbstractSorted
 
 
 
-   @Override
-   public int rank(K key) {
-      // TODO Auto-generated method stub
-      return 0;
+   private Node select(Node x, int r) {
+      if (x == null)
+         return null;
+      int t = size(x.left);
+      if (t == r)
+         return x;
+      else
+         if (t > r)
+            return select(x.left, r);
+         else
+            return select(x.right, r - t - 1);
    }
 
 
 
    @Override
    public K select(int r) {
+      if (r < 0)
+         throw new IllegalArgumentException();
+      Node x = select(root, r);
+      return x != null ? x.key : null;
+   }
+
+
+
+   @Override
+   public int rank(K key) {
       // TODO Auto-generated method stub
-      return null;
+      return 0;
    }
 
 
