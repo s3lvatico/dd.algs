@@ -328,6 +328,27 @@ public class BinarySearchTree<K extends Comparable<K>, V> extends AbstractSorted
       return null;
    }
 
+
+
+   private Node deleteMin(Node x) {
+      if (x == null)
+         return null;
+      if (x.left != null) {
+         x.left = deleteMin(x.left);
+         x.n = 1 + size(x.left) + size(x.right);
+         return x;
+      } else
+         return x.right;
+
+   }
+
+
+
+   @Override
+   public void deleteMin() {
+      root = deleteMin(root);
+   }
+
    // TODO delete(K) va implementata adeguatamente
 
 }

@@ -158,4 +158,12 @@ public class TestBinarySearchTree {
    public void selectWithWrongRank() {
       bst.select(-1);
    }
+
+
+
+   @Test
+   public void testDeleteMin() {
+      bst.deleteMin();
+      fillWithSearchExample();
+   }
 }
