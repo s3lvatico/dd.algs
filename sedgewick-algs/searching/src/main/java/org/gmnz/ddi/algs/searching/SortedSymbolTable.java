@@ -46,7 +46,10 @@ public interface SortedSymbolTable<K extends Comparable<K>, V> extends SymbolTab
     int rank(K key);
 
     /**
-     * Selezione
+     * Selezione.
+     * <p>
+     * Il rango di una chiave è il numero delle chiavi (strettamente) minori della
+     * chiave stessa.
      * 
      * @return la chiave di rango {@code r}
      */
