@@ -10,8 +10,8 @@ public class BinarySearchTree<K extends Comparable<K>, V> extends AbstractSorted
    /**
     * Incapsula il nodo dell'albero.
     * <p>
-    * Mantiene la chiave della ST, il valore corrispondente e i riferimenti ai sottoalberi sinistro
-    * e destro.
+    * Mantiene la chiave della ST, il valore corrispondente e i riferimenti ai
+    * sottoalberi sinistro e destro.
     */
    private class Node {
 
@@ -63,9 +63,10 @@ public class BinarySearchTree<K extends Comparable<K>, V> extends AbstractSorted
 
 
    /**
-    * Cerca la chiave {@code key} attraversando l'albero a partire dal nodo {@code x}.
+    * Cerca la chiave {@code key} attraversando l'albero a partire dal nodo
+    * {@code x}.
     * 
-    * @param x   nodo in cui cercare
+    * @param x nodo in cui cercare
     * @param key chiave
     * @return il Node che contiene la chiave, altrimenti {@code null}
     */
@@ -78,13 +79,13 @@ public class BinarySearchTree<K extends Comparable<K>, V> extends AbstractSorted
          // cerca nel sottoalbero sinistro
          return get(x.left, key);
       else
-      // se la chiave cercata è più grande di quella del nodo corrente
-      if (cmp > 0)
-         // cerca nel sottoalbero destro
-         return get(x.right, key);
-      else
-         // altrimenti la chiave cercata è proprio nel nodo corrente
-         return x;
+         // se la chiave cercata è più grande di quella del nodo corrente
+         if (cmp > 0)
+            // cerca nel sottoalbero destro
+            return get(x.right, key);
+         else
+            // altrimenti la chiave cercata è proprio nel nodo corrente
+            return x;
    }
 
 
@@ -99,14 +100,15 @@ public class BinarySearchTree<K extends Comparable<K>, V> extends AbstractSorted
 
 
    /**
-    * Inserisce nell'albero la chiave e il valore specificati, a partire dal nodo specificato,
-    * mantenendo la proprietà del BST. Se la chiave è presente nel BST ne sostituisce il valore.
+    * Inserisce nell'albero la chiave e il valore specificati, a partire dal nodo
+    * specificato, mantenendo la proprietà del BST. Se la chiave è presente nel BST
+    * ne sostituisce il valore.
     * 
-    * @param x     nodo da controllare per l'inserimento
-    * @param key   chiave
+    * @param x nodo da controllare per l'inserimento
+    * @param key chiave
     * @param value valore
-    * @return il nodo il cui valore è stato aggiornato, se la chiave è già presente nel BST,
-    *         altrimenti restituisce il nuovo nodo creato.
+    * @return il nodo il cui valore è stato aggiornato, se la chiave è già presente
+    * nel BST, altrimenti restituisce il nuovo nodo creato.
     */
    private Node put(Node x, K key, V value) {
       // se il nodo da controllare è nullo
@@ -122,14 +124,14 @@ public class BinarySearchTree<K extends Comparable<K>, V> extends AbstractSorted
          // aggiorna/crea da qualche parte nel sottoalbero sinistro
          x.left = put(x.left, key, value);
       else
-      // altrimenti, se la chiave è maggiore di quella del nodo
-      if (cmp > 0)
-         // aggiorna/crea da qualche parte nel sottoalbero destro
-         x.right = put(x.right, key, value);
-      else
-         // altrimenti (la chiave specificata esiste nel BST), aggiorna il valore a
-         // quello specificato
-         x.value = value;
+         // altrimenti, se la chiave è maggiore di quella del nodo
+         if (cmp > 0)
+            // aggiorna/crea da qualche parte nel sottoalbero destro
+            x.right = put(x.right, key, value);
+         else
+            // altrimenti (la chiave specificata esiste nel BST), aggiorna il valore a
+            // quello specificato
+            x.value = value;
       // eseguita l'aggiunta o l'aggiornamento, aggiorna la dimensione di questo nodo
       x.n = 1 + size(x.left) + size(x.right);
       // restituisce questo nodo
@@ -195,10 +197,11 @@ public class BinarySearchTree<K extends Comparable<K>, V> extends AbstractSorted
    }
 
    /*
-    * Se la chiave è minore della chiave di un nodo, il suo floor *deve* essere nel sottoalbero
-    * sinistro. Se la chiave è maggiore della chiave di un nodo, il suo floor *può* essere nel
-    * sottoalbero destro, ma solo se tale sottoalbero contiene una chiave minore o uguale a quella
-    * specificata. Se c'è uguaglianza tra le chiavi allora il floor è identificato.
+    * Se la chiave è minore della chiave di un nodo, il suo floor *deve* essere nel
+    * sottoalbero sinistro. Se la chiave è maggiore della chiave di un nodo, il suo
+    * floor *può* essere nel sottoalbero destro, ma solo se tale sottoalbero
+    * contiene una chiave minore o uguale a quella specificata. Se c'è uguaglianza
+    * tra le chiavi allora il floor è identificato.
     */
 
 
@@ -220,17 +223,17 @@ public class BinarySearchTree<K extends Comparable<K>, V> extends AbstractSorted
          // l'inf è nel sottoalbero sinistro
          return floor(x.left, key);
       else
-      // se la chiave è uguale a quella del nodo
-      if (cmp == 0)
-         // l'inf è nel nodo stesso (è la sua chiave)
-         return x;
-      else {
-         // la chiave è maggiore di quella del nodo, quindi controllo se esiste nel
-         // sottoalbero destro una chiave minore di quella specificata
-         Node t = floor(x.right, key);
-         // se esiste, l'inf è il nodo trovato, altrimenti è in questo stesso nodo
-         return t != null ? t : x;
-      }
+         // se la chiave è uguale a quella del nodo
+         if (cmp == 0)
+            // l'inf è nel nodo stesso (è la sua chiave)
+            return x;
+         else {
+            // la chiave è maggiore di quella del nodo, quindi controllo se esiste nel
+            // sottoalbero destro una chiave minore di quella specificata
+            Node t = floor(x.right, key);
+            // se esiste, l'inf è il nodo trovato, altrimenti è in questo stesso nodo
+            return t != null ? t : x;
+         }
 
    }
 
@@ -267,11 +270,12 @@ public class BinarySearchTree<K extends Comparable<K>, V> extends AbstractSorted
          // se il minimo degli estremanti non è nel sottoalbero sinistro, restituisco la
          // chiave di questo nodo
          return t != null ? t : x;
-      } else if (cmp == 0)
-         return x;
-      else // la chiave di questo nodo è un minorante per la chiave specificata ==> cerco
-           // nel sottoalbero destro
-         return ceiling(x.right, key);
+      } else
+         if (cmp == 0)
+            return x;
+         else // la chiave di questo nodo è un minorante per la chiave specificata ==> cerco
+              // nel sottoalbero destro
+            return ceiling(x.right, key);
    }
 
 
@@ -291,19 +295,22 @@ public class BinarySearchTree<K extends Comparable<K>, V> extends AbstractSorted
          return null;
       // determina la dimensione del sottoalbero sx
       int t = size(x.left);
-      // se la dimensione è pari al rango specificato allora esistono esattamente r chiavi prima
+      // se la dimensione è pari al rango specificato allora esistono esattamente r
+      // chiavi prima
       // della chiave corrente
       if (t == r)
          // quindi search hit
          return x;
       // altrimenti, se nel sottoalbero sx ci sono più di r chiavi
-      else if (t > r)
-         // si continua la ricerca nel sottoalbero sx
-         return select(x.left, r);
       else
-         // altrimenti si cerca nel sottoalbero dx la chiave che ha dimensione pari al numero di
-         // chiavi mancanti, che sono esattamente r - (t+1)
-         return select(x.right, r - t - 1);
+         if (t > r)
+            // si continua la ricerca nel sottoalbero sx
+            return select(x.left, r);
+         else
+            // altrimenti si cerca nel sottoalbero dx la chiave che ha dimensione pari al
+            // numero di
+            // chiavi mancanti, che sono esattamente r - (t+1)
+            return select(x.right, r - t - 1);
    }
 
 
@@ -317,18 +324,22 @@ public class BinarySearchTree<K extends Comparable<K>, V> extends AbstractSorted
    }
 
 
+
    private int rank(Node x, K key) {
       if (x == null)
          return 0;
       int cmp = key.compareTo(x.key);
       if (cmp < 0)
          return rank(x.left, key);
-      else if (cmp == 0)
-         return size(x.left);
-      else // cmp > 0
-         return size(x.left) + 1 + rank(x.right, key);
+      else
+         if (cmp == 0)
+            return size(x.left);
+         else // cmp > 0
+            return size(x.left) + 1 + rank(x.right, key);
 
    }
+
+
 
    @Override
    public int rank(K key) {
@@ -346,8 +357,10 @@ public class BinarySearchTree<K extends Comparable<K>, V> extends AbstractSorted
    }
 
 
+
    /**
     * TODO fare javadoc
+    * 
     * @param x
     * @return
     */
