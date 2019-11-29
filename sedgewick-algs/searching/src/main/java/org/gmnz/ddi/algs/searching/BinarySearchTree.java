@@ -334,16 +334,34 @@ public class BinarySearchTree<K extends Comparable<K>, V> extends AbstractSorted
 
 
 
+   /**
+    * Rango di una chiave, da ricercare nel nodo corrente (ricorsivo).
+    * 
+    * @param x nodo corrente
+    * @param key chiave di cui trovare il rango (per ipotesi non nulla)
+    * @return rango della chiave (intero non negativo)
+    */
    private int rank(Node x, K key) {
+      // se il nodo corrente è nullo non esiste alcuna chiave minore di quella
+      // specificata
       if (x == null)
+         // ==> torna 0
          return 0;
+      // confronta la chiave con quella del nodo corrente
       int cmp = key.compareTo(x.key);
+      // se la chiave è più piccola di quella del nodo corrente
       if (cmp < 0)
+         // cerco il rango nel sottoalbero sx
          return rank(x.left, key);
       else
-         if (cmp == 0)
+         if (cmp == 0) // search hit
+            // la dimensione del sottoalbero sx dice esattamente quante chiavi nell'albero
+            // sono strettamente minori di quella considerata ==> definizione esatta di
+            // rango
             return size(x.left);
-         else // cmp > 0
+         else // cmp > 0 ==> la chiave è maggiore di quella nel nodo corrente
+              // cerco il rango nel sottoalbero dx; il rango sarà almeno pari a
+              // rank(chiave-di-questo-nodo) + 1
             return size(x.left) + 1 + rank(x.right, key);
 
    }
