@@ -289,17 +289,27 @@ public class BinarySearchTree<K extends Comparable<K>, V> extends AbstractSorted
 
 
 
+   /**
+    * Trova il nodo di rango specificato a partire da un certo nodo.
+    * <p>
+    * Meotod ricorsivo sulla base della dimensione del sottoalbero sx del nodo
+    * corrente.
+    * 
+    * @param x nodo corrente
+    * @param r rango richiesto (per ipotesi >= 0)
+    * @return il nodo la cui chiave ha esattamente {@code r} chiavi precedenti,
+    * oppure {@code null}
+    */
    private Node select(Node x, int r) {
-      // se non esiste il nodo restituisce nullo
+      // se questo nodo non esiste restituisce null
       if (x == null)
          return null;
       // determina la dimensione del sottoalbero sx
       int t = size(x.left);
-      // se la dimensione è pari al rango specificato allora esistono esattamente r
-      // chiavi prima
-      // della chiave corrente
+      // la dimensione è pari al rango specificato ==> esistono esattamente r
+      // chiavi prima della chiave corrente
       if (t == r)
-         // quindi search hit
+         // search hit
          return x;
       // altrimenti, se nel sottoalbero sx ci sono più di r chiavi
       else
@@ -308,8 +318,7 @@ public class BinarySearchTree<K extends Comparable<K>, V> extends AbstractSorted
             return select(x.left, r);
          else
             // altrimenti si cerca nel sottoalbero dx la chiave che ha dimensione pari al
-            // numero di
-            // chiavi mancanti, che sono esattamente r - (t+1)
+            // numero di chiavi mancanti, che sono esattamente r - (t+1)
             return select(x.right, r - t - 1);
    }
 
@@ -344,7 +353,6 @@ public class BinarySearchTree<K extends Comparable<K>, V> extends AbstractSorted
    @Override
    public int rank(K key) {
       checkNullKey(key);
-      // rango della chiave
       return rank(root, key);
    }
 
@@ -359,21 +367,38 @@ public class BinarySearchTree<K extends Comparable<K>, V> extends AbstractSorted
 
 
    /**
-    * TODO fare javadoc
+    * Attraversa ricorsivamente l'albero fino a trovare il nodo che contiene la
+    * chiave minima, e la elimina dall'albero.
+    * <p>
+    * Controlla l'esistenza del sottoalbero sx e se esiste esegue la chiamata
+    * ricorsiva su di esso, altrimenti restituisce il sottoalbero dx del nodo
+    * corrente.
     * 
-    * @param x
-    * @return
+    * @param x nodo corrente, nella chiamata ricorsiva
+    * @return il sottoalbero destro del nodo corrente, oppure {@code null}
     */
    private Node deleteMin(Node x) {
+      // se il nodo corrente è nullo
       if (x == null)
+         // restituisce nullo
          return null;
+      // se c'è un sottoalbero sx
       if (x.left != null) {
+         // l'elemento minimo si trova nel sottoalbero sx ==> aggiorna il nodo puntato a
+         // sinistra
          x.left = deleteMin(x.left);
+         // e aggiorna la dimensione di questo sottoalbero
          x.n = 1 + size(x.left) + size(x.right);
+         // restituisce questo nodo per mantenere la ricorsività
          return x;
       } else
+         // poiché non esiste un sottoalbero sx, questo nodo è il nodo con la chiave
+         // minima dell'albero. Tuttavia non è detto che questo nodo abbia un sottoalbero
+         // dx (ossia nodi con chiavi maggiori di quella corrente). Se questo è il caso,
+         // il sottoalbero (solo destro, a questo punto) di questo nodo deve diventare
+         // sottoalbero diretto del nodo padre del nodo corrente, perciò è sufficiente
+         // restituire il primo nodo del sottoalbero dx.
          return x.right;
-
    }
 
 
