@@ -146,6 +146,7 @@ public class TestBinarySearchTree {
 
    @Test
    public void select() {
+      Assert.assertNull(searchExampleBst.select(2));
       fillWithSearchExample();
       Assert.assertEquals("A", searchExampleBst.select(0));
       Assert.assertEquals("C", searchExampleBst.select(1));
@@ -165,5 +166,21 @@ public class TestBinarySearchTree {
    public void testDeleteMin() {
       bst.deleteMin();
       fillWithSearchExample();
+      searchExampleBst.deleteMin(); // deve eliminare la "A"
+      Assert.assertNull(searchExampleBst.get("A"));
+      Assert.assertEquals(0, searchExampleBst.rank("C"));
+
+      searchExampleBst.deleteMin(); // deve eliminare la "C"
+      Assert.assertNull(searchExampleBst.get("C"));
+      Assert.assertEquals(0, searchExampleBst.rank("E"));
+      Assert.assertEquals("E", searchExampleBst.min());
+      
+      // ora se elimino la "E" , la "R" si aggancia sotto la root, e il nuovo minimo
+      // deve essere la "H"
+      searchExampleBst.deleteMin();
+      Assert.assertEquals("H", searchExampleBst.min());
+      // e la "R" deve avere 4 chiavi prima di lei
+      Assert.assertEquals(4, searchExampleBst.rank("R"));
+
    }
 }
