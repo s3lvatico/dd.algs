@@ -346,7 +346,11 @@ public class BinarySearchTree<K extends Comparable<K>, V> extends AbstractSorted
    }
 
 
-
+   /**
+    * TODO fare javadoc
+    * @param x
+    * @return
+    */
    private Node deleteMin(Node x) {
       if (x == null)
          return null;
