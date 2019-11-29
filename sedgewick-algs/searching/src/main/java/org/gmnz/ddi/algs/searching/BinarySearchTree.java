@@ -317,11 +317,24 @@ public class BinarySearchTree<K extends Comparable<K>, V> extends AbstractSorted
    }
 
 
+   private int rank(Node x, K key) {
+      if (x == null)
+         return 0;
+      int cmp = key.compareTo(x.key);
+      if (cmp < 0)
+         return rank(x.left, key);
+      else if (cmp == 0)
+         return size(x.left);
+      else // cmp > 0
+         return size(x.left) + 1 + rank(x.right, key);
+
+   }
 
    @Override
    public int rank(K key) {
-      // TODO Auto-generated method stub
-      return 0;
+      checkNullKey(key);
+      // rango della chiave
+      return rank(root, key);
    }
 
 
