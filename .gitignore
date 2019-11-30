@@ -1,5 +1,14 @@
+# maven
 target/
+
+# eclipse
 .classpath
 .project
 .settings/
+
+# mac files
 .DS_Store
+
+# intellij idea files
+.idea
+*.iml
