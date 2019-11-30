@@ -248,6 +248,32 @@ public class TestBinarySearchTree {
       Assert.assertNotNull(searchExampleBst.get(("R")));
       searchExampleBst.delete("R");
       Assert.assertNull(searchExampleBst.get(("R")));
+   }
 
+
+
+   @Test
+   public void testDeleteNodeWithTwoSubtrees() {
+      fillWithSearchExample();
+      searchExampleBst.delete("M");
+      Assert.assertNull(searchExampleBst.get(("M")));
+   }
+
+
+
+   @Test
+   public void testDeleteNodeWithLeftSubtree() {
+      fillWithSearchExample();
+      searchExampleBst.delete("R");
+      Assert.assertNull(searchExampleBst.get(("R")));
+   }
+
+
+
+   @Test
+   public void testDeleteNodeWithRightSubtree() {
+      fillWithSearchExample();
+      searchExampleBst.delete("H");
+      Assert.assertNull(searchExampleBst.get(("H")));
    }
 }
