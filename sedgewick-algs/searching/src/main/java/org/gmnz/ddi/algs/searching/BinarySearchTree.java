@@ -426,6 +426,103 @@ public class BinarySearchTree<K extends Comparable<K>, V> extends AbstractSorted
       root = deleteMin(root);
    }
 
-   // TODO delete(K) va implementata adeguatamente
+
+
+   /**
+    * Scorre l'albero fino a trovare l'elemento massimo, lo elimina e restiuisce il
+    * suo sottoalbero sx. Grazie alla ricorsione questo sottoalbero si aggancia al
+    * nodo padre del nodo in cui si trovava la chiave massima.
+    * 
+    * @param x nodo corrente
+    * @return il nodo da agganciare al nodo padre del nodo eliminato
+    */
+   private Node deleteMax(Node x) {
+      // se il nodo corrente è nullo
+      if (x == null)
+         // restituisce nullo
+         return null;
+      // se non c'è un sottoalbero dx
+      if (x.right == null) // ho raggiunto il nodo con la massima chiave dell'albero
+         // tuttavia anche questo nodo può avere discendenti a sinistra (ogni altra
+         // chiave eventualmente presente deve stare a sinistra, essendo questo
+         // l'elemento massimo), perciò la si restituisce per agganciarla al sottoalbero
+         // dx del padre di questo nodo
+         return x.left;
+      else {
+         // altrimenti c'è un sottoalbero dx quindi il nodo con la chiave massima va
+         // cercato là
+         x.right = deleteMax(x.right);
+         // si aggiorna la dimensione di questo sottoabero
+         x.n = 1 + size(x.left) + size(x.right);
+         // restituisce questo nodo per chiudere la ricorsione
+         return x;
+      }
+   }
+
+
+
+   @Override
+   public void deleteMax() {
+      root = deleteMax(root);
+   }
+
+
+
+   private Node delete(Node x, K key) {
+      // se il nodo corrente è nullo, esce
+      if (x == null)
+         return null;
+      // confronta la chiave specificata con la chiave del nodo corrente
+      int cmp = key.compareTo(x.key);
+      if (cmp < 0) // la chiave è più piccola di quella nel nodo corrente
+         // cerco nel sottoalbero sx
+         x.left = delete(x.left, key);
+      else
+         if (cmp > 0) // la chiave è più grande di quella nel nodo corrente
+            // cerco nel sottoalbero dx
+            x.right = delete(x.right, key);
+         else { // search hit
+            // casi banali: se un sottoalbero è vuoto, basta restituire il puntatore
+            // all'altro sottoalbero
+            if (x.right == null)
+               return x.left;
+            if (x.left == null)
+               return x.right;
+            // ma se entrambi i sottoalberi NON sono nulli
+            // salvo un riferimento al nodo corrente (quello da cancellare)
+            Node d = x;
+            // il nodo da restituire deve essere l'immediato successore di questo nodo
+            // (successore nel senso di "nodo che contiene la chiave ceiling di quella di
+            // questo nodo")
+            x = min(d.right);
+            // il sottoalbero dx del nodo da restituire è il sottoalbero dx del nodo
+            // cancellato, privato però del nodo che ho fatto "emergere"; poiché ho fatto
+            // emergere l'elemento minimo di quel sottolabero, da quello stesso sottoalbero
+            // dovrò eliminare proprio l'elemento minimo.
+
+            // RICORDARE: deleteMin(), come altri metodi di manipolazione dell'albero,
+            // restituisce sempre un puntatore a un albero. Va ribadito (meglio se poi lo
+            // riporti nel javadoc) che restituisce un puntatore allo stesso BST dal quale
+            // però è stata eliminata la chiave più piccola. Solo attraverso le chiamate
+            // ricorsive (i.e. la ricorsiva restituzione di riferimenti ad altrettanti
+            // sottoalberi) avviene di fatto la cancellazione. Ma ricorda che comunque in
+            // uscita hai un puntatore a un BST.
+            x.right = deleteMin(d.right);
+            // il sottoalbero sx del nodo da restituire è proprio il sottoalbero sx del nodo
+            // cancellato
+            x.left = d.left;
+         }
+      // aggiorna la dimensione del sottoalbero che inizia nel nodo da restituire
+      x.n = 1 + size(x.left) + size(x.right);
+      return x;
+   }
+
+
+
+   @Override
+   public void delete(K key) {
+      checkNullKey(key);
+      root = delete(root, key);
+   }
 
 }

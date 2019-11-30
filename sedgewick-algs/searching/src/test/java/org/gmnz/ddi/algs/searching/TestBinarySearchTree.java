@@ -198,4 +198,56 @@ public class TestBinarySearchTree {
       fillWithSearchExample();
       Assert.assertEquals(7, searchExampleBst.rank("R"));
    }
+
+
+
+   @Test
+   public void testDeleteMax() {
+      searchExampleBst.deleteMax(); // fa niente, è vuoto
+      Assert.assertTrue(searchExampleBst.isEmpty());
+      fillWithSearchExample();
+      Assert.assertEquals(Integer.valueOf(7), searchExampleBst.get("X"));
+      Assert.assertEquals(Integer.valueOf(10), (Integer) searchExampleBst.size());
+
+      searchExampleBst.deleteMax();
+
+      Assert.assertNull(searchExampleBst.get("X"));
+      Assert.assertEquals(Integer.valueOf(9), (Integer) searchExampleBst.size());
+
+      searchExampleBst.deleteMax();
+
+      Assert.assertNull(searchExampleBst.get("S"));
+      Assert.assertEquals(Integer.valueOf(8), (Integer) searchExampleBst.size());
+
+      searchExampleBst.deleteMax();
+
+      Assert.assertNull(searchExampleBst.get("R"));
+      Assert.assertEquals(Integer.valueOf(7), (Integer) searchExampleBst.size());
+   }
+
+
+
+   @Test(expected = IllegalArgumentException.class)
+   public void testDeleteWithNullKey() {
+      fillWithSearchExample();
+      searchExampleBst.delete(null);
+   }
+
+
+
+   @Test
+   public void testDelete() {
+      searchExampleBst.delete("Q"); // succede niente, per ora il bst è vuoto
+      fillWithSearchExample();
+      searchExampleBst.delete("E");
+      Assert.assertNull(searchExampleBst.get(("E")));
+
+      searchExampleBst.delete("A");
+      Assert.assertNull(searchExampleBst.get(("A")));
+
+      Assert.assertNotNull(searchExampleBst.get(("R")));
+      searchExampleBst.delete("R");
+      Assert.assertNull(searchExampleBst.get(("R")));
+
+   }
 }
