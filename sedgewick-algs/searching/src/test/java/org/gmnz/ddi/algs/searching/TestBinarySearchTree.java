@@ -1,6 +1,8 @@
 package org.gmnz.ddi.algs.searching;
 
 
+import java.util.Iterator;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -275,5 +277,14 @@ public class TestBinarySearchTree {
       fillWithSearchExample();
       searchExampleBst.delete("H");
       Assert.assertNull(searchExampleBst.get(("H")));
+   }
+
+
+
+   @Test
+   public void keysWithEmptyBst() {
+      Iterator<String> keys = searchExampleBst.keys().iterator();
+      if (keys.hasNext())
+         Assert.fail();
    }
 }

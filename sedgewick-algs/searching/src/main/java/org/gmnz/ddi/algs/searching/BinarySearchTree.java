@@ -1,5 +1,13 @@
 package org.gmnz.ddi.algs.searching;
 
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.Queue;
+
+
 public class BinarySearchTree<K extends Comparable<K>, V> extends AbstractSortedSymbolTable<K, V> {
 
    /**
@@ -376,10 +384,51 @@ public class BinarySearchTree<K extends Comparable<K>, V> extends AbstractSorted
 
 
 
+   /**
+    * per recuperare le chiavi in ordine si attraversa l'albero con la strategia
+    * IN-ORDER (sottoalbero sx - radice - sottoalbero dx). L'elaborazione del nodo
+    * consiste nel controllare se la sua chiave è compresa nell'intervallo
+    * richiesto e, in caso positivo, aggiungerla alla coda.
+    * 
+    * @param x nodo corrente
+    * @param lo estremo sx
+    * @param hi estremo dx
+    * @param q coda in cui inserire le chiavi
+    */
+   private void keys(Node x, K lo, K hi, Queue<K> q) {
+      // terminazione della ricorsione; nodo nullo ==> return
+      if (x == null)
+         return;
+      // confronta gli estremi con il nodo corrente
+      int cmpLo = lo.compareTo(x.key);
+      int cmpHi = hi.compareTo(x.key);
+      if (cmpLo < 0) // attraversamento in-order ==> prima a sx
+         keys(x.left, lo, hi, q);
+      // poi il nodo
+      if (cmpLo <= 0 && cmpHi >= 0)
+         q.add(x.key);
+      if (cmpHi > 0)
+         keys(x.right, lo, hi, q);
+   }
+
+
+
    @Override
    public Iterable<K> keys(K lo, K hi) {
-      // TODO Auto-generated method stub
-      return null;
+      checkNullKey(lo);
+      checkNullKey(hi);
+      Queue<K> q = new LinkedList<>();
+      keys(root, lo, hi, q);
+      return q;
+   }
+
+
+
+   @Override
+   public Iterable<K> keys() {
+      if (isEmpty())
+         return new HashSet<>();
+      return keys(min(), max());
    }
 
 
