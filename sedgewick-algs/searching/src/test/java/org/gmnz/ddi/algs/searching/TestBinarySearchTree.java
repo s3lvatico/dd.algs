@@ -287,4 +287,28 @@ public class TestBinarySearchTree {
       if (keys.hasNext())
          Assert.fail();
    }
+
+
+
+   @Test
+   public void testKeys() {
+      fillWithSearchExample();
+      StringBuilder sb = new StringBuilder();
+      searchExampleBst.keys().forEach(s -> {
+         sb.append(s);
+      });
+      Assert.assertEquals("ACEHLMPRSX", sb.toString());
+   }
+
+
+
+   @Test
+   public void testKeysWithRange() {
+      fillWithSearchExample();
+      StringBuilder sb = new StringBuilder();
+      searchExampleBst.keys("H", "R").forEach(s -> {
+         sb.append(s);
+      });
+      Assert.assertEquals("HLMPR", sb.toString());
+   }
 }
