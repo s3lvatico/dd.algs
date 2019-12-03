@@ -125,8 +125,7 @@ public class RedBlackBst<K extends Comparable<K>, V> extends AbstractSortedSymbo
 
    @Override
    public int size() {
-      // TODO Auto-generated method stub
-      return 0;
+      return size(root);
    }
 
 }
