@@ -15,6 +15,12 @@ public class RedBlackBst<K extends Comparable<K>, V> extends AbstractSortedSymbo
       int n;
       Color color = Color.BLACK;
 
+      Node(K key, V value, int n, Color color) {
+         this.key = key;
+         this.value = value;
+         this.n = n;
+         this.color = color;
+      }
    }
 
    private Node root;
@@ -107,18 +113,73 @@ public class RedBlackBst<K extends Comparable<K>, V> extends AbstractSortedSymbo
 
 
 
+   private boolean isRed(Node x) {
+      return x != null && x.color == Color.RED;
+   }
+
+
+
+   private Node flipColors(Node x) {
+      x.color = Color.RED;
+      x.left.color = Color.BLACK;
+      x.right.color = Color.BLACK;
+      return x;
+   }
+
+
+
+   private Node put(Node x, K key, V value) {
+      if (x == null)
+         return new Node(key, value, 1, Color.RED);
+      int cmp = key.compareTo(x.key);
+      if (cmp < 0)
+         x.left = put(x.left, key, value);
+      else
+         if (cmp > 0)
+            x.right = put(x.right, key, value);
+         else
+            x.value = value;
+      if (isRed(x.right) && !isRed(x.left))
+         x = rotateLeft(x);
+      if (isRed(x.left) && isRed(x.left.left))
+         x = rotateRight(x);
+      if (isRed(x.left) && isRed(x.right))
+         x = flipColors(x);
+      x.n = 1 + size(x.left) + size(x.right);
+      return x;
+   }
+
+
+
    @Override
    public void put(K key, V value) {
-      // TODO Auto-generated method stub
+      checkNullKey(key);
+      root = put(root, key, value);
+      root.color = Color.BLACK;
+   }
 
+
+
+   private Node get(Node x, K key) {
+      if (x == null)
+         return null;
+      int cmp = key.compareTo(x.key);
+      if (cmp < 0)
+         return get(x.left, key);
+      else
+         if (cmp > 0)
+            return get(x.right, key);
+         else
+            return x;
    }
 
 
 
    @Override
    public V get(K key) {
-      // TODO Auto-generated method stub
-      return null;
+      checkNullKey(key);
+      Node x = get(root, key);
+      return x != null ? x.value : null;
    }
 
 
