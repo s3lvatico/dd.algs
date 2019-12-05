@@ -21,6 +21,17 @@ public class RedBlackBst<K extends Comparable<K>, V> extends AbstractSortedSymbo
          this.n = n;
          this.color = color;
       }
+
+      public String toString() {
+         StringBuilder sb = new StringBuilder("Node [ ");
+         sb.append(color).append(" | ");
+         sb.append(key).append(" : ");
+         sb.append(value).append(" | ");
+         sb.append(left != null ? "L" : ".");
+         sb.append(right != null ? "R" : ".");
+         sb.append(" ]");
+         return sb.toString();
+      }
    }
 
    private Node root;
