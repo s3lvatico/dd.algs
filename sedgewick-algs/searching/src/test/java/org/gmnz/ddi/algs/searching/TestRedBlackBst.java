@@ -31,4 +31,14 @@ public class TestRedBlackBst {
         fillWithTestData();
         Assert.assertNull(bst.get("Q"));
     }
+
+    @Test
+    public void testEasyQuestion() {
+        String EASY_QUESTION = "EASYQUTION";
+        for (int i = 0; i < EASY_QUESTION.length(); i++) {
+            String s = String.valueOf(EASY_QUESTION.charAt(i));
+            bst.put(s, i);
+        }
+        Assert.assertNotNull(bst.get("E"));
+    }
 }
