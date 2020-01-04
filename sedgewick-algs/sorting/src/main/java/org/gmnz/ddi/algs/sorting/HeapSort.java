@@ -42,7 +42,7 @@ public class HeapSort<K extends Comparable<K>> {
         heapify();
         heapsort();
 
-        //
+        @SuppressWarnings("unchecked")
         K[] sortedArray = (K[]) new Comparable[heap.length - 1];
         for (int i = 1; i < heap.length; i++) {
             sortedArray[i - 1] = heap[i];

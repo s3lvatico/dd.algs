@@ -1,6 +1,7 @@
 package org.gmnz.ddi.algs.sorting;
 
 
+import java.util.Arrays;
 import java.util.Random;
 
 
@@ -85,6 +86,12 @@ public final class ArrayUtils {
             i++;
         }
         return true;
+    }
+
+
+
+    public static boolean isSorted(Integer[] v) {
+        return isSorted(Arrays.asList(v).stream().mapToInt(Integer::intValue).toArray());
     }
 
 

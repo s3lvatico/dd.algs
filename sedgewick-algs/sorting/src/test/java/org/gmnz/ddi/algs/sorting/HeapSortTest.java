@@ -19,7 +19,7 @@ public class HeapSortTest {
       }
       Assert.assertFalse(ArrayUtils.isSorted(v));
       HeapSort<Integer> heapSort = new HeapSort<>(v);
-      Comparable[] sortedArray = heapSort.sort();
+      Integer[] sortedArray = heapSort.sort();
       Assert.assertTrue(ArrayUtils.isSorted(sortedArray));
    }
 
