@@ -1,28 +1,65 @@
 package org.gmnz.hr;
 
+
+import java.util.Stack;
+
+
 public class QueueWithStacks {
 
-    /*
-     * 
-     * coda con due pile.
-     * 
-     * bella sfida
-     * 
-     * s1 s2
-     * 
-     * +s1 -s1 con un elemento è stupido
-     * 
-     * con due elementi?
-     * 
-     * la cosa più stupida che mi viene in mente è che l'inserimento di un nuovo
-     * elemento in coda corrisponda sempre ad un push sul primo stack, mentre per l'operazione di dQ, detta n la dimensione dello stack, faccio n-1 volte pop(s1)+push(s2), poi pop(s1)
-     * 
-     * FIGATA; per ottimizzare un po' le cose posso mantenere un puntatore sempre alla pila attiva
-     * 
-     */
+    static class MyQueue<T> {
+
+        private enum Operation {
+            NONE, PUSH, POP_OR_PEEK;
+        }
+
+        private Stack<T> s1;
+        private Stack<T> s2;
+        private Operation lastOperation;
+
+        public MyQueue() {
+            s1 = new Stack<>();
+            s2 = new Stack<>();
+        }
+
+
+
+        public void enqueue(T t) {
+            if (lastOperation == Operation.POP_OR_PEEK)
+                while (!s2.isEmpty()) {
+                    s1.push(s2.pop());
+                }
+            s1.push(t);
+            lastOperation = Operation.PUSH;
+        }
+
+
+
+        public T dequeue() {
+            if (lastOperation == Operation.POP_OR_PEEK) {
+                return s2.size() > 0 ? s2.pop() : null;
+            } else
+                while (s1.size() > 1) {
+                    s2.push(s1.pop());
+                }
+            lastOperation = Operation.POP_OR_PEEK;
+            return s1.size() > 0 ? s1.pop() : null;
+        }
+
+
+
+        public T peek() {
+            if (lastOperation != Operation.POP_OR_PEEK) {
+                while (s1.size() > 0) {
+                    s2.push(s1.pop());
+                }
+                lastOperation = Operation.POP_OR_PEEK;
+            }
+            return s2.size() > 0 ? s2.peek() : null;
+        }
+
+    }
 
     public static void main(String[] args) {
 
     }
-
 }
