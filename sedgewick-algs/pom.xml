@@ -2,14 +2,14 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>sedgewick-algs</artifactId>
-	<version>0.1.1-SNAPSHOT</version>
+	<version>0.2</version>
 
 	<packaging>pom</packaging>
 
 	<parent>
 		<groupId>org.gmnz</groupId>
 		<artifactId>dd-training</artifactId>
-		<version>0.1.1-SNAPSHOT</version>
+		<version>0.2-SNAPSHOT</version>
 	</parent>
 
 	<modules>
@@ -17,6 +17,7 @@
 		<module>foundation</module>
 		<module>sorting</module>
 		<module>searching</module>
+		<module>graphs</module>
 	</modules>
 
 </project>
