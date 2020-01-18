@@ -1,11 +1,9 @@
 package org.gmnz.ddi.algs;
 
-
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
-
 
 class BasicGraph implements Graph {
 
@@ -15,14 +13,10 @@ class BasicGraph implements Graph {
         adjacencies = new LinkedHashMap<>(v);
     }
 
-
-
     @Override
     public int V() {
         return adjacencies.size();
     }
-
-
 
     @Override
     public int E() {
@@ -32,16 +26,17 @@ class BasicGraph implements Graph {
         return edges;
     }
 
-
-
     @Override
     public void addEdge(int v, int w) {
-        if (!adjacencies.containsKey(v))
-            adjacencies.put(v, new LinkedList<>());
-        adjacencies.get(v).add(w);
+        createEdge(v, w);
+        createEdge(w, v);
     }
 
-
+    private void createEdge(int x, int y) {
+        if (!adjacencies.containsKey(x))
+            adjacencies.put(x, new LinkedList<>());
+        adjacencies.get(x).add(y);
+    }
 
     @Override
     public Iterable<Integer> adj(int v) {
