@@ -1,7 +1,10 @@
 package org.gmnz.ddi.algs.sorting;
 
 
+import java.util.Arrays;
 import java.util.Random;
+import java.util.stream.Collectors;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -19,7 +22,12 @@ public class HeapSortTest {
       }
       Assert.assertFalse(ArrayUtils.isSorted(v));
       HeapSort<Integer> heapSort = new HeapSort<>(v);
-      Comparable[] sortedArray = heapSort.sort();
+      Comparable<Integer>[] arr = heapSort.sort();
+      // questo è delirante, ma è l' unico modo che ho trovato per trasformare un
+      // Comparable<Integer> in un Integer
+      Integer[] sortedArray = Arrays.asList(arr).stream().map(c -> {
+         return Integer.parseInt(c.toString());
+      }).collect(Collectors.toList()).toArray(new Integer[] {});
       Assert.assertTrue(ArrayUtils.isSorted(sortedArray));
    }
 
