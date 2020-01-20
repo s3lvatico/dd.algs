@@ -29,10 +29,16 @@ public class DfsPaths extends GraphPaths {
 
 
     private void dfs(int v) {
+        // se ho già visitato questo vertice, me ne vado
+        if (marked[v])
+            return;
+        // marco il vertice come visitato
         marked[v] = true;
-        for (int w : g.adj(v))
-            if (!marked[w]) {
+        for (int w : g.adj(v)) // per ogni vertice adiacente
+            if (!marked[w]) { // se ancora non l'ho visitato
+                // registro il collegamento
                 edgeTo[w] = v;
+                // proseguo in profondità
                 dfs(w);
             }
     }
