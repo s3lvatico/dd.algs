@@ -80,6 +80,7 @@ public class GraphUtils {
       System.out.println("Main graph info");
       System.out.println(toString(g));
       System.out.printf("Maximum vertex degree: %2d, %5sAverage degree: %2.2f%n", maxDegree(g), "", averageDegree(g));
+      System.out.printf("Self loops: %2d%n", numberOfSelfLoops(g));
       System.out.print("Vertex degrees: ");
       for (int i = 0; i < g.V(); i++) {
          System.out.printf("%2d[%d]  ", i, degree(g, i));
