@@ -8,9 +8,11 @@ import java.util.List;
 class BasicGraph implements Graph {
 
     private LinkedHashMap<Integer, List<Integer>> adjacencies;
+    private int edges;
 
     BasicGraph(int v) {
         adjacencies = new LinkedHashMap<>(v);
+        edges = 0;
     }
 
     @Override
@@ -20,9 +22,6 @@ class BasicGraph implements Graph {
 
     @Override
     public int E() {
-        int edges = 0;
-        for (Integer v : adjacencies.keySet())
-            edges += adjacencies.get(v).size();
         return edges;
     }
 
@@ -30,6 +29,7 @@ class BasicGraph implements Graph {
     public void addEdge(int v, int w) {
         createEdge(v, w);
         createEdge(w, v);
+        edges++;
     }
 
     private void createEdge(int x, int y) {

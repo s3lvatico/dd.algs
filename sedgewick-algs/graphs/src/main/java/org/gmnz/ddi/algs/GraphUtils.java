@@ -36,11 +36,11 @@ public class GraphUtils {
    /**
     * grado medio (dei vertici) del grafo
     */
-   public static int averageDegree(Graph g) {
+   public static double averageDegree(Graph g) {
       /*
        * Ragiona: ogni arco ha esattamente due vertici...
        */
-      return 2 * g.E() / g.V();
+      return 2f * g.E() / (double) g.V();
    }
 
 
@@ -58,11 +58,13 @@ public class GraphUtils {
       return count / 2;
    }
 
+
+
    public static String toString(Graph g) {
       StringBuilder sb = new StringBuilder("Vertices: ");
       sb.append(Integer.toString(g.V())).append(", Edges: ");
       sb.append(Integer.toString(g.E())).append("\n");
-      for(int i = 0; i < g.V(); i++) {
+      for (int i = 0; i < g.V(); i++) {
          sb.append(i).append(": ");
          for (int w : g.adj(i))
             sb.append(w).append(" ");
@@ -72,4 +74,16 @@ public class GraphUtils {
       return sb.toString();
    }
 
+
+
+   public static void printInfo(Graph g) {
+      System.out.println("Main graph info");
+      System.out.println(toString(g));
+      System.out.printf("Maximum vertex degree: %2d, %5sAverage degree: %2.2f%n", maxDegree(g), "", averageDegree(g));
+      System.out.print("Vertex degrees: ");
+      for (int i = 0; i < g.V(); i++) {
+         System.out.printf("%2d[%d]  ", i, degree(g, i));
+      }
+      System.out.println("\n");
+   }
 }

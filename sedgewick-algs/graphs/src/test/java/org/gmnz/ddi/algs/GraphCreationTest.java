@@ -15,7 +15,8 @@ public class GraphCreationTest {
         } catch(Exception e) {
             e.printStackTrace();;
         }
-        System.out.println(GraphUtils.toString(g));
+        // System.out.println(GraphUtils.toString(g));
+        GraphUtils.printInfo(g);
     }
 
 }

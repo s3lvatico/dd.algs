@@ -20,7 +20,8 @@ public class TestBreadthFirstSearch {
             fail();
         }
 
-        System.out.println(GraphUtils.toString(g));
+        // System.out.println(GraphUtils.toString(g));
+        GraphUtils.printInfo(g);
         
         BreadthFirstSearch bfs;
         for (int v = 0; v < g.V(); v++) {
