@@ -1,5 +1,6 @@
 package org.gmnz.ddi.algs;
 
+
 abstract class GraphPaths {
 
     protected Graph g;

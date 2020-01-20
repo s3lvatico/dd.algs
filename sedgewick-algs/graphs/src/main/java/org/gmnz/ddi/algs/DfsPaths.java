@@ -1,0 +1,61 @@
+package org.gmnz.ddi.algs;
+
+
+import java.util.ArrayDeque;
+import java.util.Deque;
+
+
+public class DfsPaths extends GraphPaths {
+
+    private boolean[] marked;
+    private int[] edgeTo;
+
+    public DfsPaths(Graph g, int source) {
+        super(g, source);
+    }
+
+
+
+    @Override
+    protected void init() {
+        marked = new boolean[g.V()];
+        for (int i = 0; i < marked.length; i++) {
+            marked[i] = false;
+        }
+        edgeTo = new int[g.V()];
+        dfs(source);
+    }
+
+
+
+    private void dfs(int v) {
+        marked[v] = true;
+        for (int w : g.adj(v))
+            if (!marked[w]) {
+                edgeTo[w] = v;
+                dfs(w);
+            }
+    }
+
+
+
+    @Override
+    public boolean hasPathTo(int v) {
+        return marked[v];
+    }
+
+
+
+    @Override
+    public Iterable<Integer> pathTo(int v) {
+        Deque<Integer> stack = new ArrayDeque<>();
+
+        for (int x = v; x != source; x = edgeTo[x]) {
+            stack.push(x);
+        }
+        stack.push(source);
+        return stack;
+    }
+
+
+}
