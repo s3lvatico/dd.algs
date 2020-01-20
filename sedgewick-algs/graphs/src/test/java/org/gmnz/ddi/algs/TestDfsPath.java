@@ -25,7 +25,7 @@ public class TestDfsPath {
             fail();
         }
 
-        System.out.println(GraphUtils.toString(g));
+        GraphUtils.printInfo(g);
 
 
         DfsPaths dfs;

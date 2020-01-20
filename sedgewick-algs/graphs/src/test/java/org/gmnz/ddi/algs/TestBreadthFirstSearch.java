@@ -26,14 +26,14 @@ public class TestBreadthFirstSearch {
         BreadthFirstSearch bfs;
         for (int v = 0; v < g.V(); v++) {
             bfs = new BreadthFirstSearch(g, v);
-            System.out.format("Checking graph connectivity from vertex %d...%n", v);
+            System.out.format("Checking graph connectivity from vertex %d...", v);
             /*
              * il grafo che considero NON è connesso, perciò quale che sia il vertice di
              * partenza, il numero di vertici raggiungibili da quello di partenza sarà
              * sempre minore del numero di vertici del grafo
              */
             Assert.assertTrue(bfs.count() < g.V());
-            System.out.println("ok!\n");
+            System.out.println("ok!");
         }
     }
 

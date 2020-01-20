@@ -20,19 +20,19 @@ public class TestDepthFirstSearch {
             fail();
         }
 
-        System.out.println(GraphUtils.toString(g));
+        GraphUtils.printInfo(g);
         
         DepthFirstSearch dfs;
         for (int v = 0; v < g.V(); v++) {
             dfs = new DepthFirstSearch(g, v);
-            System.out.format("Checking graph connectivity from vertex %d...%n", v);
+            System.out.format("Checking graph connectivity from vertex %d...", v);
             /*
              * il grafo che considero NON è connesso, perciò quale che sia il vertice di
              * partenza, il numero di vertici raggiungibili da quello di partenza sarà
              * sempre minore del numero di vertici del grafo
              */
             Assert.assertTrue(dfs.count() < g.V());
-            System.out.println("ok!\n");
+            System.out.println("ok!");
         }
     }
 
