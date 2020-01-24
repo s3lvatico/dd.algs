@@ -9,7 +9,7 @@ public class CycleDetector {
         marked = new boolean[g.V()];
         for (int s = 0; s < g.V(); s++) {
             if (!marked[s]) 
-            dfs(g, s, s);
+                dfs(g, s, s);
         }
     }
 
