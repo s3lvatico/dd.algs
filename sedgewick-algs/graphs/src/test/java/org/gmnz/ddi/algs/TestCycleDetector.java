@@ -34,7 +34,7 @@ public class TestCycleDetector {
     public void cycleDetectorTest() {
         CycleDetector cd = new CycleDetector(g);
         Assert.assertTrue(cd.hasCycle());
-        System.out.format("Provided graph has at least a cycle");
+        System.out.format("Provided graph has at least a cycle%n");
     }
 
 }
