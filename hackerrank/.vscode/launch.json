@@ -25,7 +25,7 @@
                 "${workspaceFolder}\\target\\classes\\castleOnTheGrid-in02.txt"
             ],
             "env": {
-                "OUTPUT_PATH": "${workspaceFolder}\\target\\GotG-02.txt"
+                "OUTPUT_PATH": "${workspaceFolder}\\target\\CotG-02.txt"
             }
         },
         {

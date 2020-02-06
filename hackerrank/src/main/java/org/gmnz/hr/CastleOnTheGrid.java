@@ -63,7 +63,33 @@ public class CastleOnTheGrid {
 
       // altrimenti vediamo come calcolare bene il numero delle mosse
 
-      return -1;
+      int nMoves = 1;
+      int x = goalCell;
+      int y = edgeTo[x];
+      int currentDirection = getDirection(x, y, grid.length);
+      while (y != startCell) {
+         x = y;
+         y = edgeTo[x];
+         int direction = getDirection(x, y, grid.length);
+         if ( direction != currentDirection) {
+            nMoves++;
+            currentDirection = direction;
+         }
+      }
+
+      return nMoves;
+   }
+
+
+
+   private static int getDirection(int x, int y, int n) {
+      if (Math.abs(x - y) == n)
+         return 1;
+      else
+         if (Math.abs(x - y) < n)
+            return -1;
+         else // anche se viste le ipotesi non dovrebbe verificarsi
+            return 0;
    }
 
 
@@ -82,7 +108,7 @@ public class CastleOnTheGrid {
          adj.add(id - n);
       }
       // cella a est: non esiste se sto sul bordo destro
-      if (id % n != n-1 && lg.charAt(id + 1) != 'X') {
+      if (id % n != n - 1 && lg.charAt(id + 1) != 'X') {
          adj.add(id + 1);
       }
       // cella a sud: non esiste se sto sul bordo inferiore
@@ -94,7 +120,14 @@ public class CastleOnTheGrid {
          adj.add(id - 1);
       }
 
-      return adj.stream().mapToInt(x -> x.intValue()).toArray();
+      int[] arr = new int[adj.size()];
+      int count = 0;
+      for (Integer i : adj) {
+         arr[count++] = i;
+      }
+
+      // return adj.stream().mapToInt(x -> x.intValue()).toArray();
+      return arr;
    }
 
 
