@@ -2,7 +2,7 @@
     "configurations": [
         {
             "type": "java",
-            "name": "CodeLens (Launch) - CastleOnTheGrid",
+            "name": "CodeLens (Launch) - CastleOnTheGrid 01",
             "request": "launch",
             "mainClass": "org.gmnz.hr.CastleOnTheGrid",
             "projectName": "hackerrank",
@@ -12,6 +12,20 @@
             ],
             "env": {
                 "OUTPUT_PATH": "${workspaceFolder}\\target\\q.txt"
+            }
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - CastleOnTheGrid 02",
+            "request": "launch",
+            "mainClass": "org.gmnz.hr.CastleOnTheGrid",
+            "projectName": "hackerrank",
+            "args": [
+                "^<",
+                "${workspaceFolder}\\target\\classes\\castleOnTheGrid-in02.txt"
+            ],
+            "env": {
+                "OUTPUT_PATH": "${workspaceFolder}\\target\\GotG-02.txt"
             }
         },
         {
