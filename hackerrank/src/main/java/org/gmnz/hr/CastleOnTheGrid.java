@@ -15,8 +15,11 @@ public class CastleOnTheGrid {
 
    static int minimumMoves(String[] grid, int startX, int startY, int goalX, int goalY) {
 
-      if ((startX == goalX && startY == goalY) || grid.length == 1 )
+      if ((startX == goalX && startY == goalY) || grid.length == 1)
          return 0; // caso banale
+
+
+      // --- SETUP
 
       StringBuilder sbGrid = new StringBuilder();
       for (String line : grid)
@@ -34,8 +37,31 @@ public class CastleOnTheGrid {
 
       ArrayDeque<Integer> q = new ArrayDeque<>();
 
-      // tutto pronto, ora BFS
 
+      // --- BFS
+      boolean goalReached = false;
+      marked[startCell] = true;
+      q.add(startCell);
+
+      while (!q.isEmpty() && !goalReached) {
+         int v = q.poll();
+         if (v == goalCell) {
+            goalReached = true;
+            continue;
+         }
+         for (int w : adjacencies(linearGrid, grid.length, v)) {
+            if (!marked[w]) {
+               edgeTo[w] = v;
+               marked[w] = true;
+               q.add(w);
+            }
+         }
+      }
+
+      if (!goalReached)
+         return -1;
+
+      // altrimenti vediamo come calcolare bene il numero delle mosse
 
       return -1;
    }
