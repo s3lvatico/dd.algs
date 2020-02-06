@@ -1,6 +1,19 @@
 {
     "configurations": [
-
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - CastleOnTheGrid",
+            "request": "launch",
+            "mainClass": "org.gmnz.hr.CastleOnTheGrid",
+            "projectName": "hackerrank",
+            "args": [
+                "^<",
+                "${workspaceFolder}\\target\\classes\\castleOnTheGrid-in01.txt"
+            ],
+            "env": {
+                "OUTPUT_PATH": "${workspaceFolder}\\target\\q.txt"
+            }
+        },
         {
             "type": "java",
             "name": "CodeLens (Launch) - CountingSort",
