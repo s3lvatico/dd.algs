@@ -2,7 +2,49 @@
     "configurations": [
         {
             "type": "java",
-            "name": "CodeLens (Launch) - CastleOnTheGrid 01",
+            "name": "CastleOnTheGrid HR CASE00",
+            "request": "launch",
+            "mainClass": "org.gmnz.hr.CastleOnTheGrid",
+            "projectName": "hackerrank",
+            "args": [
+                "^<",
+                "${workspaceFolder}\\target\\classes\\CastleOnTheGrid-hr-test-case-00.txt"
+            ],
+            "env": {
+                "OUTPUT_PATH": "${workspaceFolder}\\target\\OUT-CastleOnTheGrid-hr-test-case-00.txt"
+            }
+        },
+        {
+            "type": "java",
+            "name": "CastleOnTheGrid HR CASE01",
+            "request": "launch",
+            "mainClass": "org.gmnz.hr.CastleOnTheGrid",
+            "projectName": "hackerrank",
+            "args": [
+                "^<",
+                "${workspaceFolder}\\target\\classes\\CastleOnTheGrid-hr-test-case-01.txt"
+            ],
+            "env": {
+                "OUTPUT_PATH": "${workspaceFolder}\\target\\OUT-CastleOnTheGrid-hr-test-case-01.txt"
+            }
+        },
+        {
+            "type": "java",
+            "name": "CastleOnTheGrid HR CASE02",
+            "request": "launch",
+            "mainClass": "org.gmnz.hr.CastleOnTheGrid",
+            "projectName": "hackerrank",
+            "args": [
+                "^<",
+                "${workspaceFolder}\\target\\classes\\CastleOnTheGrid-hr-test-case-02.txt"
+            ],
+            "env": {
+                "OUTPUT_PATH": "${workspaceFolder}\\target\\OUT-CastleOnTheGrid-hr-test-case-02.txt"
+            }
+        },
+        {
+            "type": "java",
+            "name": "CastleOnTheGrid 01",
             "request": "launch",
             "mainClass": "org.gmnz.hr.CastleOnTheGrid",
             "projectName": "hackerrank",
@@ -16,7 +58,7 @@
         },
         {
             "type": "java",
-            "name": "CodeLens (Launch) - CastleOnTheGrid 02",
+            "name": "CastleOnTheGrid 02",
             "request": "launch",
             "mainClass": "org.gmnz.hr.CastleOnTheGrid",
             "projectName": "hackerrank",
@@ -30,7 +72,7 @@
         },
         {
             "type": "java",
-            "name": "CodeLens (Launch) - CountingSort",
+            "name": "CountingSort",
             "request": "launch",
             "mainClass": "org.gmnz.hr.CountingSort",
             "projectName": "hackerrank"
