@@ -15,6 +15,9 @@ public class CastleOnTheGrid {
 
    static int minimumMoves(String[] grid, int startX, int startY, int goalX, int goalY) {
 
+      if ((startX == goalX && startY == goalY) || grid.length == 1 )
+         return 0; // caso banale
+
       StringBuilder sbGrid = new StringBuilder();
       for (String line : grid)
          sbGrid.append(line);
