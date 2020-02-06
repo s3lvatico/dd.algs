@@ -12,12 +12,10 @@ import java.util.Scanner;
 
 public class CastleOnTheGrid {
 
-
    static int minimumMoves(String[] grid, int startX, int startY, int goalX, int goalY) {
 
       if ((startX == goalX && startY == goalY) || grid.length == 1)
          return 0; // caso banale
-
 
       // --- SETUP
 
@@ -32,11 +30,10 @@ public class CastleOnTheGrid {
 
       int[] edgeTo = new int[linearGrid.length()];
 
-      int startCell = cell(grid.length, startX, startY);
-      int goalCell = cell(grid.length, goalX, goalY);
+      int startCell = cell(grid.length, startY, startX);
+      int goalCell = cell(grid.length, goalY, goalX);
 
       ArrayDeque<Integer> q = new ArrayDeque<>();
-
 
       // --- BFS
       boolean goalReached = false;
@@ -71,7 +68,7 @@ public class CastleOnTheGrid {
          x = y;
          y = edgeTo[x];
          int direction = getDirection(x, y, grid.length);
-         if ( direction != currentDirection) {
+         if (direction != currentDirection) {
             nMoves++;
             currentDirection = direction;
          }
@@ -130,9 +127,7 @@ public class CastleOnTheGrid {
       return arr;
    }
 
-
    private static final Scanner scanner = new Scanner(System.in);
-
 
    public static void main(String[] args) throws IOException {
       BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
