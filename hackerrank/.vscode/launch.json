@@ -2,7 +2,7 @@
     "configurations": [
         {
             "type": "java",
-            "name": "CastleOnTheGrid HR CASE00",
+            "name": "CastleOnTheGrid HR warm up CASE00",
             "request": "launch",
             "mainClass": "org.gmnz.hr.CastleOnTheGrid",
             "projectName": "hackerrank",
@@ -16,7 +16,7 @@
         },
         {
             "type": "java",
-            "name": "CastleOnTheGrid HR CASE01",
+            "name": "CastleOnTheGrid HR warm up CASE01",
             "request": "launch",
             "mainClass": "org.gmnz.hr.CastleOnTheGrid",
             "projectName": "hackerrank",
@@ -30,7 +30,7 @@
         },
         {
             "type": "java",
-            "name": "CastleOnTheGrid HR CASE02",
+            "name": "CastleOnTheGrid HR warm up CASE02",
             "request": "launch",
             "mainClass": "org.gmnz.hr.CastleOnTheGrid",
             "projectName": "hackerrank",
@@ -40,6 +40,20 @@
             ],
             "env": {
                 "OUTPUT_PATH": "${workspaceFolder}\\target\\OUT-CastleOnTheGrid-hr-test-case-02.txt"
+            }
+        },
+        {
+            "type": "java",
+            "name": "CastleOnTheGrid HR test 01",
+            "request": "launch",
+            "mainClass": "org.gmnz.hr.CastleOnTheGrid",
+            "projectName": "hackerrank",
+            "args": [
+                "^<",
+                "${workspaceFolder}\\target\\classes\\CastleOnTheGrid-hr-test-01.txt"
+            ],
+            "env": {
+                "OUTPUT_PATH": "${workspaceFolder}\\target\\OUT-CastleOnTheGrid-hr-test-01.txt"
             }
         },
         {
