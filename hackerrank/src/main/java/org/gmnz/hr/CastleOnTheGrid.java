@@ -77,20 +77,20 @@ public class CastleOnTheGrid {
    private static int[] adjacencies(String lg, int n, int id) {
       ArrayList<Integer> adj = new ArrayList<>();
 
-      // cella a nord
+      // cella a nord: non esiste se sto sul bordo superiore
       if (id >= n && lg.charAt(id - n) != 'X') {
          adj.add(id - n);
       }
-      // cella a est
-      if (id < lg.length() - 1 && lg.charAt(id + 1) != 'X') {
+      // cella a est: non esiste se sto sul bordo destro
+      if (id % n != n-1 && lg.charAt(id + 1) != 'X') {
          adj.add(id + 1);
       }
-      // cella a sud
+      // cella a sud: non esiste se sto sul bordo inferiore
       if (id < lg.length() - n && lg.charAt(id + n) != 'X') {
          adj.add(id + n);
       }
-      // cella a ovest
-      if (id > 0 && lg.charAt(id - 1) != 'X') {
+      // cella a ovest: non esiste se sto sul bordo sinistro
+      if (id % n > 0 && lg.charAt(id - 1) != 'X') {
          adj.add(id - 1);
       }
 
