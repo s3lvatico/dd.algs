@@ -2,6 +2,17 @@
    "configurations": [
       {
          "type": "java",
+         "name": "CodeLens (Launch) - CastleOnTheGrid",
+         "request": "launch",
+         "mainClass": "org.gmnz.hr.CastleOnTheGrid",
+         "projectName": "hackerrank",
+         "env": {
+            "OUTPUT_PATH": "C:\\dev\\src\\dd.algs\\hackerrank\\resources\\q.txt"
+         },
+         "args": "< C:\\dev\\src\\dd.algs\\hackerrank\\target\\classes\\castleOnTheGrid-in01.txt"
+      },
+      {
+         "type": "java",
          "name": "CodeLens (Launch) - WhatIsXor",
          "request": "launch",
          "mainClass": "org.gmnz.hr.WhatIsXor",
