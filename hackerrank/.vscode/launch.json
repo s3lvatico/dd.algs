@@ -2,6 +2,34 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CotG/wangkai warmup 00",
+            "request": "launch",
+            "mainClass": "org.gmnz.hr.CastleOnTheGrid",
+            "projectName": "hackerrank",
+            "args": [
+                "^<",
+                "${workspaceFolder}\\target\\classes\\CastleOnTheGrid-hr-test-case-00.txt"
+            ],
+            "env": {
+                "OUTPUT_PATH": "${workspaceFolder}\\target\\OUT-CastleOnTheGrid-hr-test-case-00.txt"
+            }
+        },
+        {
+            "type": "java",
+            "name": "CotG/wangkai test 01",
+            "request": "launch",
+            "mainClass": "org.gmnz.hr.CastleOnTheGrid",
+            "projectName": "hackerrank",
+            "args": [
+                "^<",
+                "${workspaceFolder}\\target\\classes\\CastleOnTheGrid-hr-test-01.txt"
+            ],
+            "env": {
+                "OUTPUT_PATH": "${workspaceFolder}\\target\\OUT-CastleOnTheGrid-hr-test-01.txt"
+            }
+        },
+        {
+            "type": "java",
             "name": "CastleOnTheGrid HR warm up CASE00",
             "request": "launch",
             "mainClass": "org.gmnz.hr.CastleOnTheGrid",
