@@ -12,12 +12,15 @@ import java.util.Scanner;
 
 public class CastleOnTheGrid {
 
+   private static int size;
    static int minimumMoves(String[] grid, int startX, int startY, int goalX, int goalY) {
 
       if ((startX == goalX && startY == goalY) || grid.length == 1)
          return 0; // caso banale
 
       // --- SETUP
+
+      size = grid.length;
 
       StringBuilder sbGrid = new StringBuilder();
       for (String line : grid)
@@ -30,8 +33,8 @@ public class CastleOnTheGrid {
 
       int[] edgeTo = new int[linearGrid.length()];
 
-      int startCell = cell(grid.length, startY, startX);
-      int goalCell = cell(grid.length, goalY, goalX);
+      int startCell = cell(size, startY, startX);
+      int goalCell = cell(size, goalY, goalX);
 
       ArrayDeque<Integer> q = new ArrayDeque<>();
 
@@ -46,7 +49,12 @@ public class CastleOnTheGrid {
             goalReached = true;
             continue;
          }
-         for (int w : adjacencies(linearGrid, grid.length, v)) {
+         for (int w : adjacencies(linearGrid, size, v)) {
+            /*
+             * Qui c'è l'indovinello: se un nodo non è visitato lo visito e lo aggiungo alla
+             * coda. Se è visitato non lo aggiungo alla coda, ma dovrei comunque proseguire
+             * l'esplorazione lungo la stessa direzione
+             */
             if (!marked[w]) {
                edgeTo[w] = v;
                marked[w] = true;
@@ -63,11 +71,11 @@ public class CastleOnTheGrid {
       int nMoves = 1;
       int x = goalCell;
       int y = edgeTo[x];
-      int currentDirection = getDirection(x, y, grid.length);
+      int currentDirection = getDirection(x, y, size);
       while (y != startCell) {
          x = y;
          y = edgeTo[x];
-         int direction = getDirection(x, y, grid.length);
+         int direction = getDirection(x, y, size);
          if (direction != currentDirection) {
             nMoves++;
             currentDirection = direction;
@@ -127,6 +135,38 @@ public class CastleOnTheGrid {
       return arr;
    }
 
+
+
+   private static AdjacentVertex[] adjacents(String linearGrid, int size, int id) {
+      ArrayList<AdjacentVertex> adj = new ArrayList<>();
+
+      // cella a nord: non esiste se sto sul bordo superiore
+      if (id >= size && linearGrid.charAt(id - size) != 'X') {
+         adj.add(new AdjacentVertex(id - size, Direction.N));
+      }
+      // cella a est: non esiste se sto sul bordo destro
+      if (id % size != size - 1 && linearGrid.charAt(id + 1) != 'X') {
+         adj.add(id + 1);
+      }
+      // cella a sud: non esiste se sto sul bordo inferiore
+      if (id < lg.length() - size && lg.charAt(id + n) != 'X') {
+         adj.add(id + n);
+      }
+      // cella a ovest: non esiste se sto sul bordo sinistro
+      if (id % size > 0 && lg.charAt(id - 1) != 'X') {
+         adj.add(id - 1);
+      }
+
+      int[] arr = new int[adj.size()];
+      int count = 0;
+      for (Integer i : adj) {
+         arr[count++] = i;
+      }
+
+      // return adj.stream().mapToInt(x -> x.intValue()).toArray();
+      return arr;
+   }
+
    private static final Scanner scanner = new Scanner(System.in);
 
    public static void main(String[] args) throws IOException {
@@ -161,4 +201,26 @@ public class CastleOnTheGrid {
 
       scanner.close();
    }
+}
+
+
+
+
+
+enum Direction {
+   N, W, S, E;
+}
+
+
+
+
+
+class AdjacentVertex {
+
+   AdjacentVertex(int id, Direction direction) {
+      this.id = id;
+      this.direction = direction;
+   }
+   int id;
+   Direction direction;
 }
