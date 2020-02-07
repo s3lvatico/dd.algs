@@ -4,128 +4,64 @@ package org.gmnz.hr;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayDeque;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Scanner;
+import java.util.stream.IntStream;
 
 
 public class CastleOnTheGrid {
 
-   static int minimumMoves(String[] grid, int startX, int startY, int goalX, int goalY) {
+   static final int[] X_OFFSETS = { -1, 0, 1, 0 };
+   static final int[] Y_OFFSETS = { 0, 1, 0, -1 };
 
-      if ((startX == goalX && startY == goalY) || grid.length == 1)
-         return 0; // caso banale
+   static int minimumMoves(String[] strings, int startX, int startY, int goalX, int goalY) {
 
-      // --- SETUP
-
-      StringBuilder sbGrid = new StringBuilder();
-      for (String line : grid)
-         sbGrid.append(line);
-
-      String linearGrid = sbGrid.toString();
-
-      boolean[] marked = new boolean[linearGrid.length()];
-      Arrays.fill(marked, false);
-
-      int[] edgeTo = new int[linearGrid.length()];
-
-      int startCell = cell(grid.length, startY, startX);
-      int goalCell = cell(grid.length, goalY, goalX);
-
-      ArrayDeque<Integer> q = new ArrayDeque<>();
-
-      // --- BFS
-      boolean goalReached = false;
-      marked[startCell] = true;
-      q.add(startCell);
-
-      while (!q.isEmpty() && !goalReached) {
-         int v = q.poll();
-         if (v == goalCell) {
-            goalReached = true;
-            continue;
+      int size = strings.length;
+      char[][] grid = new char[size][size];
+      for (int i = 0; i < size; i++) {
+         for (int j = 0; j < size; j++) {
+            grid[i][j] = strings[i].charAt(j);
          }
-         for (int w : adjacencies(linearGrid, grid.length, v)) {
-            if (!marked[w]) {
-               edgeTo[w] = v;
-               marked[w] = true;
-               q.add(w);
+      }
+
+      int[][] moves = new int[size][size];
+      IntStream.range(0, size).forEach(x -> Arrays.fill(moves[x], -1));
+
+      moves[startX][startY] = 0;
+      Queue<Point> queue = new LinkedList<>();
+      queue.offer(new Point(startX, startY));
+
+      while (true) {
+         Point head = queue.poll();
+         for (int i = 0; i < X_OFFSETS.length; i++) {
+            int nextX = head.x;
+            int nextY = head.y;
+
+            while (isOpen(grid, nextX + X_OFFSETS[i], nextY + Y_OFFSETS[i])) {
+               nextX += X_OFFSETS[i];
+               nextY += Y_OFFSETS[i];
+
+               if (nextX == goalX && nextY == goalY) {
+                  return moves[head.x][head.y] + 1;
+               }
+
+               if (moves[nextX][nextY] < 0) {
+                  moves[nextX][nextY] = moves[head.x][head.y] + 1;
+                  queue.offer(new Point(nextX, nextY));
+               }
             }
          }
       }
-
-      if (!goalReached)
-         return -1;
-
-      // altrimenti vediamo come calcolare bene il numero delle mosse
-
-      int nMoves = 1;
-      int x = goalCell;
-      int y = edgeTo[x];
-      int currentDirection = getDirection(x, y, grid.length);
-      while (y != startCell) {
-         x = y;
-         y = edgeTo[x];
-         int direction = getDirection(x, y, grid.length);
-         if (direction != currentDirection) {
-            nMoves++;
-            currentDirection = direction;
-         }
-      }
-
-      return nMoves;
    }
 
 
 
-   private static int getDirection(int x, int y, int n) {
-      if (Math.abs(x - y) == n)
-         return 1;
-      else
-         if (Math.abs(x - y) < n)
-            return -1;
-         else // anche se viste le ipotesi non dovrebbe verificarsi
-            return 0;
+   static boolean isOpen(char[][] grid, int x, int y) {
+      return x >= 0 && x < grid.length && y >= 0 && y < grid.length && grid[x][y] == '.';
    }
 
-
-
-   private static int cell(int l, int x, int y) {
-      return x + l * y;
-   }
-
-
-
-   private static int[] adjacencies(String lg, int n, int id) {
-      ArrayList<Integer> adj = new ArrayList<>();
-
-      // cella a nord: non esiste se sto sul bordo superiore
-      if (id >= n && lg.charAt(id - n) != 'X') {
-         adj.add(id - n);
-      }
-      // cella a est: non esiste se sto sul bordo destro
-      if (id % n != n - 1 && lg.charAt(id + 1) != 'X') {
-         adj.add(id + 1);
-      }
-      // cella a sud: non esiste se sto sul bordo inferiore
-      if (id < lg.length() - n && lg.charAt(id + n) != 'X') {
-         adj.add(id + n);
-      }
-      // cella a ovest: non esiste se sto sul bordo sinistro
-      if (id % n > 0 && lg.charAt(id - 1) != 'X') {
-         adj.add(id - 1);
-      }
-
-      int[] arr = new int[adj.size()];
-      int count = 0;
-      for (Integer i : adj) {
-         arr[count++] = i;
-      }
-
-      // return adj.stream().mapToInt(x -> x.intValue()).toArray();
-      return arr;
-   }
 
    private static final Scanner scanner = new Scanner(System.in);
 
@@ -160,5 +96,20 @@ public class CastleOnTheGrid {
       bufferedWriter.close();
 
       scanner.close();
+   }
+}
+
+
+
+
+
+
+class Point {
+   int x;
+   int y;
+
+   Point(int x, int y) {
+      this.x = x;
+      this.y = y;
    }
 }
