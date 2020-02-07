@@ -27,7 +27,10 @@ public class CastleOnTheGrid {
       }
 
       int[][] moves = new int[size][size];
-      IntStream.range(0, size).forEach(x -> Arrays.fill(moves[x], -1));
+      // IntStream.range(0, size).forEach(x -> Arrays.fill(moves[x], -1));
+      for (int[] row : moves) {
+         Arrays.fill(row, -1);
+      }
 
       moves[startX][startY] = 0;
       Queue<Point> queue = new LinkedList<>();
@@ -111,5 +114,12 @@ class Point {
    Point(int x, int y) {
       this.x = x;
       this.y = y;
+   }
+
+
+
+   @Override
+   public String toString() {
+      return String.format("Point [x=%d, y=%d]", x, y);
    }
 }
