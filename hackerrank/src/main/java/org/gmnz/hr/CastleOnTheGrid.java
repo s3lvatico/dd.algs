@@ -28,8 +28,8 @@ public class CastleOnTheGrid {
 
       String linearGrid = sbGrid.toString();
 
-      boolean[] marked = new boolean[linearGrid.length()];
-      Arrays.fill(marked, false);
+      int[] moves = new int[linearGrid.length()];
+      Arrays.fill(moves, -1);
 
       int[] edgeTo = new int[linearGrid.length()];
 
@@ -40,7 +40,7 @@ public class CastleOnTheGrid {
 
       // --- BFS
       boolean goalReached = false;
-      marked[startCell] = true;
+      moves[startCell] = 0;
       q.add(startCell);
 
       while (!q.isEmpty() && !goalReached) {
@@ -55,9 +55,9 @@ public class CastleOnTheGrid {
              * coda. Se è visitato non lo aggiungo alla coda, ma dovrei comunque proseguire
              * l'esplorazione lungo la stessa direzione
              */
-            if (!marked[w]) {
+            if (moves[w] != -1) {
                edgeTo[w] = v;
-               marked[w] = true;
+               moves[w] = true;
                q.add(w);
             }
          }
@@ -137,7 +137,7 @@ public class CastleOnTheGrid {
 
 
 
-   private static AdjacentVertex[] adjacents(String linearGrid, int size, int id) {
+   private static AdjacentVertex[] adjacencies(String linearGrid, int id) {
       ArrayList<AdjacentVertex> adj = new ArrayList<>();
 
       // cella a nord: non esiste se sto sul bordo superiore
@@ -146,24 +146,22 @@ public class CastleOnTheGrid {
       }
       // cella a est: non esiste se sto sul bordo destro
       if (id % size != size - 1 && linearGrid.charAt(id + 1) != 'X') {
-         adj.add(id + 1);
+         adj.add(new AdjacentVertex(id + 1, Direction.E));
       }
       // cella a sud: non esiste se sto sul bordo inferiore
-      if (id < lg.length() - size && lg.charAt(id + n) != 'X') {
-         adj.add(id + n);
+      if (id < linearGrid.length() - size && linearGrid.charAt(id + size) != 'X') {
+         adj.add(new AdjacentVertex(id + size, Direction.S));
       }
       // cella a ovest: non esiste se sto sul bordo sinistro
-      if (id % size > 0 && lg.charAt(id - 1) != 'X') {
-         adj.add(id - 1);
+      if (id % size > 0 && linearGrid.charAt(id - 1) != 'X') {
+         adj.add(new AdjacentVertex(id - 1, Direction.W));
       }
 
-      int[] arr = new int[adj.size()];
+      AdjacentVertex[] arr = new AdjacentVertex[adj.size()];
       int count = 0;
-      for (Integer i : adj) {
+      for (AdjacentVertex i : adj) {
          arr[count++] = i;
       }
-
-      // return adj.stream().mapToInt(x -> x.intValue()).toArray();
       return arr;
    }
 
