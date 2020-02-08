@@ -13,6 +13,7 @@ import java.util.Scanner;
 public class CastleOnTheGrid {
 
    private static int size;
+
    static int minimumMoves(String[] grid, int startX, int startY, int goalX, int goalY) {
 
       if ((startX == goalX && startY == goalY) || grid.length == 1)
@@ -31,10 +32,10 @@ public class CastleOnTheGrid {
       int[] moves = new int[linearGrid.length()];
       Arrays.fill(moves, -1);
 
-      int[] edgeTo = new int[linearGrid.length()];
+      // int[] edgeTo = new int[linearGrid.length()];
 
-      int startCell = cell(size, startY, startX);
-      int goalCell = cell(size, goalY, goalX);
+      int startCell = cell(startY, startX);
+      int goalCell = cell(goalY, goalX);
 
       ArrayDeque<Integer> q = new ArrayDeque<>();
 
@@ -45,124 +46,91 @@ public class CastleOnTheGrid {
 
       while (!q.isEmpty() && !goalReached) {
          int v = q.poll();
-         if (v == goalCell) {
-            goalReached = true;
-            continue;
-         }
-         for (int w : adjacencies(linearGrid, size, v)) {
-            /*
-             * Qui c'è l'indovinello: se un nodo non è visitato lo visito e lo aggiungo alla
-             * coda. Se è visitato non lo aggiungo alla coda, ma dovrei comunque proseguire
-             * l'esplorazione lungo la stessa direzione
-             */
-            if (moves[w] != -1) {
-               edgeTo[w] = v;
-               moves[w] = true;
-               q.add(w);
+         // if (v == goalCell) {
+         //    goalReached = true;
+         //    continue;
+         // }
+         for (RunningVertex va : adjacencies(linearGrid, v)) {
+            RunningVertex vs = va;
+            while (vs != null) {
+               if (vs.id == goalCell) {
+                  goalReached = true;
+                  return moves[v] + 1;
+               }
+               if (moves[vs.id] < 0) {// marked == false
+                  moves[vs.id] = moves[v] + 1;
+                  q.offer(vs.id);
+               }
+               vs = nextVertex(vs, linearGrid);
             }
+
          }
       }
 
       if (!goalReached)
          return -1;
 
-      // altrimenti vediamo come calcolare bene il numero delle mosse
-
-      int nMoves = 1;
-      int x = goalCell;
-      int y = edgeTo[x];
-      int currentDirection = getDirection(x, y, size);
-      while (y != startCell) {
-         x = y;
-         y = edgeTo[x];
-         int direction = getDirection(x, y, size);
-         if (direction != currentDirection) {
-            nMoves++;
-            currentDirection = direction;
-         }
-      }
-
-      return nMoves;
+      return -1;
    }
 
 
 
-   private static int getDirection(int x, int y, int n) {
-      if (Math.abs(x - y) == n)
-         return 1;
-      else
-         if (Math.abs(x - y) < n)
-            return -1;
-         else // anche se viste le ipotesi non dovrebbe verificarsi
-            return 0;
+   private static RunningVertex nextVertex(RunningVertex v, String linearGrid) {
+      switch (v.direction) {
+      case N:
+         if (v.id >= size && linearGrid.charAt(v.id - size) != 'X') {
+            return new RunningVertex(v.id - size, Direction.N);
+         } else
+            return null;
+      case W:
+         if (v.id % size > 0 && linearGrid.charAt(v.id - 1) != 'X') {
+            return new RunningVertex(v.id - 1, Direction.W);
+         } else
+            return null;
+      case S:
+         if (v.id < linearGrid.length() - size && linearGrid.charAt(v.id + size) != 'X') {
+            return new RunningVertex(v.id + size, Direction.S);
+         } else
+            return null;
+      case E:
+         if (v.id % size != size - 1 && linearGrid.charAt(v.id + 1) != 'X') {
+            return new RunningVertex(v.id + 1, Direction.E);
+         } else
+            return null;
+      default:
+         throw new RuntimeException();
+      }
    }
 
 
 
-   private static int cell(int l, int x, int y) {
-      return x + l * y;
+   private static int cell(int x, int y) {
+      return x + size * y;
    }
 
 
 
-   private static int[] adjacencies(String lg, int n, int id) {
-      ArrayList<Integer> adj = new ArrayList<>();
-
-      // cella a nord: non esiste se sto sul bordo superiore
-      if (id >= n && lg.charAt(id - n) != 'X') {
-         adj.add(id - n);
-      }
-      // cella a est: non esiste se sto sul bordo destro
-      if (id % n != n - 1 && lg.charAt(id + 1) != 'X') {
-         adj.add(id + 1);
-      }
-      // cella a sud: non esiste se sto sul bordo inferiore
-      if (id < lg.length() - n && lg.charAt(id + n) != 'X') {
-         adj.add(id + n);
-      }
-      // cella a ovest: non esiste se sto sul bordo sinistro
-      if (id % n > 0 && lg.charAt(id - 1) != 'X') {
-         adj.add(id - 1);
-      }
-
-      int[] arr = new int[adj.size()];
-      int count = 0;
-      for (Integer i : adj) {
-         arr[count++] = i;
-      }
-
-      // return adj.stream().mapToInt(x -> x.intValue()).toArray();
-      return arr;
-   }
-
-
-
-   private static AdjacentVertex[] adjacencies(String linearGrid, int id) {
-      ArrayList<AdjacentVertex> adj = new ArrayList<>();
+   private static RunningVertex[] adjacencies(String linearGrid, int id) {
+      ArrayList<RunningVertex> adj = new ArrayList<>();
 
       // cella a nord: non esiste se sto sul bordo superiore
       if (id >= size && linearGrid.charAt(id - size) != 'X') {
-         adj.add(new AdjacentVertex(id - size, Direction.N));
+         adj.add(new RunningVertex(id - size, Direction.N));
       }
       // cella a est: non esiste se sto sul bordo destro
       if (id % size != size - 1 && linearGrid.charAt(id + 1) != 'X') {
-         adj.add(new AdjacentVertex(id + 1, Direction.E));
+         adj.add(new RunningVertex(id + 1, Direction.E));
       }
       // cella a sud: non esiste se sto sul bordo inferiore
       if (id < linearGrid.length() - size && linearGrid.charAt(id + size) != 'X') {
-         adj.add(new AdjacentVertex(id + size, Direction.S));
+         adj.add(new RunningVertex(id + size, Direction.S));
       }
       // cella a ovest: non esiste se sto sul bordo sinistro
       if (id % size > 0 && linearGrid.charAt(id - 1) != 'X') {
-         adj.add(new AdjacentVertex(id - 1, Direction.W));
+         adj.add(new RunningVertex(id - 1, Direction.W));
       }
 
-      AdjacentVertex[] arr = new AdjacentVertex[adj.size()];
-      int count = 0;
-      for (AdjacentVertex i : adj) {
-         arr[count++] = i;
-      }
-      return arr;
+      return adj.toArray(new RunningVertex[] {});
    }
 
    private static final Scanner scanner = new Scanner(System.in);
@@ -213,9 +181,9 @@ enum Direction {
 
 
 
-class AdjacentVertex {
+class RunningVertex {
 
-   AdjacentVertex(int id, Direction direction) {
+   RunningVertex(int id, Direction direction) {
       this.id = id;
       this.direction = direction;
    }
