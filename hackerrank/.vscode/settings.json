@@ -1,6 +1,6 @@
 {
     "java.configuration.updateBuildConfiguration": "automatic",
-    "editor.fontFamily": "'Fira Code', Consolas, monospace",
+    "editor.fontFamily": "Menlo, Iosevka Slab",
     "editor.fontLigatures": true,
-    "editor.fontSize": 12
+    "editor.fontSize": 11, "editor.lineHeight": 12
 }

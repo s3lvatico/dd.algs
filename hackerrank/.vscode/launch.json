@@ -2,16 +2,30 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CastleOnTheGrid gz test 02",
+            "request": "launch",
+            "mainClass": "org.gmnz.hr.CastleOnTheGrid",
+            "projectName": "hackerrank",
+            "args": [
+                "<",
+                "${workspaceFolder}/target/classes/CastleOnTheGrid-gz-test-02.txt"
+            ],
+            "env": {
+                "OUTPUT_PATH": "${workspaceFolder}/target/OUT-CastleOnTheGrid-gz-test-02.txt"
+            }
+        },
+        {
+            "type": "java",
             "name": "CastleOnTheGrid HR warm up CASE00",
             "request": "launch",
             "mainClass": "org.gmnz.hr.CastleOnTheGrid",
             "projectName": "hackerrank",
             "args": [
                 "^<",
-                "${workspaceFolder}\\target\\classes\\CastleOnTheGrid-hr-test-case-00.txt"
+                "${workspaceFolder}/target/classes/CastleOnTheGrid-hr-test-case-00.txt"
             ],
             "env": {
-                "OUTPUT_PATH": "${workspaceFolder}\\target\\OUT-CastleOnTheGrid-hr-test-case-00.txt"
+                "OUTPUT_PATH": "${workspaceFolder}/target/OUT-CastleOnTheGrid-hr-test-case-00.txt"
             }
         },
         {
@@ -22,10 +36,10 @@
             "projectName": "hackerrank",
             "args": [
                 "^<",
-                "${workspaceFolder}\\target\\classes\\CastleOnTheGrid-hr-test-case-01.txt"
+                "${workspaceFolder}/target/classes/CastleOnTheGrid-hr-test-case-01.txt"
             ],
             "env": {
-                "OUTPUT_PATH": "${workspaceFolder}\\target\\OUT-CastleOnTheGrid-hr-test-case-01.txt"
+                "OUTPUT_PATH": "${workspaceFolder}/target/OUT-CastleOnTheGrid-hr-test-case-01.txt"
             }
         },
         {
@@ -36,10 +50,10 @@
             "projectName": "hackerrank",
             "args": [
                 "^<",
-                "${workspaceFolder}\\target\\classes\\CastleOnTheGrid-hr-test-case-02.txt"
+                "${workspaceFolder}/target/classes/CastleOnTheGrid-hr-test-case-02.txt"
             ],
             "env": {
-                "OUTPUT_PATH": "${workspaceFolder}\\target\\OUT-CastleOnTheGrid-hr-test-case-02.txt"
+                "OUTPUT_PATH": "${workspaceFolder}/target/OUT-CastleOnTheGrid-hr-test-case-02.txt"
             }
         },
         {
@@ -50,10 +64,10 @@
             "projectName": "hackerrank",
             "args": [
                 "^<",
-                "${workspaceFolder}\\target\\classes\\CastleOnTheGrid-hr-test-01.txt"
+                "${workspaceFolder}/target/classes/CastleOnTheGrid-hr-test-01.txt"
             ],
             "env": {
-                "OUTPUT_PATH": "${workspaceFolder}\\target\\OUT-CastleOnTheGrid-hr-test-01.txt"
+                "OUTPUT_PATH": "${workspaceFolder}/target/OUT-CastleOnTheGrid-hr-test-01.txt"
             }
         },
         {
@@ -64,10 +78,10 @@
             "projectName": "hackerrank",
             "args": [
                 "^<",
-                "${workspaceFolder}\\target\\classes\\castleOnTheGrid-in01.txt"
+                "${workspaceFolder}/target/classes/castleOnTheGrid-in01.txt"
             ],
             "env": {
-                "OUTPUT_PATH": "${workspaceFolder}\\target\\q.txt"
+                "OUTPUT_PATH": "${workspaceFolder}/target/q.txt"
             }
         },
         {
@@ -78,10 +92,10 @@
             "projectName": "hackerrank",
             "args": [
                 "^<",
-                "${workspaceFolder}\\target\\classes\\castleOnTheGrid-in02.txt"
+                "${workspaceFolder}/target/classes/castleOnTheGrid-in02.txt"
             ],
             "env": {
-                "OUTPUT_PATH": "${workspaceFolder}\\target\\CotG-02.txt"
+                "OUTPUT_PATH": "${workspaceFolder}/target/CotG-02.txt"
             }
         },
         {
@@ -99,7 +113,7 @@
             "projectName": "hackerrank",
             "args": [
                 "^<",
-                "${workspaceFolder}\\target\\classes\\in.txt"
+                "${workspaceFolder}/target/classes/in.txt"
             ]
         },
         {
@@ -117,7 +131,7 @@
             "projectName": "hackerrank",
             "args": [
                 "^<",
-                "${workspaceFolder}\\target\\classes\\fraud-testCase1.txt"
+                "${workspaceFolder}/target/classes/fraud-testCase1.txt"
             ]
         },
         {
@@ -128,7 +142,7 @@
             "projectName": "hackerrank",
             "args": [
                 "^<",
-                "${workspaceFolder}\\target\\classes\\fraud-testCase2.txt"
+                "${workspaceFolder}/target/classes/fraud-testCase2.txt"
             ]
         },
         {
@@ -139,7 +153,7 @@
             "projectName": "hackerrank",
             "args": [
                 "^<",
-                "${workspaceFolder}\\target\\classes\\fraud-testCase4.txt"
+                "${workspaceFolder}/target/classes/fraud-testCase4.txt"
             ]
         },
         {
@@ -150,7 +164,7 @@
             "projectName": "hackerrank",
             "args": [
                 "^<",
-                "${workspaceFolder}\\target\\classes\\fraud-testCaseG0.txt"
+                "${workspaceFolder}/target/classes/fraud-testCaseG0.txt"
             ]
         },
         {
@@ -161,7 +175,7 @@
             "projectName": "hackerrank",
             "args": [
                 "^<",
-                "${workspaceFolder}\\target\\classes\\fraud-testCase1.txt"
+                "${workspaceFolder}/target/classes/fraud-testCase1.txt"
             ]
         },
         {
@@ -172,7 +186,7 @@
             "projectName": "hackerrank",
             "args": [
                 "^<",
-                "${workspaceFolder}\\target\\classes\\fraud-testCaseG1.txt"
+                "${workspaceFolder}/target/classes/fraud-testCaseG1.txt"
             ]
         },
         {
@@ -183,7 +197,7 @@
             "projectName": "hackerrank",
             "args": [
                 "^<",
-                "${workspaceFolder}\\target\\classes\\fraud-testCase0.txt"
+                "${workspaceFolder}/target/classes/fraud-testCase0.txt"
             ]
         },
         {
@@ -194,7 +208,7 @@
             "projectName": "hackerrank",
             "args": [
                 "^<",
-                "${workspaceFolder}\\target\\classes\\fraud-testCase1.txt"
+                "${workspaceFolder}/target/classes/fraud-testCase1.txt"
             ]
         },
         {
@@ -205,7 +219,7 @@
             "projectName": "hackerrank",
             "args": [
                 "^<",
-                "${workspaceFolder}\\target\\classes\\fraud-testCase2.txt"
+                "${workspaceFolder}/target/classes/fraud-testCase2.txt"
             ]
         },
         {
@@ -216,7 +230,7 @@
             "projectName": "hackerrank",
             "args": [
                 "^<",
-                "${workspaceFolder}\\target\\classes\\fraud-testCase3.txt"
+                "${workspaceFolder}/target/classes/fraud-testCase3.txt"
             ]
         },
         {
@@ -227,7 +241,7 @@
             "projectName": "hackerrank",
             "args": [
                 "^<",
-                "${workspaceFolder}\\target\\classes\\fraud-testCase4.txt"
+                "${workspaceFolder}/target/classes/fraud-testCase4.txt"
             ]
         },
         {
@@ -238,7 +252,7 @@
             "projectName": "hackerrank",
             "args": [
                 "^<",
-                "${workspaceFolder}\\target\\classes\\fraud-testCase5.txt"
+                "${workspaceFolder}/target/classes/fraud-testCase5.txt"
             ]
         }
     ]
