@@ -2,6 +2,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - InOrderTraversal",
+            "request": "launch",
+            "mainClass": "org.gmnz.leet.InOrderTraversal",
+            "projectName": "hackerrank"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - SampleDecks",
+            "request": "launch",
+            "mainClass": "org.gmnz.hr.SampleDecks",
+            "projectName": "hackerrank"
+        },
+        {
+            "type": "java",
             "name": "CastleOnTheGrid gz test 02",
             "request": "launch",
             "mainClass": "org.gmnz.hr.CastleOnTheGrid",
