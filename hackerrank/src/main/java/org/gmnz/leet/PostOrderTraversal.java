@@ -1,9 +1,11 @@
 package org.gmnz.leet;
 
+
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
+
 
 public class PostOrderTraversal {
 
@@ -31,10 +33,9 @@ public class PostOrderTraversal {
             if (nb != 0) {
                 branches.push(nb);
                 n = x;
-            }
-            else {
+            } else {
                 list.add(n.val);
-                while( branches.peek() == 1) {
+                while (branches.peek() == 1) {
                     branches.pop();
                     list.add(nodes.pop().val);
                 }
@@ -46,6 +47,11 @@ public class PostOrderTraversal {
         return list;
     }
 
-    
+
+
+    public static void main(String[] args) {
+        PostOrderTraversal pot = new PostOrderTraversal();
+        System.out.println(pot.traverse(TreeNode.samplePostOrder()));
+    }
 
 }

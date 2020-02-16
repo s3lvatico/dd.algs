@@ -2,6 +2,13 @@
    "configurations": [
       {
          "type": "java",
+         "name": "CodeLens (Launch) - PostOrderTraversal",
+         "request": "launch",
+         "mainClass": "org.gmnz.leet.PostOrderTraversal",
+         "projectName": "hackerrank"
+      },
+      {
+         "type": "java",
          "name": "CodeLens (Launch) - CastleOnTheGrid",
          "request": "launch",
          "mainClass": "org.gmnz.hr.CastleOnTheGrid",
