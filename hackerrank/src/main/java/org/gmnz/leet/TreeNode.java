@@ -9,7 +9,13 @@ class TreeNode {
       val = v;
    }
 
-
+   public String toString() {
+      StringBuilder sb = new StringBuilder("(");
+      sb.append(val).append(", ");
+      sb.append(left != null ? "L" : ".");
+      sb.append(right != null ? "R)" : ".)");
+      return sb.toString();
+   }
 
    static TreeNode sampleTree() {
       TreeNode tre = new TreeNode(3);
