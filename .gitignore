@@ -12,3 +12,6 @@ target/
 # intellij idea files
 .idea
 *.iml
+
+# vscode
+**/.vscode
