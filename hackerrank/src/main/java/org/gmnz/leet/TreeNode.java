@@ -86,4 +86,39 @@ class TreeNode {
 
       return root;
    }
+
+
+
+   static TreeNode sampleReconstruction01() {
+      TreeNode root = new TreeNode(6);
+
+      TreeNode x = new TreeNode(15);
+      TreeNode y = new TreeNode(10);
+      y.right = x;
+      x = new TreeNode(1);
+      x.right = new TreeNode(9);
+      x.left = y;
+      y = new TreeNode(5);
+      y.right = x;
+      x = new TreeNode(7);
+      x.right = new TreeNode(3);
+      y.left = x;
+      root.left = y;
+
+      y = new TreeNode(12);
+      y.left = new TreeNode(2);
+      y.right = new TreeNode(14);
+
+      x = new TreeNode(4);
+      x.left = y;
+      y = new TreeNode(13);
+      y.right = x;
+      root.right = y;
+
+      x = new TreeNode(11);
+      x.right = new TreeNode(8);
+      y.left = x;
+
+      return root;
+   }
 }
