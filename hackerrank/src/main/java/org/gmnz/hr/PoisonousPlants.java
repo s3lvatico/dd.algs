@@ -15,8 +15,8 @@ public class PoisonousPlants {
    // Complete the poisonousPlants function below.
    static int poisonousPlants(Deque<Integer> q) {
 
-      int daysPassed = 0;
-      int survivedPlants = q.size();
+      // int daysPassed = 0;
+      // int survivedPlants = q.size();
       while (q.size() > 0) {
          LinkedList<Integer> q2 = new LinkedList<>();
          int x = q.poll();
