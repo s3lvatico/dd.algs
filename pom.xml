@@ -15,6 +15,7 @@
 	<modules>
 		<module>sedgewick-algs</module>
 		<module>hackerrank</module>
+		<module>leetCode</module>
 	</modules>
 
 	<dependencyManagement>
