@@ -18,6 +18,7 @@
 		<module>sorting</module>
 		<module>searching</module>
 		<module>graphs</module>
+		<module>tree</module>
 	</modules>
 
 </project>
