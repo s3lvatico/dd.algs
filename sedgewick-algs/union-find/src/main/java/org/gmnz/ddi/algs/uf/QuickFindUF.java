@@ -1,6 +1,5 @@
 package org.gmnz.ddi.algs.uf;
 
-
 public class QuickFindUF extends UnionFind {
 
 	public QuickFindUF(int n) {

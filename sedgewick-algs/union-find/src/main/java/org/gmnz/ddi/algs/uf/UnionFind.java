@@ -1,6 +1,5 @@
 package org.gmnz.ddi.algs.uf;
 
-
 /**
  * Insieme di elementi che appartengono inizialmente a insiemi tutti distinti.
  * <p>
@@ -15,18 +14,15 @@ abstract class UnionFind {
 	protected int[] id;
 	protected int nComponents;
 
-
 	public abstract void union(int p, int q);
-
 
 	public abstract int find(int p);
 
-
 	/**
-	 * @param  p
-	 * @param  q
-	 * @return   <code>true</code> se gli elementi p e q appartengono allo stesso
-	 *           componente
+	 * @param p
+	 * @param q
+	 * @return <code>true</code> se gli elementi p e q appartengono allo stesso
+	 * componente
 	 */
 	public abstract boolean connected(int p, int q);
 
