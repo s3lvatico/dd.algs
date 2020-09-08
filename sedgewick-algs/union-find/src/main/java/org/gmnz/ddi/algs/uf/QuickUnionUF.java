@@ -1,8 +1,6 @@
 package org.gmnz.ddi.algs.uf;
 
-
 public class QuickUnionUF extends UnionFind {
-
 
 	public QuickUnionUF(int n) {
 		super(n);
@@ -33,6 +31,5 @@ public class QuickUnionUF extends UnionFind {
 	public boolean connected(int p, int q) {
 		return find(p) == find(q);
 	}
-
 
 }
