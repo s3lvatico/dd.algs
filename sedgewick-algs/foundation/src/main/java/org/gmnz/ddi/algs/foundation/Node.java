@@ -4,45 +4,46 @@ package org.gmnz.ddi.algs.foundation;
  * Nodo per pile e code. Ha un valore di tipo parametrico e un riferimento a un
  * altro <code>Node</code>
  */
-class Node<K> {
+class Node<V> {
 
     /**
-     * Chiave. Valore contenuto in questo nodo
+     * Valore contenuto in questo nodo
      */
-    K value;
+    V value;
 
     /**
      * L'unico nodo referenziato da questo nodo.
      */
-    Node<K> next;
+    Node<V> next;
 
     /**
-     * Crea un nuovo nodo con chiave e riferimento nulli
+     * Crea un nuovo nodo senza valore né riferimento esterno.
      */
     Node() {}
 
 
 
     /**
-     * Crea un nuovo nodo con la chiave e il riferimento specificati
+     * Crea un nuovo nodo con il valore e il riferimento specificati
      * 
-     * @param k
+     * @param v
      * @param next
      */
-    Node(K k, Node<K> next) {
-        this.value = k;
+    Node(V v, Node<V> next) {
+        this.value = v;
         this.next = next;
     }
 
 
 
     /**
-     * Crea un nuovo nodo con la chiave specificata e nessun riferimento ad altro
+     * Crea un nuovo nodo con il valore specificato e nessun riferimento ad altro
      * nodo
      * 
-     * @param k
+     * @param v
      */
-    Node(K k) {
-        this(k, null);
+    Node(V v) {
+        this(v, null);
     }
+
 }
