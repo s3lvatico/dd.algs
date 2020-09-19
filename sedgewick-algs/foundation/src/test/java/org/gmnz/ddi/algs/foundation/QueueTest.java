@@ -1,8 +1,6 @@
 package org.gmnz.ddi.algs.foundation;
 
 
-import org.gmnz.ddi.algs.foundation.Queue;
-import org.gmnz.ddi.algs.foundation.Queues;
 import org.junit.Assert;
 import org.junit.Test;
 
