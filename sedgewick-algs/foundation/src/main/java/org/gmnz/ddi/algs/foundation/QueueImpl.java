@@ -1,10 +1,25 @@
 package org.gmnz.ddi.algs.foundation;
 
+/**
+ * Implementazione base della coda
+ * 
+ * @param <K> tipo dei dati contenuti negli elementi della coda
+ */
 class QueueImpl<K> implements Queue<K> {
 
+    /**
+     * Primo elemento della coda
+     */
     private Node<K> head;
+
+    /**
+     * Ultimo elemento della coda
+     */
     private Node<K> tail;
 
+    /**
+     * Numero di elementi presenti nella coda
+     */
     private int size;
 
     @Override
@@ -48,6 +63,7 @@ class QueueImpl<K> implements Queue<K> {
 
 
 
+    @Override
     public int size() {
         return size;
     }
