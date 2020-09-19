@@ -8,18 +8,25 @@ import java.util.Map;
 
 class ReconstructionInPost {
 
-   private Map<Integer, Integer> inOrderIndex;
+   private Map<Integer, Integer> inOrderIndexMap;
 
    private int[] postorder;
 
+   /**
+    * Ricostruisce un albero binario di ricerca a partire dalle sue
+    * rappresentazioni in-order e post-order
+    * 
+    * @param inorder
+    * @param postorder
+    * @return un {@link TreeNode} con la radice dell'albero
+    */
    public TreeNode buildTree(int[] inorder, int[] postorder) {
-      // this.inorder = inorder;
       this.postorder = postorder;
 
-      // questa mappa è una "indexOf". uso una mappa sfruttando l'ipotesi dell'unicità
-      // dei valori nei nodi
-      inOrderIndex = new HashMap<>(inorder.length);
-      Arrays.stream(inorder).forEach(n -> inOrderIndex.put(n, inOrderIndex.size()));
+      // mappa di relazione tra un elemento dell'array e il suo indice nell'array, uso
+      // una mappa supponendo che valga l'ipotesi di unicità delle chiavi nell'albero
+      inOrderIndexMap = new HashMap<>(inorder.length);
+      Arrays.stream(inorder).forEach(n -> inOrderIndexMap.put(n, inOrderIndexMap.size()));
 
       return buildTree(0, inorder.length - 1, 0, postorder.length - 1);
    }
@@ -36,7 +43,7 @@ class ReconstructionInPost {
       TreeNode n = new TreeNode(v);
 
       // indice del valore in esame nell'array
-      int xv = inOrderIndex.get(v);
+      int xv = inOrderIndexMap.get(v);
 
       // chiamata ricorsiva per il sottoalbero destro
       // il sottoalbero destro si trova nel subarray destro di inorder rispetto alla
@@ -70,9 +77,9 @@ class ReconstructionInPost {
        */
       ReconstructionInPost reformation = new ReconstructionInPost();
 
-      int[] inOrder = new int[] { 9, 3, 15, 20, 7 };
-      int[] postOrder = new int[] { 9, 15, 7, 20, 3 };
-      System.out.println(reformation.buildTree(inOrder, postOrder));
+      int[] inOrderArray = new int[] { 9, 3, 15, 20, 7 };
+      int[] postOrderArray = new int[] { 9, 15, 7, 20, 3 };
+      System.out.println(reformation.buildTree(inOrderArray, postOrderArray));
 
    }
 

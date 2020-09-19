@@ -5,7 +5,7 @@ Nascono per soddisfare esigenze del tipo: ho un insieme di elementi, comparabili
 Le operazioni tipiche di una PQ sono
 
 -   inserisci
--   estrai l'elemento massimo [minimo]
+-   estrai l'elemento massimo (o minimo)
 
 ## soluzioni
 

@@ -43,10 +43,5 @@ public class QueueWithStacks {
             internalShift();
             return s2.isEmpty() ? null : s2.peek();
         }
-
-    }
-
-    public static void main(String[] args) {
-
     }
 }
