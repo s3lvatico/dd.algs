@@ -1,16 +1,17 @@
 package org.gmnz.ddi.algs.foundation;
 
-
 /**
- * Queues
+ * Classe factory per le code
  */
 public class Queues {
 
-    private Queues() {
-    }
+    private Queues() {}
 
 
 
+    /**
+     * Crea una coda vuota di elementi interi
+     */
     public static Queue<Integer> createIntegerQueue() {
         return new QueueImpl<>();
     }
